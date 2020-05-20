@@ -1,0 +1,23 @@
+{
+  "name": "dolla",
+  "version": "0.1.0",
+  "description": "A light set of helpers for building and manipulating DOM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bemky/dolla.git"
+  },
+  "keywords": [
+    "dom"
+  ],
+  "author": "Ben Ehmke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bemky/dolla/issues"
+  },
+  "homepage": "https://github.com/bemky/dolla#readme",
+  "dependencies": {}
+}
