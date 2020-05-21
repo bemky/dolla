@@ -26,26 +26,26 @@ export function createElement(tagName, options) {
           el.dataset[key] = JSON.stringify(value[key])
         })
       }
+      break;
     case 'style':
       if(typeof value == 'object') {
         return Object.keys(value).forEach(key => {
           el.style[key] = value[key]
         })
       }
+      break;
+    case 'children':
+      value.forEach(child => {
+        if(child instanceof Element || typeof child == "string") {
+          el.append(child)
+        } else {
+          el.append(createElement(child))
+        }
+      })
+      return
     }
     
     el.setAttribute(key, value);
   });
-  
-  if(options.children) {
-    options.children.forEach(child => {
-      if(child instanceof Element || typeof child == "string") {
-        el.append(child)
-      } else {
-        el.append(createElement(child))
-      }
-    })
-  }
-  
   return el
 }
