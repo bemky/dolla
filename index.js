@@ -5,7 +5,7 @@ export const BOOLEAN_ATTRIBUTES = ['disabled', 'readonly', 'multiple', 'checked'
   'pubdate', 'itemscope'
 ]
 
-export function createElement(tagName, options) {
+export function createElement(tagName, options={}) {
   const el = document.createElement(tagName)
   
   Object.keys(options).forEach(key => {
@@ -36,8 +36,12 @@ export function createElement(tagName, options) {
       break;
     case 'children':
       value.forEach(child => {
-        if(child instanceof Element || typeof child == "string") {
-          el.append(child)
+        if(child instanceof Element) {
+          el.appendChild(child)
+        } else if (typeof child == "string") {
+          const tmp = document.createElement('div')
+          tmp.innerHTML = child
+          tmp.childNodes.forEach(node => el.append(node.cloneNode(true)))
         } else {
           el.append(createElement(child))
         }
