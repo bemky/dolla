@@ -63,8 +63,8 @@ export function createElement(tagName = 'div', options={}) {
 export function offset(el){
     var rect = el.getBoundingClientRect();
     return { 
-      top: rect.top,
-      left: rect.left
+      top: rect.top + window.scrollY,
+      left: rect.left + window.scrollX
     }
 }
 
