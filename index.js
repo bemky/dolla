@@ -29,7 +29,7 @@ export function createElement(tagName = 'div', options={}) {
     case 'data':
       if(typeof value == 'object') {
         return Object.keys(value).forEach(key => {
-          el.dataset[key] = JSON.stringify(value[key])
+          el.dataset[key] = typeof value[key] == "object" ? JSON.stringify(value[key]) : value[key]
         })
       }
       break;
