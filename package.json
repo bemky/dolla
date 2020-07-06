@@ -1,8 +1,8 @@
 {
   "name": "dolla",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A light set of helpers for building and manipulating DOM",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "mocha -r jsdom-global/register",
     "build": "babel src -d dist"
