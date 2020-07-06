@@ -14,3 +14,7 @@ document.body.append(createElement('div', {
     children: ['Hello World']
 }))
 ```
+
+## Development
+### Test with Mocha
+    npm test
