@@ -10,6 +10,7 @@ exports.createElement = createElement;
 exports.offset = offset;
 exports.outerHeight = outerHeight;
 exports.outerWidth = outerWidth;
+exports.remove = remove;
 var BOOLEAN_ATTRIBUTES = exports.BOOLEAN_ATTRIBUTES = ['disabled', 'readonly', 'multiple', 'checked', 'autobuffer', 'autoplay', 'controls', 'loop', 'selected', 'hidden', 'scoped', 'async', 'defer', 'reversed', 'ismap', 'seemless', 'muted', 'required', 'autofocus', 'novalidate', 'formnovalidate', 'open', 'pubdate', 'itemscope'];
 
 function createElement() {
@@ -94,4 +95,12 @@ function outerWidth(el) {
 
   width += parseInt(style.marginLeft) + parseInt(style.marginRight);
   return width;
+}
+
+function remove(el) {
+  if (el instanceof NodeList) {
+    el.forEach(remove);
+  } else {
+    el.parentNode.removeChild(el);
+  }
 }

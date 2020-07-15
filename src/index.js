@@ -83,3 +83,11 @@ export function outerWidth(el){
     width += parseInt(style.marginLeft) + parseInt(style.marginRight);
     return width;
 }
+
+export function remove (el) {
+  if (el instanceof NodeList) {
+    el.forEach(remove);
+  } else {
+    el.parentNode.removeChild(el);
+  }
+}

@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var dolla = require('../index');
+var dolla = require('../dist/index');
 
 describe('createElement', function () {
   it('div', function () {
@@ -47,4 +47,6 @@ describe('createElement', function () {
     expect(el.outerHTML).to.be.equal(`<input type="checkbox">`);
     expect(el.checked).to.equal(true)
   });
+  
+  // TODO write test for remove
 });
