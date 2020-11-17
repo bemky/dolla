@@ -16,5 +16,7 @@ document.body.append(createElement('div', {
 ```
 
 ## Development
+### Build
+    npm run build
 ### Test with Mocha
     npm test

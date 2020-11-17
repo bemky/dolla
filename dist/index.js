@@ -3,104 +3,37 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.trigger = exports.outerWidth = exports.outerHeight = exports.offsetToViewport = exports.offset = exports.BOOLEAN_ATTRIBUTES = exports.HTML_ATTRIBUTES = exports.replaceContents = exports.remove = exports.createElement = exports.map = exports.filter = exports.ancestors = exports.closest = exports.css = exports.isEmpty = exports.isFocus = exports.isVisible = exports.toggleClass = exports.removeClass = exports.addClass = exports.hasClass = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _attributes = require('./attributes');
 
-exports.createElement = createElement;
-exports.offset = offset;
-exports.outerHeight = outerHeight;
-exports.outerWidth = outerWidth;
-exports.remove = remove;
-var BOOLEAN_ATTRIBUTES = exports.BOOLEAN_ATTRIBUTES = ['disabled', 'readonly', 'multiple', 'checked', 'autobuffer', 'autoplay', 'controls', 'loop', 'selected', 'hidden', 'scoped', 'async', 'defer', 'reversed', 'ismap', 'seemless', 'muted', 'required', 'autofocus', 'novalidate', 'formnovalidate', 'open', 'pubdate', 'itemscope'];
+var _query = require('./query');
 
-function createElement() {
-  var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+var _manipulation = require('./manipulation');
 
-  if ((typeof tagName === 'undefined' ? 'undefined' : _typeof(tagName)) == 'object') {
-    options = tagName;
-    tagName = options.tag || 'div';
-  }
-  var el = document.createElement(tagName);
+var _layout = require('./layout');
 
-  Object.keys(options).forEach(function (key) {
-    var value = options[key];
+var _events = require('./events');
 
-    if (BOOLEAN_ATTRIBUTES.includes(key)) {
-      if (value !== false) {
-        return el[key] = true;
-      }
-    }
-
-    switch (key) {
-      case 'tag':
-        return;
-      case 'value':
-        return el.value = value;
-      case 'data':
-        if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object') {
-          return Object.keys(value).forEach(function (key) {
-            el.dataset[key] = _typeof(value[key]) == "object" ? JSON.stringify(value[key]) : value[key];
-          });
-        }
-        break;
-      case 'style':
-        if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object') {
-          return Object.keys(value).forEach(function (key) {
-            el.style[key] = value[key];
-          });
-        }
-        break;
-      case 'children':
-        value.forEach(function (child) {
-          if (child instanceof Element) {
-            el.appendChild(child);
-          } else if ((typeof child === 'undefined' ? 'undefined' : _typeof(child)) == "object" && child !== null && !Array.isArray(child)) {
-            el.append(createElement(child));
-          } else {
-            var tmp = document.createElement('div');
-            tmp.innerHTML = child;
-            tmp.childNodes.forEach(function (node) {
-              return el.append(node.cloneNode(true));
-            });
-          }
-        });
-        return;
-    }
-
-    el.setAttribute(key, value);
-  });
-  return el;
-}
-
-function offset(el) {
-  var rect = el.getBoundingClientRect();
-  return {
-    top: rect.top + window.scrollY,
-    left: rect.left + window.scrollX
-  };
-}
-
-function outerHeight(el) {
-  var height = el.offsetHeight;
-  var style = getComputedStyle(el);
-
-  height += parseInt(style.marginTop) + parseInt(style.marginBottom);
-  return height;
-}
-
-function outerWidth(el) {
-  var width = el.offsetWidth;
-  var style = getComputedStyle(el);
-
-  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
-  return width;
-}
-
-function remove(el) {
-  if (el instanceof NodeList) {
-    el.forEach(remove);
-  } else {
-    el.parentNode.removeChild(el);
-  }
-}
+exports.hasClass = _attributes.hasClass;
+exports.addClass = _attributes.addClass;
+exports.removeClass = _attributes.removeClass;
+exports.toggleClass = _attributes.toggleClass;
+exports.isVisible = _attributes.isVisible;
+exports.isFocus = _attributes.isFocus;
+exports.isEmpty = _attributes.isEmpty;
+exports.css = _attributes.css;
+exports.closest = _query.closest;
+exports.ancestors = _query.ancestors;
+exports.filter = _query.filter;
+exports.map = _query.map;
+exports.createElement = _manipulation.createElement;
+exports.remove = _manipulation.remove;
+exports.replaceContents = _manipulation.replaceContents;
+exports.HTML_ATTRIBUTES = _manipulation.HTML_ATTRIBUTES;
+exports.BOOLEAN_ATTRIBUTES = _manipulation.BOOLEAN_ATTRIBUTES;
+exports.offset = _layout.offset;
+exports.offsetToViewport = _layout.offsetToViewport;
+exports.outerHeight = _layout.outerHeight;
+exports.outerWidth = _layout.outerWidth;
+exports.trigger = _events.trigger;

@@ -1,6 +1,6 @@
 {
   "name": "dolla",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "A light set of helpers for building and manipulating DOM",
   "main": "dist/index.js",
   "scripts": {
@@ -27,6 +27,6 @@
     "chai": "^4.2.0",
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",
-    "mocha": "^8.0.1"
+    "mocha": "^8.2.1"
   }
 }
