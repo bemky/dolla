@@ -18,7 +18,7 @@ function hasClass(el, className) {
 }
 function addClass(el, className) {
     if (el.classList) {
-        each(className.split(" "), function (className) {
+        className.split(" ").forEach(function (className) {
             el.classList.add(className);
         });
     } else el.className += ' ' + className;

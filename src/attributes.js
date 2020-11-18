@@ -8,7 +8,7 @@ export function hasClass (el, className) {
 }
 export function addClass(el, className) {
     if (el.classList){
-        each(className.split(" "), function(className){
+        className.split(" ").forEach(function(className){
             el.classList.add(className);
         });
     } else 
