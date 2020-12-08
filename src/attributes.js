@@ -22,7 +22,7 @@ export function removeClass(el, className) {
           el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
     }
     if (NodeList.prototype.isPrototypeOf(el))
-        each(el, removeClassFunction)
+        el.forEach(removeClassFunction)
     else
         removeClassFunction(el);
 }

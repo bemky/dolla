@@ -29,7 +29,7 @@ function removeClass(el, className) {
             return el.classList.remove(x);
         });else el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
     };
-    if (NodeList.prototype.isPrototypeOf(el)) each(el, removeClassFunction);else removeClassFunction(el);
+    if (NodeList.prototype.isPrototypeOf(el)) el.forEach(removeClassFunction);else removeClassFunction(el);
 }
 
 function toggleClass(el, className, toggle) {

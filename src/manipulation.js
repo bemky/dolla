@@ -22,7 +22,7 @@ export const HTML_ATTRIBUTES = [
   'reversed','rows','rowspan','sandbox','scope','scoped','selected','shape','size',
   'sizes','slot','span','spellcheck','src','srcdoc','srclang','srcset','start',
   'step','style','summary','tabindex','target','title','translate','type','usemap',
-  'value','width','wrap'
+  'value','width','wrap', 'aria', 'aria-*'
 ]
 
 export function createElement(tagName = 'div', options={}) {
@@ -33,7 +33,7 @@ export function createElement(tagName = 'div', options={}) {
   const el = document.createElement(tagName)
   
   Object.keys(options).forEach(key => {
-    if(!HTML_ATTRIBUTES.includes(key)){
+    if(HTML_ATTRIBUTES.filter(attribute => key.match(new RegExp(attribute))).length == 0 && key != "children"){
       return
     }
     
@@ -80,7 +80,6 @@ export function createElement(tagName = 'div', options={}) {
     }
     el.setAttribute(key, value);
   });
-  debugger
   return el
 }
 
