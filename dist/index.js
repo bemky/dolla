@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.trigger = exports.outerWidth = exports.outerHeight = exports.offsetToViewport = exports.offset = exports.BOOLEAN_ATTRIBUTES = exports.HTML_ATTRIBUTES = exports.replaceContents = exports.remove = exports.createElement = exports.map = exports.filter = exports.ancestors = exports.closest = exports.css = exports.isEmpty = exports.isFocus = exports.isVisible = exports.toggleClass = exports.removeClass = exports.addClass = exports.hasClass = undefined;
+exports.trigger = exports.outerWidth = exports.outerHeight = exports.offsetToViewport = exports.offset = exports.BOOLEAN_ATTRIBUTES = exports.HTML_ATTRIBUTES = exports.replaceContents = exports.remove = exports.createElement = exports.map = exports.filter = exports.ancestors = exports.closest = exports.serializeFormToJSON = exports.serializeForm = exports.css = exports.isEmpty = exports.isFocus = exports.isVisible = exports.toggleClass = exports.removeClass = exports.addClass = exports.hasClass = undefined;
 
 var _attributes = require('./attributes');
 
@@ -23,6 +23,8 @@ exports.isVisible = _attributes.isVisible;
 exports.isFocus = _attributes.isFocus;
 exports.isEmpty = _attributes.isEmpty;
 exports.css = _attributes.css;
+exports.serializeForm = _attributes.serializeForm;
+exports.serializeFormToJSON = _attributes.serializeFormToJSON;
 exports.closest = _query.closest;
 exports.ancestors = _query.ancestors;
 exports.filter = _query.filter;

@@ -6,7 +6,9 @@ import {
   isVisible,
   isFocus,
   isEmpty,
-  css
+  css,
+  serializeForm,
+  serializeFormToJSON
 } from './attributes';
 
 import {
@@ -44,6 +46,8 @@ export {
   isFocus,
   isEmpty,
   css,
+  serializeForm,
+  serializeFormToJSON,
   
   closest,
   ancestors,
