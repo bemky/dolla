@@ -65,17 +65,24 @@ export function createElement(tagName = 'div', options={}) {
       }
       break;
     case 'children':
-      value.forEach(child => {
-        if(child instanceof Element) {
-          el.appendChild(child)
-        } else if (typeof child == "object" && child !== null && !Array.isArray(child)) {
-          el.append(createElement(child))
-        } else {
-          const tmp = document.createElement('div')
-          tmp.innerHTML = child
-          tmp.childNodes.forEach(node => el.append(node.cloneNode(true)))
-        }
-      })
+      if(typeof value == "string"){
+        const tmp = document.createElement('div')
+        tmp.innerHTML = value;
+        tmp.childNodes.forEach(node => el.append(node.cloneNode(true)))
+      } else {
+        value.forEach(child => {
+          if(child instanceof Element) {
+            el.appendChild(child)
+          } else if (typeof child == "object" && child !== null && !Array.isArray(child)) {
+            el.append(createElement(child))
+          } else {
+            const tmp = document.createElement('div')
+            tmp.innerHTML = child
+            tmp.childNodes.forEach(node => el.append(node.cloneNode(true)))
+          }
+        })
+      }
+      
       return
     }
     el.setAttribute(key, value);

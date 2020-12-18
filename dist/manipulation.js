@@ -58,19 +58,28 @@ function createElement() {
         }
         break;
       case 'children':
-        value.forEach(function (child) {
-          if (child instanceof Element) {
-            el.appendChild(child);
-          } else if ((typeof child === 'undefined' ? 'undefined' : _typeof(child)) == "object" && child !== null && !Array.isArray(child)) {
-            el.append(createElement(child));
-          } else {
-            var tmp = document.createElement('div');
-            tmp.innerHTML = child;
-            tmp.childNodes.forEach(function (node) {
-              return el.append(node.cloneNode(true));
-            });
-          }
-        });
+        if (typeof value == "string") {
+          var tmp = document.createElement('div');
+          tmp.innerHTML = value;
+          tmp.childNodes.forEach(function (node) {
+            return el.append(node.cloneNode(true));
+          });
+        } else {
+          value.forEach(function (child) {
+            if (child instanceof Element) {
+              el.appendChild(child);
+            } else if ((typeof child === 'undefined' ? 'undefined' : _typeof(child)) == "object" && child !== null && !Array.isArray(child)) {
+              el.append(createElement(child));
+            } else {
+              var _tmp = document.createElement('div');
+              _tmp.innerHTML = child;
+              _tmp.childNodes.forEach(function (node) {
+                return el.append(node.cloneNode(true));
+              });
+            }
+          });
+        }
+
         return;
     }
     el.setAttribute(key, value);

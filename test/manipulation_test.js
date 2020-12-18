@@ -8,8 +8,17 @@ describe('createElement', function () {
   
   it('div with children', function () {
     expect(dolla.createElement('div', {
-      children: ['Direct HTML']
+      children: 'Direct HTML'
     }).outerHTML).to.be.equal(`<div>Direct HTML</div>`);
+
+    expect(dolla.createElement('div', {
+      children: [{
+        tag: 'span',
+        children: 'Span'
+      },
+        'Direct HTML in Array'
+      ]
+    }).outerHTML).to.be.equal(`<div><span>Span</span>Direct HTML in Array</div>`);
     
     expect(dolla.createElement('div', {
       children: [
@@ -47,6 +56,4 @@ describe('createElement', function () {
     expect(el.outerHTML).to.be.equal(`<input type="checkbox">`);
     expect(el.checked).to.equal(true)
   });
-  
-  // TODO write test for remove
 });
