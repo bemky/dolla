@@ -28,7 +28,7 @@ function ancestors(el) {
 
 function filter(nodes, predicate) {
     var filteredNodes = [];
-    each(nodes, function (node) {
+    nodes.forEach(function (node) {
         if (predicate(node)) filteredNodes.push(node);
     });
     return filteredNodes;
