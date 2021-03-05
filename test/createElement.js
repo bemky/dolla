@@ -1,17 +1,17 @@
-var expect = require('chai').expect;
-var dolla = require('../dist/index');
+import createElement from '../src/createElement';
+import {expect} from 'chai';
 
 describe('createElement', function () {
   it('div', function () {
-    expect(dolla.createElement('div', {class: 'test'}).outerHTML).to.be.equal(`<div class="test"></div>`);
+    expect(createElement('div', {class: 'test'}).outerHTML).to.be.equal(`<div class="test"></div>`);
   });
   
   it('div with children', function () {
-    expect(dolla.createElement('div', {
+    expect(createElement('div', {
       children: 'Direct HTML'
     }).outerHTML).to.be.equal(`<div>Direct HTML</div>`);
 
-    expect(dolla.createElement('div', {
+    expect(createElement('div', {
       children: [{
         tag: 'span',
         children: 'Span'
@@ -20,7 +20,7 @@ describe('createElement', function () {
       ]
     }).outerHTML).to.be.equal(`<div><span>Span</span>Direct HTML in Array</div>`);
     
-    expect(dolla.createElement('div', {
+    expect(createElement('div', {
       children: [
         {
           tag: 'span',
@@ -31,7 +31,7 @@ describe('createElement', function () {
   });
   
   it('div with data', function () {
-    const el = dolla.createElement('div', {
+    const el = createElement('div', {
       data: {
         test: 11
       }
@@ -40,7 +40,7 @@ describe('createElement', function () {
   });
   
   it('div with style', function () {
-    const el = dolla.createElement('div', {
+    const el = createElement('div', {
       style: {
         display: 'none'
       }
@@ -49,7 +49,7 @@ describe('createElement', function () {
   });
   
   it('input with boolean attribute', function () {
-    const el = dolla.createElement('input', {
+    const el = createElement('input', {
       checked: true,
       type: 'checkbox'
     })

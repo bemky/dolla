@@ -1,9 +1,10 @@
-var expect = require('chai').expect;
-var dolla = require('../dist/index');
+import createElement from '../src/createElement';
+import serializeFormToJSON from '../src/serializeFormToJSON';
+import {expect} from 'chai';
 
 describe('serializeFormToJSON', function () {
   it('single input', function () {
-    const form = dolla.createElement('form', {
+    const form = createElement('form', {
       children: [{
         tag: 'input',
         type: 'text',
@@ -12,6 +13,6 @@ describe('serializeFormToJSON', function () {
       }]
     })
     
-    expect(dolla.serializeFormToJSON(form)).to.deep.equal({account: {first_name: 'Greg'}});
+    expect(serializeFormToJSON(form)).to.deep.equal({account: {first_name: 'Greg'}});
   });
 });

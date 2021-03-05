@@ -4,7 +4,7 @@
   "description": "A light set of helpers for building and manipulating DOM",
   "main": "dist/index.js",
   "scripts": {
-    "test": "mocha -r jsdom-global/register",
+    "test": "mocha -r @babel/register -r jsdom-global/register",
     "build": "babel src -d dist"
   },
   "repository": {
@@ -20,10 +20,10 @@
     "url": "https://github.com/bemky/dolla/issues"
   },
   "homepage": "https://github.com/bemky/dolla#readme",
-  "dependencies": {},
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
+    "@babel/cli": "^7.13.0",
+    "@babel/preset-env": "^7.13.9",
+    "@babel/register": "^7.13.8",
     "chai": "^4.2.0",
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",

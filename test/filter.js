@@ -1,9 +1,10 @@
-var expect = require('chai').expect;
-var dolla = require('../dist/index');
+import createElement from '../src/createElement';
+import filter from '../src/filter';
+import {expect} from 'chai';
 
 describe('filter', function () {
   it('predicate', function () {
-    const el = dolla.createElement('div', {
+    const el = createElement('div', {
       children: [
         {
           id: 'n1'
@@ -17,10 +18,10 @@ describe('filter', function () {
       ]
     })
     
-    const evenNodes = dolla.filter(el.querySelectorAll('div'), x => parseInt(x.id[1]) % 2 == 0)
+    const evenNodes = filter(el.querySelectorAll('div'), x => parseInt(x.id[1]) % 2 == 0)
     expect(evenNodes.map(x => x.id).join(",")).to.be.equal('n2,n4')
     
-    const oddNodes = dolla.filter(el.querySelectorAll('div'), x => parseInt(x.id[1]) % 2 == 1)
+    const oddNodes = filter(el.querySelectorAll('div'), x => parseInt(x.id[1]) % 2 == 1)
     expect(oddNodes.map(x => x.id).join(",")).to.be.equal('n1,n3')
   });
   
