@@ -1,4 +1,4 @@
 export default function replaceContents(el, ...nodes) {
-  el.html = '';
+  el.innerHTML = '';
   el.append(...nodes);
 }
