@@ -1,3 +1,3 @@
-export function isVisible(element){
-    return element.offsetParent !== null;
+export default function isVisible (el) {
+    return el.offsetParent !== null;
 }

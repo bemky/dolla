@@ -1,4 +1,4 @@
-export function serializeFormToJSON(form) {
+export default function serializeFormToJSON (form) {
   const formData = serializeForm(form);
   Object.keys(formData).forEach(key => {
     const keys = key.replace(']', '').split('[')
