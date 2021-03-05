@@ -1,3 +1,3 @@
-export function isEmpty(element){
+export default function isEmpty(element){
     return element.innerHTML === "";
 }

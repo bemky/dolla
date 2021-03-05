@@ -17,7 +17,6 @@ export serializeForm from './serializeForm';
 export serializeFormToJSON from './serializeFormToJSON';
 export trigger from './trigger';
 
-
 export {
   HTML_ATTRIBUTES,
   BOOLEAN_ATTRIBUTES

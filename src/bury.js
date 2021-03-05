@@ -1,4 +1,4 @@
-function bury(object, ...keys) {
+export default function bury (object, ...keys) {
   if(keys.length == 2){
     object[keys[0]] = keys[1]
   } else {
