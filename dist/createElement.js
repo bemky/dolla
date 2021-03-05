@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createElement;
 
-var _constants = require("./constants.js");
+var _constants = require("./constants");
 
 function createElement(tagName = 'div', options = {}) {
   if (typeof tagName == 'object') {

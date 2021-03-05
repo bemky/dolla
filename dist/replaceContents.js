@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = replaceContents;
 
 function replaceContents(el, ...nodes) {
-  el.html = '';
+  el.innerHTML = '';
   el.append(...nodes);
 }
