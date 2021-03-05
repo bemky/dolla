@@ -1,6 +1,6 @@
 import createElement from '../src/createElement';
 import serializeForm from '../src/serializeForm';
-import {expect} from 'chai';
+import * as assert from 'assert';
 
 describe('serializeForm', function () {
   it('single input', function () {
@@ -13,6 +13,6 @@ describe('serializeForm', function () {
       }]
     })
     
-    expect(serializeForm(form)).to.deep.equal({first_name: 'Greg'});
+    assert.deepEqual(serializeForm(form), {first_name: 'Greg'});
   });
 });

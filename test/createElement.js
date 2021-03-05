@@ -1,33 +1,33 @@
 import createElement from '../src/createElement';
-import {expect} from 'chai';
+import * as assert from 'assert';
 
 describe('createElement', function () {
   it('div', function () {
-    expect(createElement('div', {class: 'test'}).outerHTML).to.be.equal(`<div class="test"></div>`);
+    assert.equal(createElement('div', {class: 'test'}).outerHTML, `<div class="test"></div>`)
   });
   
   it('div with children', function () {
-    expect(createElement('div', {
+    assert.equal(createElement('div', {
       children: 'Direct HTML'
-    }).outerHTML).to.be.equal(`<div>Direct HTML</div>`);
+    }).outerHTML, `<div>Direct HTML</div>`);
 
-    expect(createElement('div', {
+    assert.equal(createElement('div', {
       children: [{
         tag: 'span',
         children: 'Span'
       },
         'Direct HTML in Array'
       ]
-    }).outerHTML).to.be.equal(`<div><span>Span</span>Direct HTML in Array</div>`);
+    }).outerHTML, `<div><span>Span</span>Direct HTML in Array</div>`);
     
-    expect(createElement('div', {
+    assert.equal(createElement('div', {
       children: [
         {
           tag: 'span',
           children: ['This is span']
         }
       ]
-    }).outerHTML).to.be.equal(`<div><span>This is span</span></div>`);
+    }).outerHTML, `<div><span>This is span</span></div>`);
   });
   
   it('div with data', function () {
@@ -36,7 +36,7 @@ describe('createElement', function () {
         test: 11
       }
     })
-    expect(el.dataset.test).to.be.equal('11');
+    assert.equal(el.dataset.test, '11');
   });
   
   it('div with style', function () {
@@ -45,7 +45,7 @@ describe('createElement', function () {
         display: 'none'
       }
     })
-    expect(el.style.display).to.be.equal('none');
+    assert.equal(el.style.display, 'none');
   });
   
   it('input with boolean attribute', function () {
@@ -53,7 +53,7 @@ describe('createElement', function () {
       checked: true,
       type: 'checkbox'
     })
-    expect(el.outerHTML).to.be.equal(`<input type="checkbox">`);
-    expect(el.checked).to.equal(true)
+    assert.equal(el.outerHTML, `<input type="checkbox">`);
+    assert.equal(el.checked, true)
   });
 });

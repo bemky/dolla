@@ -1,6 +1,6 @@
 import createElement from '../src/createElement';
 import filter from '../src/filter';
-import {expect} from 'chai';
+import * as assert from 'assert';
 
 describe('filter', function () {
   it('predicate', function () {
@@ -19,10 +19,10 @@ describe('filter', function () {
     })
     
     const evenNodes = filter(el.querySelectorAll('div'), x => parseInt(x.id[1]) % 2 == 0)
-    expect(evenNodes.map(x => x.id).join(",")).to.be.equal('n2,n4')
+    assert.equal(evenNodes.map(x => x.id).join(","), 'n2,n4')
     
     const oddNodes = filter(el.querySelectorAll('div'), x => parseInt(x.id[1]) % 2 == 1)
-    expect(oddNodes.map(x => x.id).join(",")).to.be.equal('n1,n3')
+    assert.equal(oddNodes.map(x => x.id).join(","), 'n1,n3')
   });
   
 });

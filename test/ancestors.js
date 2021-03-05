@@ -1,13 +1,29 @@
 import createElement from '../src/createElement.js';
 import ancestors from '../src/ancestors.js';
-import {expect} from 'chai';
+import * as assert from 'assert';
 
 describe('ancestors', function () {
+  
   it('one level', function () {
     const child = createElement('div', {id: 'a'})
-    const parent = createElement('div', {id: 'aa'})
+    const parent = createElement('div', {id: 'aa', children: [child]})
     
-    expect('aa', ancestors(child).map(x => x.id))
+    assert.deepEqual(['aa'], ancestors(child).map(x => x.id))
+  });
+  
+  it('none', function () {
+    const child = createElement('div', {id: 'a'})
+    
+    assert.deepEqual([], ancestors(child).map(x => x.id))
+  });
+  
+  it('multiple level', function () {
+    const child = createElement('div', {id: 'a'})
+    const parent = createElement('div', {id: 'aa', children: [child]})
+    const grandparent = createElement('div', {id: 'aaa', children: [parent]})
+    const greatGrandparent = createElement('div', {id: 'aaaa', children: [grandparent]})
+    
+    assert.deepEqual(['aa', 'aaa', 'aaaa'], ancestors(child).map(x => x.id))
   });
   
 });

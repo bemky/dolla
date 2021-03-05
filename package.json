@@ -24,7 +24,6 @@
     "@babel/cli": "^7.13.0",
     "@babel/preset-env": "^7.13.9",
     "@babel/register": "^7.13.8",
-    "chai": "^4.2.0",
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",
     "mocha": "^8.2.1"
