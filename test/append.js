@@ -33,16 +33,14 @@ describe('append', function () {
     assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
   })
   
-  it('promise', async function (done) {
+  it('promise', async function () {
     const el = createElement('div', {id: 'a'})
-    const promise = new Promise(() => {
-      return `<div id="b"></div>`
+    const promise = new Promise((success) => {
+      success(`<div id="b"></div>`)
     })
     await append(el, promise)
     
-    promise.then(() => {
-      assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
-    }).then(done, done)
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
   })
   
 });
