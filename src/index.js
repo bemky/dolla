@@ -1,4 +1,5 @@
 export {default as ancestors } from './ancestors';
+export {default as append } from './append';
 export {default as bury } from './bury';
 export {default as createElement } from './createElement';
 export {default as css } from './css';

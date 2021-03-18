@@ -9,6 +9,12 @@ Object.defineProperty(exports, "ancestors", {
     return _ancestors.default;
   }
 });
+Object.defineProperty(exports, "append", {
+  enumerable: true,
+  get: function () {
+    return _append.default;
+  }
+});
 Object.defineProperty(exports, "bury", {
   enumerable: true,
   get: function () {
@@ -125,6 +131,8 @@ Object.defineProperty(exports, "BOOLEAN_ATTRIBUTES", {
 });
 
 var _ancestors = _interopRequireDefault(require("./ancestors"));
+
+var _append = _interopRequireDefault(require("./append"));
 
 var _bury = _interopRequireDefault(require("./bury"));
 
