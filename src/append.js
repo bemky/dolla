@@ -11,7 +11,7 @@ export default function append(el, item, escape) {
       
       item.then(resolvedItem => {
         append(holder, resolvedItem, escape)
-        holder.childNodes.forEach(child => {
+        Array.from(holder.childNodes).forEach(child => {
           holder.insertAdjacentElement('beforebegin', child)
         })
         holder.parentNode.removeChild(holder);

@@ -17,7 +17,7 @@ function append(el, item, escape) {
       el.append(holder);
       item.then(resolvedItem => {
         append(holder, resolvedItem, escape);
-        holder.childNodes.forEach(child => {
+        Array.from(holder.childNodes).forEach(child => {
           holder.insertAdjacentElement('beforebegin', child);
         });
         holder.parentNode.removeChild(holder);

@@ -29,18 +29,18 @@ describe('append', function () {
   
   it('unescaped html', function () {
     const el = createElement('div', {id: 'a'})
-    append(el, `<div id="b"></div>`)
-    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
+    append(el, `<div id="b"></div><div id="c"></div>`)
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div><div id="c"></div></div>`)
   })
   
   it('promise', async function () {
     const el = createElement('div', {id: 'a'})
     const promise = new Promise((success) => {
-      success(`<div id="b"></div>`)
+      success(`<div id="b"></div><div id="c"></div>`)
     })
     await append(el, promise)
     
-    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div><div id="c"></div></div>`)
   })
   
 });
