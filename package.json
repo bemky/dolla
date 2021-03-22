@@ -1,6 +1,6 @@
 {
   "name": "dolla",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "A light set of helpers for building and manipulating DOM",
   "main": "dist/index.js",
   "scripts": {
@@ -27,5 +27,8 @@
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",
     "mocha": "^8.2.1"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.12.13"
   }
 }
