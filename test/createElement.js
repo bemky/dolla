@@ -1,4 +1,4 @@
-import {createElement} from '../src/index';
+import {createElement} from '../esm/index';
 import * as assert from 'assert';
 
 describe('createElement', function () {

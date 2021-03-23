@@ -1,11 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = append;
-
-function append(el, item, escape) {
+export default function append(el, item, escape) {
   if (Array.isArray(item)) {
     item.forEach(i => append(el, i, escape));
   } else if (escape instanceof Element) {

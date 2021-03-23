@@ -1,11 +1,11 @@
 {
   "name": "dolla",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "A light set of helpers for building and manipulating DOM",
-  "main": "dist/index.js",
+  "main": "esm/index.js",
   "scripts": {
     "test": "mocha -r @babel/register -r jsdom-global/register",
-    "build": "babel src -d dist"
+    "build": "babel src -d esm --config-file ./build.babel.config.json --no-babelrc"
   },
   "repository": {
     "type": "git",
@@ -22,13 +22,11 @@
   "homepage": "https://github.com/bemky/dolla#readme",
   "devDependencies": {
     "@babel/cli": "^7.13.0",
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
     "@babel/preset-env": "^7.13.9",
     "@babel/register": "^7.13.8",
     "jsdom": "^16.2.2",
     "jsdom-global": "^3.0.2",
     "mocha": "^8.2.1"
-  },
-  "dependencies": {
-    "@babel/plugin-proposal-export-default-from": "^7.12.13"
   }
 }

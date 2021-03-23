@@ -1,11 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ancestors;
-
-function ancestors(el) {
+export default function ancestors(el) {
   var ancestors = [];
   el = el.parentElement;
 

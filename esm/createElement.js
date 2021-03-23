@@ -1,13 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = createElement;
-
-var _constants = require("./constants");
-
-function createElement(tagName = 'div', options = {}) {
+import { BOOLEAN_ATTRIBUTES, HTML_ATTRIBUTES } from './constants';
+export default function createElement(tagName = 'div', options = {}) {
   if (typeof tagName == 'object') {
     options = tagName;
     tagName = options.tag || 'div';
@@ -15,13 +7,13 @@ function createElement(tagName = 'div', options = {}) {
 
   const el = document.createElement(tagName);
   Object.keys(options).forEach(key => {
-    if (_constants.HTML_ATTRIBUTES.filter(attribute => key.match(new RegExp(attribute))).length == 0 && key != "children") {
+    if (HTML_ATTRIBUTES.filter(attribute => key.match(new RegExp(attribute))).length == 0 && key != "children") {
       return;
     }
 
     const value = options[key];
 
-    if (_constants.BOOLEAN_ATTRIBUTES.includes(key)) {
+    if (BOOLEAN_ATTRIBUTES.includes(key)) {
       if (value !== false) {
         return el[key] = true;
       }
