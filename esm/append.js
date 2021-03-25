@@ -11,7 +11,11 @@ export default function append(el, item, escape) {
       item.then(resolvedItem => {
         append(holder, resolvedItem, escape);
         Array.from(holder.childNodes).forEach(child => {
-          holder.insertAdjacentElement('beforebegin', child);
+          if (child instanceof Element) {
+            holder.insertAdjacentElement('beforebegin', child);
+          } else {
+            holder.insertAdjacentText('beforebegin', child.textContent);
+          }
         });
         holder.parentNode.removeChild(holder);
       });

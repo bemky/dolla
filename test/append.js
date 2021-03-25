@@ -9,6 +9,15 @@ describe('append', function () {
     assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
   });
   
+  it('text', function () {
+    const el = createElement('div', {id: 'a'})
+    append(el, document.createTextNode("Hello"))
+    assert.equal(el.outerHTML, `<div id="a">Hello</div>`)
+    
+    append(el, " Test")
+    assert.equal(el.outerHTML, `<div id="a">Hello Test</div>`)
+  });
+  
   it('array of elements', function () {
     const el = createElement('div', {id: 'a'})
     append(el, [createElement('div', {id: 'b'}), createElement('div', {id: 'c'})])
@@ -41,6 +50,16 @@ describe('append', function () {
     await append(el, promise)
     
     assert.equal(el.outerHTML, `<div id="a"><div id="b"></div><div id="c"></div></div>`)
+  })
+  
+  it('promise with text', async function () {
+    const el = createElement('div', {id: 'a'})
+    const promise = new Promise((success) => {
+      success([createElement({id: 'b'}), 'Hello', document.createTextNode(' Test')])
+    })
+    await append(el, promise)
+    
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div>Hello Test</div>`)
   })
   
 });
