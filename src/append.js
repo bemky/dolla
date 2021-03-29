@@ -9,7 +9,7 @@ export default function append(el, item, escape) {
       const holder = document.createElement('span')
       el.append(holder)
       
-      item.then(resolvedItem => {
+      return item.then(resolvedItem => {
         append(holder, resolvedItem, escape)
         Array.from(holder.childNodes).forEach(child => {
           if (child instanceof Element) {
@@ -20,16 +20,18 @@ export default function append(el, item, escape) {
         })
         holder.parentNode.removeChild(holder);
       })
+    } else if (typeof item == "function") {
+      return append(el, item(el), escape);
     } else if (typeof item == "string") {
       if (escape) {
-        el.append(item)
+        return el.append(item)
       } else {
         const container = document.createElement('div')
         container.innerHTML = item
-        el.append(...container.childNodes)
+        return el.append(...container.childNodes)
       }
     } else if (item !== null && item !== undefined) {
-      el.append(item);
+      return el.append(item);
     }
   }
 }

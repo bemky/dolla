@@ -62,4 +62,14 @@ describe('append', function () {
     assert.equal(el.outerHTML, `<div id="a"><div id="b"></div>Hello Test</div>`)
   })
   
+  it('function', function () {
+    let el = createElement('div', {id: 'a'})
+    append(el, () => `<div id="b"></div><div id="c"></div>`)
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div><div id="c"></div></div>`)
+    
+    el = createElement('div', {id: 'a'})
+    append(el, () => createElement('div', {id: 'b'}))
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
+  })
+  
 });
