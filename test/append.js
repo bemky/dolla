@@ -72,4 +72,13 @@ describe('append', function () {
     assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
   })
   
+  it('function with context', function () {
+    const context = {id: 'b'}
+    const el = createElement('div', {id: 'a'})
+    append(el, function () {
+      return createElement('div', {id: this.id})
+    }, context)
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
+  })
+  
 });
