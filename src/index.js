@@ -7,6 +7,8 @@ export filter from './filter';
 export isEmpty from './isEmpty';
 export isFocus from './isFocus';
 export isVisible from './isVisible';
+export insertBefore from './insertBefore';
+export insertAfter from './insertAfter';
 export map from './map';
 export offset from './offset';
 export offsetToViewport from './offsetToViewport';
