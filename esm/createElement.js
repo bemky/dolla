@@ -50,15 +50,26 @@ export default function createElement(tagName = 'div', options = {}) {
           tmp.innerHTML = value;
           tmp.childNodes.forEach(node => el.append(node.cloneNode(true)));
         } else {
-          value.forEach(child => {
+          let values;
+
+          if (Symbol.iterator in Object(value)) {
+            values = Array.from(value);
+          } else {
+            values = [value];
+          }
+
+          values.forEach(child => {
             if (child instanceof Element) {
               el.appendChild(child);
             } else if (typeof child == "object" && child !== null && !Array.isArray(child)) {
               el.append(createElement(child));
-            } else {
+            } else if (typeof child == "string") {
               const tmp = document.createElement('div');
               tmp.innerHTML = child;
               tmp.childNodes.forEach(node => el.append(node.cloneNode(true)));
+            } else if (child === null || child === undefined) {// do nothing
+            } else {
+              throw 'children passed to createElement is an unsupported type';
             }
           });
         }

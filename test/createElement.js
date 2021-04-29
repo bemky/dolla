@@ -6,30 +6,6 @@ describe('createElement', function () {
     assert.equal(createElement('div', {class: 'test'}).outerHTML, `<div class="test"></div>`)
   });
   
-  it('div with children', function () {
-    assert.equal(createElement('div', {
-      children: 'Direct HTML'
-    }).outerHTML, `<div>Direct HTML</div>`);
-
-    assert.equal(createElement('div', {
-      children: [{
-        tag: 'span',
-        children: 'Span'
-      },
-        'Direct HTML in Array'
-      ]
-    }).outerHTML, `<div><span>Span</span>Direct HTML in Array</div>`);
-    
-    assert.equal(createElement('div', {
-      children: [
-        {
-          tag: 'span',
-          children: ['This is span']
-        }
-      ]
-    }).outerHTML, `<div><span>This is span</span></div>`);
-  });
-  
   it('div with data', function () {
     const el = createElement('div', {
       data: {
@@ -56,4 +32,104 @@ describe('createElement', function () {
     assert.equal(el.outerHTML, `<input type="checkbox">`);
     assert.equal(el.checked, true)
   });
+  
+  describe('children', function () {{
+    it('text', function () {
+      assert.equal(createElement('div', {
+        children: 'Hello World'
+      }).outerHTML, `<div>Hello World</div>`);
+    })
+    
+    it('element', function () {
+      assert.equal(createElement('div', {
+        children: createElement('span', {
+          children: 'Hello World'
+        })
+      }).outerHTML, `<div><span>Hello World</span></div>`);
+    })
+    
+    it('null', function () {
+      assert.equal(createElement('div', {
+        children: createElement('span', {
+          children: null
+        })
+      }).outerHTML, `<div><span></span></div>`);
+    })
+    
+    it('undefined', function () {
+      assert.equal(createElement('div', {
+        children: createElement('span', {
+          children: undefined
+        })
+      }).outerHTML, `<div><span></span></div>`);
+    })
+    
+    it('object', function () {
+      assert.equal(createElement('div', {
+        children: {
+          tag: 'span',
+          children: 'Hello World'
+        }
+      }).outerHTML, `<div><span>Hello World</span></div>`);
+    })
+    
+    it('NodeList', function () {
+      const el = createElement({
+        children: [{
+          children: 'Hello World'
+        }]
+      })
+      assert.equal(createElement('div', {
+        children: el.childNodes
+      }).outerHTML, `<div><div>Hello World</div></div>`);
+    })
+    
+    it('HTMLCollection', function () {
+      const el = createElement({
+        children: [{
+          children: 'Hello World'
+        }]
+      })
+      assert.equal(createElement('div', {
+        children: el.children
+      }).outerHTML, `<div><div>Hello World</div></div>`);
+    })
+    
+    it('array with text', function () {
+      assert.equal(createElement('div', {
+        children: ['Direct HTML', 'Hello World']
+      }).outerHTML, `<div>Direct HTMLHello World</div>`);
+    })
+    
+    it('array with null', function () {
+      assert.equal(createElement('div', {
+        children: ['Direct HTML', null]
+      }).outerHTML, `<div>Direct HTML</div>`);
+    })
+    
+    it('array with undefined', function () {
+      assert.equal(createElement('div', {
+        children: ['Direct HTML', undefined]
+      }).outerHTML, `<div>Direct HTML</div>`);
+    })
+    
+    it('array with object', function () {
+      assert.equal(createElement('div', {
+        children: [{
+          tag: 'span',
+          children: 'Span'
+        },
+          'Direct HTML in Array'
+        ]
+      }).outerHTML, `<div><span>Span</span>Direct HTML in Array</div>`);
+    })
+    
+    it('array with element', function () {
+      assert.equal(createElement('div', {
+        children: [createElement('span', {
+          children: 'Span'
+        })]
+      }).outerHTML, `<div><span>Span</span></div>`);
+    })
+  }})
 });
