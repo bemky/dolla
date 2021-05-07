@@ -1,6 +1,7 @@
+import createElement from './createElement.js';
 export default function append(el, item, escape, context) {
-  if (Array.isArray(item)) {
-    item.forEach(i => append(el, i, escape, context));
+  if (Array.isArray(item) || item instanceof NodeList || item instanceof HTMLCollection) {
+    Array.from(item).forEach(i => append(el, i, escape, context));
   } else if (escape instanceof Element) {
     const items = Array.from(arguments).slice(1).filter(x => x instanceof Element);
     items.forEach(i => append(el, i));
@@ -24,8 +25,13 @@ export default function append(el, item, escape, context) {
         });
         holder.parentNode.removeChild(holder);
       });
+    } else if (item instanceof Element || item instanceof Node) {
+      return el.append(item);
+    } else if (item === null || item === undefined) {// do nothing
     } else if (typeof item == "function") {
       return append(el, item.bind(context)(el), escape, context);
+    } else if (typeof item == "object") {
+      return el.append(createElement(item));
     } else if (typeof item == "string") {
       if (escape) {
         return el.append(item);
@@ -34,8 +40,8 @@ export default function append(el, item, escape, context) {
         container.innerHTML = item;
         return el.append(...container.childNodes);
       }
-    } else if (item !== null && item !== undefined) {
-      return el.append(item);
+    } else {
+      throw 'item to append is unsupported';
     }
   }
 }

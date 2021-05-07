@@ -1,3 +1,4 @@
+import append from './append';
 import { BOOLEAN_ATTRIBUTES, HTML_ATTRIBUTES } from './constants';
 export default function createElement(tagName = 'div', options = {}) {
   if (typeof tagName == 'object') {
@@ -45,35 +46,7 @@ export default function createElement(tagName = 'div', options = {}) {
         break;
 
       case 'children':
-        if (typeof value == "string") {
-          const tmp = document.createElement('div');
-          tmp.innerHTML = value;
-          tmp.childNodes.forEach(node => el.append(node.cloneNode(true)));
-        } else {
-          let values;
-
-          if (Symbol.iterator in Object(value)) {
-            values = Array.from(value);
-          } else {
-            values = [value];
-          }
-
-          values.forEach(child => {
-            if (child instanceof Element) {
-              el.appendChild(child);
-            } else if (typeof child == "object" && child !== null && !Array.isArray(child)) {
-              el.append(createElement(child));
-            } else if (typeof child == "string") {
-              const tmp = document.createElement('div');
-              tmp.innerHTML = child;
-              tmp.childNodes.forEach(node => el.append(node.cloneNode(true)));
-            } else if (child === null || child === undefined) {// do nothing
-            } else {
-              throw 'children passed to createElement is an unsupported type';
-            }
-          });
-        }
-
+        append(el, value);
         return;
     }
 
