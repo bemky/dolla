@@ -18,6 +18,59 @@ describe('append', function () {
     assert.equal(el.outerHTML, `<div id="a">Hello Test</div>`)
   });
   
+  it('element', function () {
+    const el = createElement('div', {id: 'a'})
+    append(el, createElement('div', {id: 'b'}))
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
+  });
+  
+  it('null', function () {
+    const el = createElement('div', {id: 'a'})
+    append(el, null)
+    assert.equal(el.outerHTML, `<div id="a"></div>`)
+  })
+  
+  it('undefined', function () {
+    const el = createElement('div', {id: 'a'})
+
+    append(el, undefined)
+    assert.equal(el.outerHTML, `<div id="a"></div>`)
+  })
+  
+  it('NodeList', function () {
+    const container = createElement('div', {id: 'a'})
+    const el = createElement({
+      id: 'b',
+      children: [{
+        id: 'c',
+        children: 'Hello World'
+      }]
+    })
+    append(container, el.childNodes)
+    
+    assert.equal(container.outerHTML, `<div id="a"><div id="c">Hello World</div></div>`);
+  })
+  
+  it('HTMLCollection', function () {
+    const container = createElement('div', {id: 'a'})
+    const el = createElement({
+      id: 'b',
+      children: [{
+        id: 'c',
+        children: 'Hello World'
+      }]
+    })
+    append(container, el.children)
+    
+    assert.equal(container.outerHTML, `<div id="a"><div id="c">Hello World</div></div>`);
+  })
+  
+  it('object of attributes', function () {
+    const el = createElement('div', {id: 'a'})
+    append(el, {children: 'Hello'})
+    assert.equal(el.outerHTML, `<div id="a"><div>Hello</div></div>`)
+  });
+  
   it('array of elements', function () {
     const el = createElement('div', {id: 'a'})
     append(el, [createElement('div', {id: 'b'}), createElement('div', {id: 'c'})])
