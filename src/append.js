@@ -34,7 +34,7 @@ export default function append(el, item, escape, context) {
       return append(el, item.bind(context)(el), escape, context);
     } else if (typeof item == "object") {
       return el.append(createElement(item));
-    } else if (typeof item == "string") {
+    } else {
       if (escape) {
         return el.append(item);
       } else {
@@ -42,8 +42,6 @@ export default function append(el, item, escape, context) {
         container.innerHTML = item;
         return el.append(...container.childNodes);
       }
-    } else {
-      throw 'item to append is unsupported';
     }
   }
 }

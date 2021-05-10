@@ -1,6 +1,6 @@
 {
   "name": "dolla",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "A light set of helpers for building and manipulating DOM",
   "main": "esm/index.js",
   "scripts": {
