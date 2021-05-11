@@ -12,7 +12,19 @@ describe('insertAfter', function () {
     assert.equal(container.innerHTML, `<div id="a"></div><div id="b"></div>`)
   });
   
-  it('insert single text', function () {
+  it('insert string', function () {
+    const container = createElement('div', {children: [createElement('div', {id: 'a'})]})
+    const el = container.querySelector('#a')
+    insertAfter(el, "Hello World")
+    assert.equal(container.innerHTML, `<div id="a"></div>Hello World`)
+  });
+  
+  it('insert text node', function () {
+    const container = createElement('div', {children: [createElement('div', {id: 'a'})]})
+    const el = container.querySelector('#a')
+    const holder = createElement('div', {children: 'Hello World'})
+    insertAfter(el, holder.childNodes[0])
+    assert.equal(container.innerHTML, `<div id="a"></div>Hello World`)
   });
   
   it('insert array of elements', function () {
@@ -22,6 +34,23 @@ describe('insertAfter', function () {
     insertAfter(el, [createElement('div', {id: 'b'}), createElement('div', {id: 'c'})])
     
     assert.equal(container.innerHTML, `<div id="a"></div><div id="b"></div><div id="c"></div>`)
+  });
+  
+  it('insert array of strings', function () {
+    const container = createElement('div', {children: [createElement('div', {id: 'a'})]})
+    const el = container.querySelector('#a')
+    
+    insertAfter(el, ['Hello World', 'Test Taker'])
+    
+    assert.equal(container.innerHTML, `<div id="a"></div>Hello WorldTest Taker`)
+  });
+  
+  it('insert array of text nodes', function () {
+    const container = createElement('div', {children: [createElement('div', {id: 'a'})]})
+    const el = container.querySelector('#a')
+    const holder = createElement('div', {id: 'DD', children: ['Hello World', createElement('div', {id: 'c'}), 'Test Taker']})
+    insertAfter(el, holder.childNodes)
+    assert.equal(container.innerHTML, `<div id="a"></div>Hello World<div id="c"></div>Test Taker`)
   });
   
   it('insert NodeList', function () {
