@@ -25,6 +25,6 @@ export default function insertBefore(anchor, el) {
       return newNode
     }
   } else {
-    throw('argument of insertAfter unsupported')
+    throw('argument of insertBefore unsupported')
   }
 }

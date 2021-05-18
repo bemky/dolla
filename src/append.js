@@ -1,4 +1,5 @@
-import createElement from './createElement.js';
+import createElement from './createElement';
+import insertBefore from './insertBefore';
 
 export default function append(el, item, escape, context) {
   if (Array.isArray(item) || item instanceof NodeList || item instanceof HTMLCollection) {
@@ -15,15 +16,10 @@ export default function append(el, item, escape, context) {
     if (item instanceof Promise) {
       const holder = document.createElement('span');
       el.append(holder);
+      const timestamp = new Date().getMilliseconds()
       return item.then(resolvedItem => {
         append(holder, resolvedItem, escape, context);
-        Array.from(holder.childNodes).forEach(child => {
-          if (child instanceof Element) {
-            holder.insertAdjacentElement('beforebegin', child);
-          } else {
-            holder.insertAdjacentText('beforebegin', child.textContent);
-          }
-        });
+        insertBefore(holder, holder.childNodes)
         holder.parentNode.removeChild(holder);
       });
     } else if (item instanceof Element || item instanceof Node) {
