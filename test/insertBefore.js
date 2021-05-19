@@ -105,4 +105,18 @@ describe('insertBefore', function () {
     assert.equal(container.innerHTML, `<div id="a"></div><div id="b"></div><div id="c"></div>`)
   });
   
+  it('insert array of elements to array of elements', function () {
+    const els = [
+      createElement('div', {id: 'a'}),
+      createElement('div', {id: 'b'})
+    ]
+    const container = createElement('div', {children: els})
+    
+    insertBefore(els, [
+      createElement('div', {id: 'c'}),
+      createElement('div', {id: 'd'})
+    ])
+    assert.equal(container.innerHTML, `<div id="c"></div><div id="d"></div><div id="a"></div><div id="b"></div>`)
+  })
+  
 });

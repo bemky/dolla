@@ -4,7 +4,7 @@ export default function insertAfter(anchor, el) {
       anchor = insertAfter(anchor, x);
     });
   } else if (Array.isArray(anchor) || anchor instanceof NodeList || anchor instanceof HTMLCollection) {
-    insertAfter(anchor[anchor.length - 1], el);
+    return insertAfter(anchor[anchor.length - 1], el);
   } else if (anchor instanceof Element) {
     if (el instanceof Element) {
       return anchor.insertAdjacentElement('afterend', el);

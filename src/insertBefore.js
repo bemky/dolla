@@ -4,7 +4,7 @@ export default function insertBefore(anchor, el) {
       anchor = insertBefore(anchor, x)
     })
   } else if (Array.isArray(anchor) || anchor instanceof NodeList || anchor instanceof HTMLCollection) {
-    insertBefore(anchor[0], el)
+    return insertBefore(anchor[0], el)
   } else if (anchor instanceof Element) {
     if (el instanceof Element) {
       return anchor.insertAdjacentElement('beforebegin', el);
