@@ -46,11 +46,15 @@ describe('insertAfter', function () {
   });
   
   it('insert array of text nodes', function () {
-    const container = createElement('div', {children: [createElement('div', {id: 'a'})]})
+    const container = createElement('placeholder', {children: [createElement('div', {id: 'a'})]})
     const el = container.querySelector('#a')
-    const holder = createElement('div', {id: 'DD', children: ['Hello World', createElement('div', {id: 'c'}), 'Test Taker']})
-    insertAfter(el, holder.childNodes)
-    assert.equal(container.innerHTML, `<div id="a"></div>Hello World<div id="c"></div>Test Taker`)
+    insertAfter(el, [
+      new Text(" "),
+      createElement('div', {id: 'c'}),
+      new Text("Hello World")
+    ])
+    assert.equal(container.innerHTML, `<div id="a"></div> <div id="c"></div>Hello World`)
+    assert.equal(container.childNodes[0].parentNode, container.childNodes[1].parentNode)
   });
   
   it('insert NodeList', function () {
@@ -106,14 +110,17 @@ describe('insertAfter', function () {
   });
   
   it('insert array of elements to array of elements', function () {
-    const els = [createElement('div', {id: 'a'}), createElement('div', {id: 'b'})]
+    const els = [
+      new Text(" "),
+      createElement('div', {id: 'b'})
+    ]
     const container = createElement('div', {children: els})
     
     insertAfter(els, [
-      createElement('div', {id: 'c'}),
+      new Text(" "),
       createElement('div', {id: 'd'})
     ])
-    assert.equal(container.innerHTML, `<div id="a"></div><div id="b"></div><div id="c"></div><div id="d"></div>`)
+    assert.equal(container.innerHTML, ` <div id="b"></div> <div id="d"></div>`)
   })
   
 });

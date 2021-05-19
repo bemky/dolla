@@ -49,7 +49,11 @@ describe('insertBefore', function () {
     const container = createElement('div', {children: [createElement('div', {id: 'a'})]})
     const el = container.querySelector('#a')
     const holder = createElement('div', {id: 'DD', children: ['Hello World', createElement('div', {id: 'c'}), 'Test Taker']})
-    insertBefore(el, holder.childNodes)
+    insertBefore(el, [
+      holder.childNodes[0],
+      holder.childNodes[1],
+      holder.childNodes[2]
+    ])
     assert.equal(container.innerHTML, `Hello World<div id="c"></div>Test Taker<div id="a"></div>`)
   });
   
@@ -117,6 +121,20 @@ describe('insertBefore', function () {
       createElement('div', {id: 'd'})
     ])
     assert.equal(container.innerHTML, `<div id="c"></div><div id="d"></div><div id="a"></div><div id="b"></div>`)
+  })
+  
+  it('insert array of elements to array of text', function () {
+    const els = [
+      new Text(" "),
+      createElement('div', {id: 'b'})
+    ]
+    const container = createElement('div', {children: els})
+    
+    insertBefore(els, [
+      new Text(" "),
+      createElement('div', {id: 'c'})
+    ])
+    assert.equal(container.innerHTML, ` <div id="c"></div> <div id="b"></div>`)
   })
   
 });
