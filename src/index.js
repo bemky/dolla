@@ -19,6 +19,8 @@ export replaceContents from './replaceContents';
 export serializeForm from './serializeForm';
 export serializeFormToJSON from './serializeFormToJSON';
 export trigger from './trigger';
+export nextElementSiblings from './nextElementSiblings';
+export previousElementSiblings from './previousElementSiblings';
 
 export {
   HTML_ATTRIBUTES,

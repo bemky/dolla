@@ -40,4 +40,8 @@ import _serializeFormToJSON from './serializeFormToJSON';
 export { _serializeFormToJSON as serializeFormToJSON };
 import _trigger from './trigger';
 export { _trigger as trigger };
+import _nextElementSiblings from './nextElementSiblings';
+export { _nextElementSiblings as nextElementSiblings };
+import _previousElementSiblings from './previousElementSiblings';
+export { _previousElementSiblings as previousElementSiblings };
 export { HTML_ATTRIBUTES, BOOLEAN_ATTRIBUTES } from './constants';
