@@ -13,10 +13,11 @@ export default function createElement(tagName = 'div', options = {}) {
     }
 
     const value = options[key];
-
     if (BOOLEAN_ATTRIBUTES.includes(key)) {
       if (value !== false) {
         return el[key] = true;
+      } else {
+        return;
       }
     }
 

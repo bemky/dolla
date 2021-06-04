@@ -1,4 +1,4 @@
-import {createElement} from '../esm/index';
+import createElement from '../src/createElement';
 import * as assert from 'assert';
 
 describe('createElement', function () {
@@ -31,6 +31,13 @@ describe('createElement', function () {
     })
     assert.equal(el.outerHTML, `<input type="checkbox">`);
     assert.equal(el.checked, true)
+    
+    const el2 = createElement('input', {
+      checked: false,
+      type: 'checkbox'
+    })
+    assert.equal(el2.outerHTML, `<input type="checkbox">`);
+    assert.equal(el2.checked, false)
   });
   
   describe('children', function () {{

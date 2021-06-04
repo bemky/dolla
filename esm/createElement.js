@@ -17,6 +17,8 @@ export default function createElement(tagName = 'div', options = {}) {
     if (BOOLEAN_ATTRIBUTES.includes(key)) {
       if (value !== false) {
         return el[key] = true;
+      } else {
+        return;
       }
     }
 

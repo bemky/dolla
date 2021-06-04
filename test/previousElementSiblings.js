@@ -53,7 +53,6 @@ describe('previousElementSiblings', function () {
       ]
     })
     
-    console.log('*******', el.previousElementSibling);
     assert.deepEqual(previousElementSiblings(el).map(x => x.id), ['b', 'c', 'd'])
   });
   
