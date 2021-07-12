@@ -47,6 +47,7 @@ export default function createElement(tagName = 'div', options = {}) {
 
         break;
 
+      case 'content':
       case 'children':
         append(el, value);
         return;

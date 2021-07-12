@@ -13,6 +13,6 @@ export default function insertBefore(anchor, el) {
     anchor.parentNode.insertBefore(el, anchor);
     return el;
   } else {
-    throw 'argument of insertAfter unsupported';
+    throw 'argument of insertBefore unsupported';
   }
 }

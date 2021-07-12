@@ -40,7 +40,7 @@ describe('createElement', function () {
     assert.equal(el2.checked, false)
   });
   
-  describe('children', function () {{
+  describe('children', function () {
     it('text', function () {
       assert.equal(createElement('div', {
         children: 'Hello World'
@@ -138,5 +138,13 @@ describe('createElement', function () {
         })]
       }).outerHTML, `<div><span>Span</span></div>`);
     })
-  }})
+  })
+  
+  describe('content alias to children', function () {
+    it('text', function () {
+      assert.equal(createElement('div', {
+        content: 'Hello World'
+      }).outerHTML, `<div>Hello World</div>`);
+    })
+  })
 });
