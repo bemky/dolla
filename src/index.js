@@ -14,6 +14,8 @@ export offset from './offset';
 export offsetToViewport from './offsetToViewport';
 export outerHeight from './outerHeight';
 export outerWidth from './outerWidth';
+export innerHeight from './innerHeight';
+export innerWidth from './innerWidth';
 export remove from './remove';
 export replaceContents from './replaceContents';
 export serializeForm from './serializeForm';
