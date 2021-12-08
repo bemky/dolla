@@ -20,6 +20,7 @@ export remove from './remove';
 export replaceContents from './replaceContents';
 export serializeForm from './serializeForm';
 export serializeFormToJSON from './serializeFormToJSON';
+export toElements from './toElements';
 export trigger from './trigger';
 export nextElementSiblings from './nextElementSiblings';
 export previousElementSiblings from './previousElementSiblings';

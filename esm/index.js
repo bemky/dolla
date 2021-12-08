@@ -42,6 +42,8 @@ import _serializeForm from './serializeForm';
 export { _serializeForm as serializeForm };
 import _serializeFormToJSON from './serializeFormToJSON';
 export { _serializeFormToJSON as serializeFormToJSON };
+import _toElements from './toElements';
+export { _toElements as toElements };
 import _trigger from './trigger';
 export { _trigger as trigger };
 import _nextElementSiblings from './nextElementSiblings';
