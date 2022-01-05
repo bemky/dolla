@@ -74,6 +74,7 @@ describe('addEventListenerFor', function () {
             class: 'js-test'
         })
         const container = createElement('div', {
+            class: 'container',
             children: {
                 class: 'descendant1',
                 children: {
@@ -85,6 +86,9 @@ describe('addEventListenerFor', function () {
         it('match', function () {
             let triggered = false;
             addEventListenerFor(container, '.descendant1', 'click', e => {
+                assert.equal(e.target.getAttribute('class'), 'js-test');
+                assert.equal(e.delegateTarget.getAttribute('class'), 'descendant1');
+                assert.equal(e.currentTarget.getAttribute('class'), 'container');
                 triggered = true;
             })
             
