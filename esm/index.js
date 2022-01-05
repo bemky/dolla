@@ -50,4 +50,6 @@ import _nextElementSiblings from './nextElementSiblings';
 export { _nextElementSiblings as nextElementSiblings };
 import _previousElementSiblings from './previousElementSiblings';
 export { _previousElementSiblings as previousElementSiblings };
+import _addEventListenerFor from './addEventListenerFor';
+export { _addEventListenerFor as addEventListenerFor };
 export { HTML_ATTRIBUTES, BOOLEAN_ATTRIBUTES } from './constants';
