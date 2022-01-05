@@ -24,6 +24,7 @@ export toElements from './toElements';
 export trigger from './trigger';
 export nextElementSiblings from './nextElementSiblings';
 export previousElementSiblings from './previousElementSiblings';
+export addEventListenerFor from './addEventListenerFor';
 
 export {
   HTML_ATTRIBUTES,
