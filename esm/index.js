@@ -52,4 +52,6 @@ import _previousElementSiblings from './previousElementSiblings';
 export { _previousElementSiblings as previousElementSiblings };
 import _addEventListenerFor from './addEventListenerFor';
 export { _addEventListenerFor as addEventListenerFor };
+import _prepend from './prepend';
+export { _prepend as prepend };
 export { HTML_ATTRIBUTES, BOOLEAN_ATTRIBUTES } from './constants';

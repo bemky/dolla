@@ -25,6 +25,7 @@ export trigger from './trigger';
 export nextElementSiblings from './nextElementSiblings';
 export previousElementSiblings from './previousElementSiblings';
 export addEventListenerFor from './addEventListenerFor';
+export prepend from './prepend';
 
 export {
   HTML_ATTRIBUTES,

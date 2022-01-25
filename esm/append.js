@@ -1,6 +1,8 @@
 import createElement from './createElement';
 import insertBefore from './insertBefore';
-export default function append(el, item, escape, context) {
+export default function append(el, item, escape, context, method) {
+  if (!method) method = 'append';
+
   if (Array.isArray(item) || item instanceof NodeList || item instanceof HTMLCollection) {
     Array.from(item).forEach(i => append(el, i, escape, context));
   } else if (escape instanceof Element) {
@@ -14,7 +16,7 @@ export default function append(el, item, escape, context) {
 
     if (item instanceof Promise) {
       const holder = document.createElement('span');
-      el.append(holder);
+      el[method](holder);
       const timestamp = new Date().getMilliseconds();
       return item.then(resolvedItem => {
         append(holder, resolvedItem, escape, context);
@@ -22,19 +24,19 @@ export default function append(el, item, escape, context) {
         holder.parentNode.removeChild(holder);
       });
     } else if (item instanceof Element || item instanceof Node) {
-      return el.append(item);
+      return el[method](item);
     } else if (item === null || item === undefined) {// do nothing
     } else if (typeof item == "function") {
       return append(el, item.bind(context)(el), escape, context);
     } else if (typeof item == "object") {
-      return el.append(createElement(item));
+      return el[method](createElement(item));
     } else {
       if (escape) {
-        return el.append(item);
+        return el[method](item);
       } else {
         const container = document.createElement('div');
         container.innerHTML = item;
-        return el.append(...container.childNodes);
+        return el[method](...container.childNodes);
       }
     }
   }
