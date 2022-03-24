@@ -54,11 +54,6 @@ import _trigger from './trigger';
 export { _trigger as trigger };
 import _previousElementSiblings from './previousElementSiblings';
 export { _previousElementSiblings as previousElementSiblings };
-<<<<<<< HEAD
-import _addEventListenerFor from './addEventListenerFor';
-export { _addEventListenerFor as addEventListenerFor };
-=======
->>>>>>> 14273b5 (add prepend and listenerElement)
 import _prepend from './prepend';
 export { _prepend as prepend };
 export { HTML_ATTRIBUTES, BOOLEAN_ATTRIBUTES } from './constants';
