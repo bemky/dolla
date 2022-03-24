@@ -1,3 +1,5 @@
+import _addEventListenerFor from './addEventListenerFor';
+export { _addEventListenerFor as addEventListenerFor };
 import _ancestors from './ancestors';
 export { _ancestors as ancestors };
 import _append from './append';
@@ -20,8 +22,12 @@ import _insertBefore from './insertBefore';
 export { _insertBefore as insertBefore };
 import _insertAfter from './insertAfter';
 export { _insertAfter as insertAfter };
+import _listenerElement from './listenerElement';
+export { _listenerElement as listenerElement };
 import _map from './map';
 export { _map as map };
+import _nextElementSiblings from './nextElementSiblings';
+export { _nextElementSiblings as nextElementSiblings };
 import _offset from './offset';
 export { _offset as offset };
 import _offsetToViewport from './offsetToViewport';
@@ -46,12 +52,13 @@ import _toElements from './toElements';
 export { _toElements as toElements };
 import _trigger from './trigger';
 export { _trigger as trigger };
-import _nextElementSiblings from './nextElementSiblings';
-export { _nextElementSiblings as nextElementSiblings };
 import _previousElementSiblings from './previousElementSiblings';
 export { _previousElementSiblings as previousElementSiblings };
+<<<<<<< HEAD
 import _addEventListenerFor from './addEventListenerFor';
 export { _addEventListenerFor as addEventListenerFor };
+=======
+>>>>>>> 14273b5 (add prepend and listenerElement)
 import _prepend from './prepend';
 export { _prepend as prepend };
 export { HTML_ATTRIBUTES, BOOLEAN_ATTRIBUTES } from './constants';

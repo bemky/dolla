@@ -1,3 +1,4 @@
+export addEventListenerFor from './addEventListenerFor';
 export ancestors from './ancestors';
 export append from './append';
 export bury from './bury';
@@ -9,7 +10,9 @@ export isFocus from './isFocus';
 export isVisible from './isVisible';
 export insertBefore from './insertBefore';
 export insertAfter from './insertAfter';
+export listenerElement from './listenerElement';
 export map from './map';
+export nextElementSiblings from './nextElementSiblings';
 export offset from './offset';
 export offsetToViewport from './offsetToViewport';
 export outerHeight from './outerHeight';
@@ -22,9 +25,7 @@ export serializeForm from './serializeForm';
 export serializeFormToJSON from './serializeFormToJSON';
 export toElements from './toElements';
 export trigger from './trigger';
-export nextElementSiblings from './nextElementSiblings';
 export previousElementSiblings from './previousElementSiblings';
-export addEventListenerFor from './addEventListenerFor';
 export prepend from './prepend';
 
 export {
