@@ -14,6 +14,7 @@ export listenerElement from './listenerElement';
 export map from './map';
 export nextElementSiblings from './nextElementSiblings';
 export offset from './offset';
+export offsetTo from './offsetTo';
 export offsetToViewport from './offsetToViewport';
 export outerHeight from './outerHeight';
 export outerWidth from './outerWidth';

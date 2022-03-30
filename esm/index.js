@@ -30,6 +30,8 @@ import _nextElementSiblings from './nextElementSiblings';
 export { _nextElementSiblings as nextElementSiblings };
 import _offset from './offset';
 export { _offset as offset };
+import _offsetTo from './offsetTo';
+export { _offsetTo as offsetTo };
 import _offsetToViewport from './offsetToViewport';
 export { _offsetToViewport as offsetToViewport };
 import _outerHeight from './outerHeight';
