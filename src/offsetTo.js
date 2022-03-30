@@ -3,7 +3,7 @@ export default function offsetTo(el, target) {
     const targetRect = target.getBoundingClientRect();
     
     return {
-        top: (elRect.top + window.scrollY) - (targetRect.top + window.scrollY),
-        left: (elRect.left + window.scrollX) - (targetRect.left + window.scrollX)
+        top: elRect.top - targetRect.top,
+        left: elRect.left - targetRect.left
     };
 }
