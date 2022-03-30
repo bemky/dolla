@@ -1,7 +1,8 @@
 export default function offset(el) {
-  var rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect();
+  const parentRect = el.offsetParent.getBoundingClientRect();
   return {
-    top: rect.top + window.scrollY,
-    left: rect.left + window.scrollX
+    top: rect.top + el.offsetParent.scrollTop - parentRect.top,
+    left: rect.left + el.offsetParent.scrollLeft - parentRect.left
   };
 }
