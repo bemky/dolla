@@ -12,6 +12,8 @@ import _css from './css';
 export { _css as css };
 import _filter from './filter';
 export { _filter as filter };
+import _getBoundingClientRect from './getBoundingClientRect';
+export { _getBoundingClientRect as getBoundingClientRect };
 import _isEmpty from './isEmpty';
 export { _isEmpty as isEmpty };
 import _isFocus from './isFocus';
