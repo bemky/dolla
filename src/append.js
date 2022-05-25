@@ -1,5 +1,6 @@
 import createElement from './createElement';
 import insertBefore from './insertBefore';
+import remove from './remove';
 
 export default function append(el, item, escape, context, method) {
     if (!method) method = 'append'
@@ -21,7 +22,7 @@ export default function append(el, item, escape, context, method) {
             return item.then(resolvedItem => {
                 append(holder, resolvedItem, escape, context);
                 insertBefore(holder, holder.childNodes)
-                holder.parentNode.removeChild(holder);
+                remove(holder);
             });
         } else if (item instanceof Element || item instanceof Node) {
             return el[method](item);
