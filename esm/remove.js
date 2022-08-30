@@ -1,7 +1,10 @@
 export default function remove(el) {
-  if (el instanceof NodeList || el instanceof Array) {
-    Array.from(el).forEach(remove);
+  if (el instanceof NodeList || el instanceof Array || el instanceof HTMLCollection) {
+    el = Array.from(el);
+    el.forEach(remove);
   } else {
     el.parentNode.removeChild(el);
   }
+
+  return el;
 }

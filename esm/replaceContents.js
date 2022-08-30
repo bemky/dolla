@@ -1,4 +1,5 @@
+import remove from './remove';
 export default function replaceContents(el, ...nodes) {
-  el.innerHTML = '';
+  remove(el.childNodes);
   el.append(...nodes);
 }
