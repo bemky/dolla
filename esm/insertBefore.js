@@ -1,8 +1,12 @@
 export default function insertBefore(anchor, el) {
   if (Array.isArray(el) || el instanceof NodeList || el instanceof HTMLCollection) {
-    Array.from(el).reverse().forEach(x => {
-      anchor = insertBefore(anchor, x);
-    });
+    const els = Array.from(el);
+
+    while (els.length > 0) {
+      anchor = insertBefore(anchor, els.pop());
+    }
+
+    return anchor;
   } else if (Array.isArray(anchor) || anchor instanceof NodeList || anchor instanceof HTMLCollection) {
     return insertBefore(anchor[0], el);
   } else if (anchor.parentNode) {

@@ -1,8 +1,12 @@
 export default function insertAfter(anchor, el) {
   if (Array.isArray(el) || el instanceof NodeList || el instanceof HTMLCollection) {
-    Array.from(el).forEach(x => {
-      anchor = insertAfter(anchor, x);
-    });
+    const els = Array.from(el);
+
+    while (els.length > 0) {
+      anchor = insertAfter(anchor, els.shift());
+    }
+
+    return anchor;
   } else if (Array.isArray(anchor) || anchor instanceof NodeList || anchor instanceof HTMLCollection) {
     return insertAfter(anchor[anchor.length - 1], el);
   } else if (anchor.parentNode) {
