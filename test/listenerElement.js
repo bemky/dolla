@@ -36,9 +36,7 @@ describe('listenerElement', function () {
     });
     
     it('without listener', function (done) {
-        const el = listenerElement({
-            class: 'foo'
-        }, e => {
+        const el = listenerElement({}, e => {
             assert.ok(true)
             done()
         })
@@ -47,13 +45,26 @@ describe('listenerElement', function () {
     });
     
     it('defined listener', function (done) {
-        const el = listenerElement({
-            class: 'foo'
-        }, 'mouseover', e => {
+        const el = listenerElement({}, 'mouseover', e => {
             assert.ok(true)
             done()
         })
         
         trigger(el, 'mouseover')
+    });
+    
+    it('multiple listeners', function (done) {
+        let count = 0;
+        
+        const el = listenerElement({}, ['mouseover', 'focus'], e => {
+            count++;
+            if (count == 2) {
+                assert.ok(true)
+                done()
+            }
+        })
+        
+        trigger(el, 'mouseover')
+        trigger(el, 'focus')
     });
 })
