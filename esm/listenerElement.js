@@ -8,8 +8,8 @@ export default function listenerElement(...args) {
     listener = 'click';
   }
 
-  if (args.length == 0) {
-    args = ['button'];
+  if (typeof args[0] != 'string') {
+    args.unshift('button');
   }
 
   const el = createElement(...args);

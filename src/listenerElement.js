@@ -7,8 +7,8 @@ export default function listenerElement (...args) {
         args = args.concat(listener)
         listener = 'click'
     }
-    if (args.length == 0) {
-        args = ['button']
+    if (typeof args[0] != 'string') {
+        args.unshift('button')
     }
     const el = createElement(...args)
     if (!Array.isArray(listener)) listener = [listener]

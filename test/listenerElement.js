@@ -5,7 +5,7 @@ import * as assert from 'assert';
 describe('listenerElement', function () {
     it('all arguments', function (done) {
         let counter = 0;
-        const el = listenerElement('button', {
+        const el = listenerElement('a', {
             class: 'foo'
         }, 'click', e => {
             counter++;
@@ -15,7 +15,7 @@ describe('listenerElement', function () {
         })
         
         assert.ok(el.classList.contains('foo'))
-        assert.equal(el.tagName, 'BUTTON')
+        assert.equal(el.tagName, 'A');
         
         trigger(el, 'mouseover')
         trigger(el, 'click')
@@ -30,7 +30,7 @@ describe('listenerElement', function () {
         })
         
         assert.ok(el.classList.contains('foo'))
-        assert.equal(el.tagName, 'DIV')
+        assert.equal(el.tagName, 'BUTTON')
         
         trigger(el, 'click')
     });
