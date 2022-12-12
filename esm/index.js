@@ -60,4 +60,6 @@ import _previousElementSiblings from './previousElementSiblings';
 export { _previousElementSiblings as previousElementSiblings };
 import _prepend from './prepend';
 export { _prepend as prepend };
+import _content from './content';
+export { _content as content };
 export { HTML_ATTRIBUTES, BOOLEAN_ATTRIBUTES } from './constants';

@@ -29,6 +29,7 @@ export toElements from './toElements';
 export trigger from './trigger';
 export previousElementSiblings from './previousElementSiblings';
 export prepend from './prepend';
+export content from './content';
 
 export {
   HTML_ATTRIBUTES,
