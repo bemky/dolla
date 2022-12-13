@@ -7,6 +7,7 @@ export css from './css';
 export filter from './filter';
 export getBoundingClientRect from './getBoundingClientRect';
 export isEmpty from './isEmpty';
+export addOutsideEventListener from './addOutsideEventListener';
 export isFocus from './isFocus';
 export isVisible from './isVisible';
 export insertBefore from './insertBefore';

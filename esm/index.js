@@ -16,6 +16,8 @@ import _getBoundingClientRect from './getBoundingClientRect';
 export { _getBoundingClientRect as getBoundingClientRect };
 import _isEmpty from './isEmpty';
 export { _isEmpty as isEmpty };
+import _addOutsideEventListener from './addOutsideEventListener';
+export { _addOutsideEventListener as addOutsideEventListener };
 import _isFocus from './isFocus';
 export { _isFocus as isFocus };
 import _isVisible from './isVisible';
