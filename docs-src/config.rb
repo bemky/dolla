@@ -3,6 +3,7 @@ require 'github/markup'
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
+set :build_dir, '../docs'
 activate :condenser do |config|
   config.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
 end
