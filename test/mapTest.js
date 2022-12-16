@@ -1,5 +1,5 @@
-import createElement from '../src/createElement';
-import map from '../src/map';
+import createElement from '../lib/createElement';
+import map from '../lib/map';
 import * as assert from 'assert';
 
 describe('map', function () {

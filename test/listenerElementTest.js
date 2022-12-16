@@ -1,5 +1,5 @@
-import listenerElement from '../src/listenerElement';
-import trigger from '../src/trigger';
+import listenerElement from '../lib/listenerElement';
+import trigger from '../lib/trigger';
 import * as assert from 'assert';
 
 describe('listenerElement', function () {

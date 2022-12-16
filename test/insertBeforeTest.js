@@ -1,6 +1,6 @@
-import createElement from '../src/createElement.js';
-import append from '../src/append.js';
-import insertBefore from '../src/insertBefore.js';
+import createElement from '../lib/createElement.js';
+import append from '../lib/append.js';
+import insertBefore from '../lib/insertBefore.js';
 import * as assert from 'assert';
 
 describe('insertBefore', function () {

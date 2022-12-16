@@ -1,5 +1,5 @@
-import createElement from '../src/createElement.js';
-import prepend from '../src/prepend.js';
+import createElement from '../lib/createElement.js';
+import prepend from '../lib/prepend.js';
 import * as assert from 'assert';
 
 describe('prepend', function () {

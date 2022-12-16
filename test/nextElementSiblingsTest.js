@@ -1,5 +1,5 @@
-import createElement from '../src/createElement';
-import nextElementSiblings from '../src/nextElementSiblings';
+import createElement from '../lib/createElement';
+import nextElementSiblings from '../lib/nextElementSiblings';
 import * as assert from 'assert';
 
 describe('nextElementSiblings', function () {

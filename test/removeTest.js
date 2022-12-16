@@ -1,6 +1,6 @@
-import createElement from '../src/createElement';
-import remove from '../src/remove';
-import map from '../src/map';
+import createElement from '../lib/createElement';
+import remove from '../lib/remove';
+import map from '../lib/map';
 import * as assert from 'assert';
 
 describe('remove', function () {

@@ -1,5 +1,5 @@
-import createElement from '../src/createElement.js';
-import bury from '../src/bury.js';
+import createElement from '../lib/createElement.js';
+import bury from '../lib/bury.js';
 import * as assert from 'assert';
 
 describe('bury', function () {

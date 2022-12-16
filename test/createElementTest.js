@@ -1,4 +1,4 @@
-import createElement from '../src/createElement';
+import createElement from '../lib/createElement';
 import * as assert from 'assert';
 
 describe('createElement', function () {

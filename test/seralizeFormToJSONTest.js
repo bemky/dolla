@@ -1,5 +1,5 @@
-import createElement from '../src/createElement';
-import serializeFormToJSON from '../src/serializeFormToJSON';
+import createElement from '../lib/createElement';
+import serializeFormToJSON from '../lib/serializeFormToJSON';
 import * as assert from 'assert';
 
 describe('serializeFormToJSON', function () {

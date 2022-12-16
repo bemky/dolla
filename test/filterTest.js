@@ -1,5 +1,5 @@
-import createElement from '../src/createElement';
-import filter from '../src/filter';
+import createElement from '../lib/createElement';
+import filter from '../lib/filter';
 import * as assert from 'assert';
 
 describe('filter', function () {

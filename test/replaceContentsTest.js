@@ -1,5 +1,5 @@
-import createElement from '../src/createElement';
-import replaceContents from '../src/replaceContents';
+import createElement from '../lib/createElement';
+import replaceContents from '../lib/replaceContents';
 import * as assert from 'assert';
 
 describe('replaceContents', function () {

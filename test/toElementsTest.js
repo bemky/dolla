@@ -1,4 +1,4 @@
-import toElements from '../src/toElements';
+import toElements from '../lib/toElements';
 import * as assert from 'assert';
 
 describe('toElements', function () {

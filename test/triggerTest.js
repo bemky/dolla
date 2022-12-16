@@ -1,5 +1,5 @@
-import createElement from '../src/createElement';
-import trigger from '../src/trigger';
+import createElement from '../lib/createElement';
+import trigger from '../lib/trigger';
 import * as assert from 'assert';
 
 describe('trigger', function () {

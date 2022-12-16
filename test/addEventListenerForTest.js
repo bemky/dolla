@@ -1,6 +1,6 @@
-import createElement from '../src/createElement';
-import trigger from '../src/trigger';
-import addEventListenerFor from '../src/addEventListenerFor';
+import createElement from '../lib/createElement';
+import trigger from '../lib/trigger';
+import addEventListenerFor from '../lib/addEventListenerFor';
 import * as assert from 'assert';
 
 describe('addEventListenerFor', function () {

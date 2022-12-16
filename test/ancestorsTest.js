@@ -1,5 +1,5 @@
-import createElement from '../src/createElement.js';
-import ancestors from '../src/ancestors.js';
+import createElement from '../lib/createElement.js';
+import ancestors from '../lib/ancestors.js';
 import * as assert from 'assert';
 
 describe('ancestors', function () {

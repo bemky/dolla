@@ -1,6 +1,6 @@
-import createElement from '../src/createElement.js';
-import append from '../src/append.js';
-import insertAfter from '../src/insertAfter.js';
+import createElement from '../lib/createElement.js';
+import append from '../lib/append.js';
+import insertAfter from '../lib/insertAfter.js';
 import * as assert from 'assert';
 
 describe('insertAfter', function () {
