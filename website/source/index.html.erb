@@ -1,0 +1,81 @@
+---
+title: Dolla
+---
+
+<div class="section">
+    <div class="text-center text-4x margin-bottom-2x text-uppercase text-black tracking-widest">
+        Dolla
+    </div>
+    <p class="text-light text-xl">
+        A light set of helpers for building and manipulating DOM. This toolkit is platform-agnotstic, with each method being fully tree-shakeable by your bundler.
+    </p>
+    <h1>Installation</h1>
+    <% code 'javascript' do %>
+    npm install dolla
+    <% end %>
+    
+    <h1>Usage</h1>
+    <p>
+        Import only the methods you use.
+    </p>
+    
+    <% code 'javascript' do %>
+    import {createElement} from 'dolla';
+
+    document.body.append(createElement('div', {
+        class: 'text-bold',
+        style: 'text-decoration: underline',
+        content: ['Hello World']
+    }))
+    <% end %>
+</div>
+
+
+<% source.each do |tool| %>
+<div class="section space-v-3x" id="<%= tool[:method] %>">
+    <div class="">
+        <h1 class="text-xl">
+            <strong><%= tool[:method] %></strong> <span class="text-light">(<%= tool[:params]&.join(", ") %>)</span>
+        </h1>
+    
+        <div class="text-light text-lg">
+            <%= markdown tool["Description"] %>
+        </div>
+    </div>
+    
+    <% tool.except(:method, :params, :source, "Description").each do |header, content| %>
+        <div class="">
+            <h2><%= header %></h2>
+            <%= markdown(content).gsub(/\#(\w+)/, '<span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">\1</span>') %>
+        </div>
+    <% end %>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-<%= tool[:method] %>">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-<%= tool[:method] %>">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <%= code 'javascript', tool[:source] %>
+        </div>
+    </div>
+</div>
+<% end %>
+
+<div class="section">
+    <h1>Contributors</h1>
+    <div class="margin-v margin-bottom-4x">
+        <div class="flex">
+            <a class="text-center max-width-60-px text-no-underline" href="https://github.com/bemky">
+                <img src="https://avatars.githubusercontent.com/u/841033?v=3" class="round block width-full">
+                <span class="block">bemky</span>
+            </a>
+        </div>
+    </div>
+    <h3>Bug Reporting</h3>
+    <p>Please report bugs in <a href="https://github.com/bemky/dolla/issues">GitHub Issues</a></p>
+    <h3>Licensing</h3>
+    <p>Uniform is released under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>
+</div>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title><%= current_page.data.title || "Dolla" %></title>
+    <%= stylesheet_link_tag "site" %>
+    <%= javascript_include_tag "site" %>
+</head>
+<body>
+    <div class="side-nav">
+        <div class="pad-2x text-center">
+            <a href="/" class="reset text-2x text-uppercase text-black tracking-widest">
+                Dolla
+            </a>
+        </div>
+        <div class="uniformNav -vertical -gray flex-fill">
+            <% source.each do |tool| %>
+                <a href="#<%= tool[:method] %>">
+                    <%= tool[:method] %>
+                </a>
+            <% end %>
+        </div>
+        <div class="footer pad margin-top-2x text-gray-40 text-sm text-center">
+          &copy; 2021 Ben Ehmke
+        </div>
+    </div>
+    <div class="main-content overflow-hidden">
+        <%= yield %>
+    </div>
+</body>
+</html>

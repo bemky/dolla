@@ -1,0 +1,131 @@
+$uniform_configs: (
+    sizes: (
+        pad: (
+          3x: 3rem,
+          4x: 4rem,
+        ),
+        space: (
+          3x: 3rem
+        )
+    ),
+    colors: (
+        "orange": (
+            "color": #ffad00,
+            "spectrum": true
+        )
+    )
+);
+
+@import "uniform";
+@import "highlight";
+
+*{
+    box-sizing:border-box;
+} 
+
+html, body{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;;
+    line-height: 1.5;
+    font-size: 14px;
+    color: color('gray-70');
+}
+
+.section{
+    width:100%;
+    padding: 100px 50px;
+    & + & {
+        border-top:2px dashed darken(white, 20);
+    }
+    pre:first-child{
+        margin-top:0;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6{
+        margin-top:1.5rem;
+        margin-bottom:0.5rem;
+        &:first-child{
+            margin-top: 0;
+        }
+    }
+    p, ul, ol {
+        margin: 0.5em 0;
+    }
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 1.3rem;
+}
+
+.side-nav{
+    display: flex;
+    flex-direction: column;
+    align: center;
+    background: white;
+    font-size: 1.2em;
+    position:fixed;
+    overflow-y:scroll;
+    width:250px;
+    height: 100vh;
+    top:0;
+    left: 0;
+    border-right:1px solid color('gray-10');
+    @media only screen and (max-width: 700px) {
+        width: auto;
+        img{
+            display:none;
+        }
+    }
+    .footer {
+        background: rgba(color('gray-10'), 0.5);
+    }
+}
+
+.main-content{
+    margin-left:250px;
+    @media only screen and (max-width: 700px) {
+        margin-left: 0;
+    }
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.highlight{
+    border-radius: 0.5em;
+    overflow: auto;
+    background: lighten(color('blue-10'), 5);
+    overflow-x: auto;
+    pre{
+        padding: 1em;
+        &.tight{
+            padding: 0.5em;
+        }
+    }
+}
+code{
+    border-radius: 0.25em;
+    color: color('purple');
+    background-color: rgba(color('purple'), 0.1);
+    padding: .15em 0.1em;
+    font-size: 0.9em;
+}
+pre {
+    code {
+        color: inherit;
+        background: none;
+        padding: initial;
+    }
+}
+
+.uniformNav {
+    .active {
+        color: color('green-70');
+        background: color('green-10');
+    }
+}
