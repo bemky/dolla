@@ -28,6 +28,9 @@ document.body.append(createElement('div', {
 }))
 ```
 
+## Documentation
+Checkout details about each method on [dollajs.com](http://dollajs.com)
+
 ## Development
 ### Build
     npm run build
