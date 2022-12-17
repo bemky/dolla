@@ -2,12 +2,18 @@
 title: Dolla
 ---
 
+<div class="text-right pad bg-white">
+    <a href="https://github.com/bemky/dolla" class="reset inline-flex align-center gap-1/2x text-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        Dolla on GitHub
+    </a>
+</div>
 <div class="section">
-    <div class="text-center text-4x margin-bottom-2x text-uppercase text-black tracking-widest">
-        Dolla
+    <div class="text-center margin-bottom-2x">
+        <%= image_tag "logo", class: 'width-250-px height-auto inline-block' %>
     </div>
     <p class="text-light text-xl">
-        A light set of helpers for building and manipulating DOM. This toolkit is platform-agnotstic, with each method being fully tree-shakeable by your bundler.
+        Dolla is a library of javascipt methods for building and manipulating DOM that is platform-agnotstic, with each method being fully tree-shakeable by any bundler.
     </p>
     <h1>Installation</h1>
     <% code 'javascript' do %>
@@ -34,7 +40,7 @@ title: Dolla
 <% source.each do |tool| %>
 <div class="section space-v-3x" id="<%= tool[:method] %>">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong><%= tool[:method] %></strong> <span class="text-light">(<%= tool[:params]&.join(", ") %>)</span>
         </h1>
     
@@ -78,4 +84,7 @@ title: Dolla
     <p>Please report bugs in <a href="https://github.com/bemky/dolla/issues">GitHub Issues</a></p>
     <h3>Licensing</h3>
     <p>Uniform is released under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>
+</div>
+<div class="pad-h-2x pad-v-4x text-gray-40 text-sm text-right ">
+      &copy; 2022 Ben Ehmke
 </div>

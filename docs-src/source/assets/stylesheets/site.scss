@@ -6,13 +6,18 @@ $uniform_configs: (
         ),
         space: (
           3x: 3rem
+        ),
+        gap: (
+          "1\\/2x" : 0.5rem,
         )
     ),
     colors: (
         "orange": (
             "color": #ffad00,
             "spectrum": true
-        )
+        ),
+        "midnight": #415190,
+        "dusk": #677395
     )
 );
 
@@ -27,12 +32,14 @@ html, body{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;;
     line-height: 1.5;
     font-size: 14px;
-    color: color('gray-70');
+    color: #20327c;
+    background: lighten(color('blue-10'), 7);
 }
 
 .section{
     width:100%;
     padding: 100px 50px;
+    background: white;
     & + & {
         border-top:2px dashed darken(white, 20);
     }
@@ -56,6 +63,10 @@ html, body{
     }
 }
 
+h1 {
+    color: color('gray-90');
+}
+
 h2 {
     font-weight: 500;
     font-size: 1.3rem;
@@ -65,7 +76,6 @@ h2 {
     display: flex;
     flex-direction: column;
     align: center;
-    background: white;
     font-size: 1.2em;
     position:fixed;
     overflow-y:scroll;
@@ -73,15 +83,21 @@ h2 {
     height: 100vh;
     top:0;
     left: 0;
-    border-right:1px solid color('gray-10');
     @media only screen and (max-width: 700px) {
         width: auto;
         img{
             display:none;
         }
     }
-    .footer {
-        background: rgba(color('gray-10'), 0.5);
+    .uniformNav {
+        a {
+            padding-left: 1em;
+            border-left-width: 0.5em;
+            color: color('dusk');
+        }
+        .active {
+            background-color: rgba(var(--active-color), 0.15);
+        }
     }
 }
 
@@ -123,9 +139,3 @@ pre {
     }
 }
 
-.uniformNav {
-    .active {
-        color: color('green-70');
-        background: color('green-10');
-    }
-}

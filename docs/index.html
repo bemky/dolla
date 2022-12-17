@@ -7,17 +7,17 @@
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
     <title>Dolla</title>
-    <link href="/assets/site-7af69796310eefd0029d3e0d6ce0b027b41e7a0327c2563e087b49f29f17f599.css" rel="stylesheet" />
+    <link href="/assets/site-ff7d928b215c6a5421b395ede31aa0c7a4dd4a2787b98b61256bbf6b064eb61c.css" rel="stylesheet" />
     <script src="/assets/site-5c4a54c41c24bda50cb28ff1f5f3f15f491788bea537ede12b870e6f984469a1.js"></script>
 </head>
 <body>
     <div class="side-nav">
         <div class="pad-2x text-center">
-            <a href="/" class="reset text-2x text-uppercase text-black tracking-widest">
-                Dolla
+            <a href="/" class="reset">
+                <img class="width-2/3 height-auto inline-block" src="/assets/logo-c851ee3d8f27bf84079e78b5db490c4ced27d651768984f953a11ab752270079.svg" />
             </a>
         </div>
-        <div class="uniformNav -vertical -gray flex-fill">
+        <div class="uniformNav -vertical -gray flex-fill -active-purple">
                 <a href="#addEventListenerFor">
                     addEventListenerFor
                 </a>
@@ -106,17 +106,20 @@
                     trigger
                 </a>
         </div>
-        <div class="footer pad margin-top-2x text-gray-40 text-sm text-center">
-          &copy; 2021 Ben Ehmke
-        </div>
     </div>
     <div class="main-content overflow-hidden">
-        <div class="section">
-    <div class="text-center text-4x margin-bottom-2x text-uppercase text-black tracking-widest">
-        Dolla
+        <div class="text-right pad bg-white">
+    <a href="https://github.com/bemky/dolla" class="reset inline-flex align-center gap-1/2x text-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        Dolla on GitHub
+    </a>
+</div>
+<div class="section">
+    <div class="text-center margin-bottom-2x">
+        <img class="width-250-px height-auto inline-block" src="/assets/logo-c851ee3d8f27bf84079e78b5db490c4ced27d651768984f953a11ab752270079.svg" />
     </div>
     <p class="text-light text-xl">
-        A light set of helpers for building and manipulating DOM. This toolkit is platform-agnotstic, with each method being fully tree-shakeable by your bundler.
+        Dolla is a library of javascipt methods for building and manipulating DOM that is platform-agnotstic, with each method being fully tree-shakeable by any bundler.
     </p>
     <h1>Installation</h1>
 <div class="highlight"><pre class=" javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">dolla</span>
@@ -138,7 +141,7 @@
 
 <div class="section space-v-3x" id="addEventListenerFor">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>addEventListenerFor</strong> <span class="text-light">(element, selector, type, listener, options)</span>
         </h1>
     
@@ -206,7 +209,7 @@
 </div>
 <div class="section space-v-3x" id="ancestors">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>ancestors</strong> <span class="text-light">(el, selector)</span>
         </h1>
     
@@ -267,7 +270,7 @@
 </div>
 <div class="section space-v-3x" id="append">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>append</strong> <span class="text-light">(el, content, escape, context, method)</span>
         </h1>
     
@@ -386,7 +389,7 @@
 </div>
 <div class="section space-v-3x" id="bury">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>bury</strong> <span class="text-light">(object, ...keys)</span>
         </h1>
     
@@ -453,7 +456,7 @@
 </div>
 <div class="section space-v-3x" id="createElement">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>createElement</strong> <span class="text-light">(tagName = 'div', options = {})</span>
         </h1>
     
@@ -578,7 +581,7 @@
 </div>
 <div class="section space-v-3x" id="css">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>css</strong> <span class="text-light">(el, rule)</span>
         </h1>
     
@@ -631,7 +634,7 @@
 </div>
 <div class="section space-v-3x" id="filter">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>filter</strong> <span class="text-light">(nodes, predicate)</span>
         </h1>
     
@@ -687,7 +690,7 @@
 </div>
 <div class="section space-v-3x" id="getBoundingClientRect">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>getBoundingClientRect</strong> <span class="text-light">(...els)</span>
         </h1>
     
@@ -749,7 +752,7 @@
 </div>
 <div class="section space-v-3x" id="innerHeight">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>innerHeight</strong> <span class="text-light">(el)</span>
         </h1>
     
@@ -776,7 +779,7 @@
 </div>
 <div class="section space-v-3x" id="innerWidth">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>innerWidth</strong> <span class="text-light">(el)</span>
         </h1>
     
@@ -803,7 +806,7 @@
 </div>
 <div class="section space-v-3x" id="insertAfter">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>insertAfter</strong> <span class="text-light">(anchor, el)</span>
         </h1>
     
@@ -845,7 +848,7 @@
 </div>
 <div class="section space-v-3x" id="insertBefore">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>insertBefore</strong> <span class="text-light">(anchor, el)</span>
         </h1>
     
@@ -887,7 +890,7 @@
 </div>
 <div class="section space-v-3x" id="isEmpty">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>isEmpty</strong> <span class="text-light">(element)</span>
         </h1>
     
@@ -913,7 +916,7 @@
 </div>
 <div class="section space-v-3x" id="isFocus">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>isFocus</strong> <span class="text-light">(element)</span>
         </h1>
     
@@ -939,7 +942,7 @@
 </div>
 <div class="section space-v-3x" id="isVisible">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>isVisible</strong> <span class="text-light">(el)</span>
         </h1>
     
@@ -965,7 +968,7 @@
 </div>
 <div class="section space-v-3x" id="listenerElement">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>listenerElement</strong> <span class="text-light">(...args)</span>
         </h1>
     
@@ -1005,7 +1008,7 @@
 </div>
 <div class="section space-v-3x" id="map">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>map</strong> <span class="text-light">(elements, method)</span>
         </h1>
     
@@ -1035,7 +1038,7 @@
 </div>
 <div class="section space-v-3x" id="offset">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>offset</strong> <span class="text-light">(el)</span>
         </h1>
     
@@ -1074,7 +1077,7 @@
 </div>
 <div class="section space-v-3x" id="offsetTo">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>offsetTo</strong> <span class="text-light">(el, target)</span>
         </h1>
     
@@ -1109,7 +1112,7 @@
 </div>
 <div class="section space-v-3x" id="offsetToViewport">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>offsetToViewport</strong> <span class="text-light">(el)</span>
         </h1>
     
@@ -1139,7 +1142,7 @@
 </div>
 <div class="section space-v-3x" id="outerHeight">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>outerHeight</strong> <span class="text-light">(el)</span>
         </h1>
     
@@ -1166,7 +1169,7 @@
 </div>
 <div class="section space-v-3x" id="outerWidth">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>outerWidth</strong> <span class="text-light">(el)</span>
         </h1>
     
@@ -1193,7 +1196,7 @@
 </div>
 <div class="section space-v-3x" id="prepend">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>prepend</strong> <span class="text-light">(el, item, escape, context)</span>
         </h1>
     
@@ -1221,7 +1224,7 @@
 </div>
 <div class="section space-v-3x" id="remove">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>remove</strong> <span class="text-light">(el)</span>
         </h1>
     
@@ -1253,7 +1256,7 @@
 </div>
 <div class="section space-v-3x" id="replaceContents">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>replaceContents</strong> <span class="text-light">(el, ...nodes)</span>
         </h1>
     
@@ -1282,7 +1285,7 @@
 </div>
 <div class="section space-v-3x" id="serializeForm">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>serializeForm</strong> <span class="text-light">(form)</span>
         </h1>
     
@@ -1312,7 +1315,7 @@
 </div>
 <div class="section space-v-3x" id="serializeFormToJSON">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>serializeFormToJSON</strong> <span class="text-light">(form)</span>
         </h1>
     
@@ -1349,7 +1352,7 @@
 </div>
 <div class="section space-v-3x" id="toElements">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>toElements</strong> <span class="text-light">(content)</span>
         </h1>
     
@@ -1383,7 +1386,7 @@
 </div>
 <div class="section space-v-3x" id="trigger">
     <div class="">
-        <h1 class="text-xl">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
             <strong>trigger</strong> <span class="text-light">(el, eventName)</span>
         </h1>
     
@@ -1424,6 +1427,9 @@
     <p>Please report bugs in <a href="https://github.com/bemky/dolla/issues">GitHub Issues</a></p>
     <h3>Licensing</h3>
     <p>Uniform is released under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>
+</div>
+<div class="pad-h-2x pad-v-4x text-gray-40 text-sm text-right ">
+      &copy; 2022 Ben Ehmke
 </div>
     </div>
 </body>

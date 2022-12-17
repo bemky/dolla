@@ -13,19 +13,16 @@
 <body>
     <div class="side-nav">
         <div class="pad-2x text-center">
-            <a href="/" class="reset text-2x text-uppercase text-black tracking-widest">
-                Dolla
+            <a href="/" class="reset">
+                <%= image_tag "logo", class: 'width-2/3 height-auto inline-block' %>
             </a>
         </div>
-        <div class="uniformNav -vertical -gray flex-fill">
+        <div class="uniformNav -vertical -gray flex-fill -active-purple">
             <% source.each do |tool| %>
                 <a href="#<%= tool[:method] %>">
                     <%= tool[:method] %>
                 </a>
             <% end %>
-        </div>
-        <div class="footer pad margin-top-2x text-gray-40 text-sm text-center">
-          &copy; 2021 Ben Ehmke
         </div>
     </div>
     <div class="main-content overflow-hidden">
