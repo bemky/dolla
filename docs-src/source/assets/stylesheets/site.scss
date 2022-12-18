@@ -7,6 +7,9 @@ $uniform_configs: (
         space: (
           3x: 3rem
         ),
+        margin: (
+          4x: 4rem
+        ),
         gap: (
           "1\\/2x" : 0.5rem,
         )
@@ -33,7 +36,7 @@ html, body{
     line-height: 1.5;
     font-size: 14px;
     color: #20327c;
-    background: lighten(color('blue-10'), 7);
+    background: lighten(color('blue-10'), 8);
 }
 
 .section{
@@ -84,10 +87,7 @@ h2 {
     top:0;
     left: 0;
     @media only screen and (max-width: 700px) {
-        width: auto;
-        img{
-            display:none;
-        }
+        display: none;
     }
     .uniformNav {
         a {
