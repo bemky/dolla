@@ -85,10 +85,28 @@ helpers do
   def markdown(markup)
     return "" unless markup
     html = GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, markup)
-    html = html.gsub(/<pre><code>.*<\/code><\/pre>/m) do |match|
-      code('javascript', CGI.unescapeHTML(match.sub("<pre><code>", "").sub("</code></pre>", "")))
-    end
-    html
+    code_lang = ""
+    code_block = []
+    code_regex = /<pre(\s+lang\=[\'\"](\w*)[\'\"])?><code>/
+    html.split("\n").map do |line|
+      if match = line.match(code_regex) && line =~ /<\/code><\/pre>/
+        code(match[2] || 'javascript', CGI.unescapeHTML(line.sub(code_regex, "").sub("</code></pre>", "")))
+      elsif match = line.match(code_regex)
+        code_lang = match[2] || "javascript"
+        code_block << line.sub(code_regex, "")
+        nil
+      elsif line =~ /<\/code><\/pre>/
+        code_block << line.sub("</code></pre>", "")
+        code_content = CGI.unescapeHTML(code_block.join("\n"))
+        code_block = []
+        code(code_lang, code_content)
+      elsif code_block.length > 0
+        code_block << line
+        nil
+      else
+        line
+      end
+    end.compact.join("\n")
   end
   
   def source
@@ -109,11 +127,14 @@ helpers do
         method_details[sections[i - 1]] = sections[i + 1]
       end
       
-      method_details[:method] = source.match(/(?<=export\sdefault\sfunction\s)\w+/).to_s
-      match = source.match(/export\sdefault\sfunction\s#{method_details[:method]}\s?\((.*)\)/)
-      method_details[:params] = match.try(:[], 1).try(:split, /\,\s?/)
+      method_match = source.match(/export\sdefault\sfunction\s#{method_name}\s?\((.*)\)/)
+      method_details[:method] = method_name
       method_details[:source] = source.strip.sub('export default ', '')
-      if method_details[:method].present?
+      method_details[:params] = method_details['Syntax'].try(:match, /\((.*)\)/).try(:[], 1)
+      method_details[:params] ||= method_match.try(:[], 1)
+      method_details[:params] = method_details[:params].try(:split, /\,\s?/)
+      
+      unless method_match.nil?
         @source.push(method_details)
       end
     end

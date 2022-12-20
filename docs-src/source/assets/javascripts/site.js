@@ -2,6 +2,12 @@ import {addEventListenerFor} from 'dolla';
 
 document.addEventListener('DOMContentLoaded', function () {
     if (window.location.hash) {
+        
+        const navTarget = document.querySelector('[href="' + window.location.hash + '"]')
+        if (navTarget) {
+            navTarget.scrollIntoView()
+        }
+        
         const target = document.querySelector(window.location.hash)
         if (target) {
             target.scrollIntoView()

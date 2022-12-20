@@ -3,7 +3,7 @@
         <img src="https://raw.githubusercontent.com/bemky/dolla/master/docs-src/source/assets/images/logo.svg" width="300" alt="Dolla">
     </a>
     <p align="center">
-        A light set of helpers for building and manipulating DOM. This toolkit is platform-agnotstic, with each method being fully tree-shakeable by your bundler.<br>
+        Dolla is a library of javascipt methods that augment existing DOM methods. Dolla is platform-agnotstic, with each method being fully tree-shakeable by any bundler. No dependencies, just helpful methods you can include as you need them.<br>
         <a href="http://dollajs.com/">
             Documentation
         </a>

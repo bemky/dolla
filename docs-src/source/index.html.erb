@@ -13,7 +13,7 @@ title: Dolla
         <%= image_tag "logo", class: 'width-250-px height-auto inline-block' %>
     </div>
     <p class="text-light text-xl">
-        Dolla is a library of javascipt methods for building and manipulating DOM that is platform-agnotstic, with each method being fully tree-shakeable by any bundler.
+        Dolla is a library of javascipt methods that augment existing DOM methods. Dolla is platform-agnotstic, with each method being fully tree-shakeable by any bundler. No dependencies, just helpful methods you can include as you need them.
     </p>
     <h1>Installation</h1>
     <% code 'javascript' do %>
@@ -41,7 +41,15 @@ title: Dolla
 <div class="section space-v-3x" id="<%= tool[:method] %>">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong><%= tool[:method] %></strong> <span class="text-light">(<%= tool[:params]&.join(", ") %>)</span>
+            <a href="#<%= tool[:method] %>" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong><%= tool[:method] %></strong>
+                    <span class="text-light">(<%= tool[:params]&.join(", ") %>)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
@@ -52,7 +60,7 @@ title: Dolla
     <% tool.except(:method, :params, :source, "Description").each do |header, content| %>
         <div class="">
             <h2><%= header %></h2>
-            <%= markdown(content).gsub(/\#(\w+)/, '<span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">\1</span>') %>
+            <%= markdown(content).gsub(/\s#(\w+)/, ' <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">\1</span>') %>
         </div>
     <% end %>
 

@@ -5,10 +5,32 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    
     <!-- Use the title from a page's frontmatter if it has one -->
     <title>Dolla</title>
-    <link href="/assets/site-ff7d928b215c6a5421b395ede31aa0c7a4dd4a2787b98b61256bbf6b064eb61c.css" rel="stylesheet" />
-    <script src="/assets/site-5c4a54c41c24bda50cb28ff1f5f3f15f491788bea537ede12b870e6f984469a1.js"></script>
+    <link href="/assets/site-49c37ab7d9d12e306192d809ae3d60d3a101e87d5a781d64168fc64f04052cae.css" rel="stylesheet" />
+    <script src="/assets/site-e0ed5c388b66a739a31e984bad1894c576ed271d9d24d18978ce7e8c99ca6dad.js"></script>
 </head>
 <body>
     <div class="side-nav">
@@ -29,6 +51,9 @@
                 </a>
                 <a href="#bury">
                     bury
+                </a>
+                <a href="#content">
+                    content
                 </a>
                 <a href="#createElement">
                     createElement
@@ -69,6 +94,9 @@
                 <a href="#map">
                     map
                 </a>
+                <a href="#nextElementSiblings">
+                    nextElementSiblings
+                </a>
                 <a href="#offset">
                     offset
                 </a>
@@ -86,6 +114,9 @@
                 </a>
                 <a href="#prepend">
                     prepend
+                </a>
+                <a href="#previousElementSiblings">
+                    previousElementSiblings
                 </a>
                 <a href="#remove">
                     remove
@@ -115,11 +146,11 @@
     </a>
 </div>
 <div class="section">
-    <div class="text-center margin-bottom-2x">
+    <div class="text-center margin-bottom-4x">
         <img class="width-250-px height-auto inline-block" src="/assets/logo-c851ee3d8f27bf84079e78b5db490c4ced27d651768984f953a11ab752270079.svg" />
     </div>
     <p class="text-light text-xl">
-        Dolla is a library of javascipt methods for building and manipulating DOM that is platform-agnotstic, with each method being fully tree-shakeable by any bundler.
+        Dolla is a library of javascipt methods that augment existing DOM methods. Dolla is platform-agnotstic, with each method being fully tree-shakeable by any bundler. No dependencies, just helpful methods you can include as you need them.
     </p>
     <h1>Installation</h1>
 <div class="highlight"><pre class=" javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">dolla</span>
@@ -142,23 +173,30 @@
 <div class="section space-v-3x" id="addEventListenerFor">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>addEventListenerFor</strong> <span class="text-light">(element, selector, type, listener, options)</span>
+            <a href="#addEventListenerFor" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>addEventListenerFor</strong>
+                    <span class="text-light">(element, selector, type, listener)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            <p>The <code>addEventListenerFor()</code> method adds a listener callback for an <code>Element</code> that is triggered when a containing target matching the selector is fired. Sets <code>event.delegateTarget</code> to the element that matches to selector, while target remains as element that fired the event.</p>
-
+            <p>This method adds a listener callback for an <code>Element</code> that is triggered when a containing target matching the selector is fired. Sets <code>event.delegateTarget</code> to the element that matches to selector, while target remains as element that fired the event.</p>
         </div>
     </div>
     
         <div class="">
             <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="nx">addEventListenerFor</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">addEventListenerFor</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span><span class="p">)</span>
+<span class="nx">addEventListenerFor</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span><span class="p">,</span> <span class="p">[</span><span class="nx">options</span><span class="o">=</span><span class="p">{}])</span>
 </code></pre></div>
-
         </div>
         <div class="">
-            <h2>Params</h2>
+            <h2>Arguments</h2>
             <h3><code>element</code></h3>
 <p>An <code>Element</code> to add the event listener to</p>
 <h3><code>selector</code></h3>
@@ -169,20 +207,17 @@
 <p>An <code>Object</code> with a <code>handleEvent()</code> method or a <code>function</code>. Receives an <code>Event</code> as the param. Event has attribute <code>delegateTarget</code> added that is the element that matches the selector.</p>
 <h3><code>options</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
 <p>An <code>Object</code> with options for <code>addEventListener</code></p>
-
         </div>
         <div class="">
             <h2>Return Value</h2>
             <p><code>undefined</code></p>
-
         </div>
         <div class="">
-            <h2>Usage</h2>
+            <h2>Example</h2>
             <div class="highlight"><pre class=" javascript"><code><span class="nx">addEventListenerFor</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="dl">'</span><span class="s1">checkbox</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">change</span><span class="dl">'</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">delegateTarget</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
 <span class="p">},</span> <span class="p">{</span><span class="na">once</span><span class="p">:</span> <span class="kc">true</span><span class="p">})</span>
 </code></pre></div>
-
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-addEventListenerFor">
@@ -193,7 +228,7 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">addEventListenerFor</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">addEventListenerFor</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">listener</span><span class="p">,</span> <span class="nx">options</span><span class="o">=</span><span class="p">{})</span> <span class="p">{</span>
     <span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">matches</span><span class="p">(</span><span class="nx">selector</span><span class="p">))</span> <span class="p">{</span>
             <span class="nx">e</span><span class="p">.</span><span class="nx">delegateTarget</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span>
@@ -210,40 +245,43 @@
 <div class="section space-v-3x" id="ancestors">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>ancestors</strong> <span class="text-light">(el, selector)</span>
+            <a href="#ancestors" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>ancestors</strong>
+                    <span class="text-light">(element, [selector])</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            <p>The <code>ancestors()</code> method traverses the element and it's parents returning all ancestor elements until the selector is matched.</p>
-
+            <p>This method traverses the element and it's parents returning all ancestor elements until the selector is matched.</p>
         </div>
     </div>
     
         <div class="">
             <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="nx">ancestor</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">selector</span><span class="p">)</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">ancestor</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="p">[</span><span class="nx">selector</span><span class="p">])</span>
 <span class="nx">ancestor</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
         <div class="">
-            <h2>Params</h2>
+            <h2>Arguments</h2>
             <h4><code>element</code></h4>
 <p>An <code>Element</code> to add the event listener to</p>
-<h4><code>selector</code></h4>
+<h4><code>selector</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h4>
 <p>A valid CSS selector <code>string</code></p>
-
         </div>
         <div class="">
             <h2>Return Value</h2>
             <p>An <code>Array</code> of <code>Element</code> ordered by closest first.</p>
-
         </div>
         <div class="">
-            <h2>Usage</h2>
+            <h2>Example</h2>
             <div class="highlight"><pre class=" javascript"><code><span class="nx">ancestors</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="dl">'</span><span class="s1">.container</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-ancestors">
@@ -271,27 +309,33 @@
 <div class="section space-v-3x" id="append">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>append</strong> <span class="text-light">(el, content, escape, context, method)</span>
+            <a href="#append" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>append</strong>
+                    <span class="text-light">(element, content, [escape], [context], [method])</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            <p>The <code>append()</code> method adds a listener callback for an <code>Element</code> that is triggered when a containing target matching the selector is fired. Sets <code>event.delegateTarget</code> to the element that matches to selector, while target remains as element that fired the event.</p>
-
+            <p>This method adds a listener callback for an <code>Element</code> that is triggered when a containing target matching the selector is fired. Sets <code>event.delegateTarget</code> to the element that matches to selector, while target remains as element that fired the event.</p>
         </div>
     </div>
     
         <div class="">
             <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="nx">append</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">append</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="p">[</span><span class="nx">escape</span><span class="p">],</span> <span class="p">[</span><span class="nx">context</span><span class="p">],</span> <span class="p">[</span><span class="nx">method</span><span class="p">])</span>
+<span class="nx">append</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
 <span class="nx">append</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">escape</span><span class="p">)</span>
 <span class="nx">append</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span>
 <span class="nx">append</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span>
-<span class="nx">append</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">escape</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
         <div class="">
-            <h2>Params</h2>
+            <h2>Arguments</h2>
             <h3><code>element</code></h3>
 <p>An <code>Element</code> to add the event listener to</p>
 <h3><code>content</code></h3>
@@ -302,15 +346,13 @@
 <p>The value to be passed as the <code>this</code> parameter if content is a method</p>
 <h3><code>method</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
 <p>A <code>String</code> stating which method of <code>Element</code> instance to use to add content. Default is <code>&quot;append&quot;</code></p>
-
         </div>
         <div class="">
             <h2>Return Value</h2>
             <p><code>undefined</code></p>
-
         </div>
         <div class="">
-            <h2>Usage</h2>
+            <h2>Example</h2>
             <div class="highlight"><pre class=" javascript"><code><span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">el2</span><span class="p">)</span>
 <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">[</span><span class="nx">el2</span><span class="p">,</span> <span class="nx">el3</span><span class="p">,</span> <span class="nx">el4</span><span class="p">])</span>
 <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">el2</span><span class="p">.</span><span class="nx">children</span><span class="p">)</span>
@@ -328,7 +370,6 @@
 <span class="p">})</span>
 <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;span&gt;Hello World&lt;/span&gt;</span><span class="dl">"</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-append">
@@ -390,47 +431,50 @@
 <div class="section space-v-3x" id="bury">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>bury</strong> <span class="text-light">(object, ...keys)</span>
+            <a href="#bury" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>bury</strong>
+                    <span class="text-light">(object, ...keys)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
             <p>Set a value of an object following a chain of nested keys.</p>
-
         </div>
     </div>
     
         <div class="">
             <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="nx">bury</span><span class="p">({</span><span class="na">foo</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="dl">'</span><span class="s1">alpha</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">beta</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">charlie</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Hello World</span><span class="dl">'</span><span class="p">)</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">bury</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="p">...</span><span class="nx">keys</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
         <div class="">
-            <h2>Params</h2>
+            <h2>Arguments</h2>
             <h3><code>object</code></h3>
 <p>An <code>Object</code> to receive keys/value</p>
 <h3><code>keys</code></h3>
 <p>An array of <code>Strings</code> to use as a chain to bury the value</p>
-
         </div>
         <div class="">
             <h2>Return Value</h2>
             <p><code>object</code></p>
-
         </div>
         <div class="">
-            <h2>Usage</h2>
+            <h2>Example</h2>
             <div class="highlight"><pre class=" javascript"><code><span class="nx">bury</span><span class="p">({</span><span class="na">foo</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="dl">'</span><span class="s1">alpha</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">beta</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">charlie</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Hello World</span><span class="dl">'</span><span class="p">)</span>
-<span class="o">&gt;&gt;</span> <span class="p">{</span>
-    <span class="na">foo</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="na">alpha</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">beta</span><span class="p">:</span> <span class="p">{</span>
+<span class="c1">// =&gt; {</span>
+    <span class="nx">foo</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">alpha</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nl">beta</span><span class="p">:</span> <span class="p">{</span>
             <span class="na">charlie</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello World</span><span class="dl">"</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-bury">
@@ -454,44 +498,101 @@
         </div>
     </div>
 </div>
-<div class="section space-v-3x" id="createElement">
+<div class="section space-v-3x" id="content">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>createElement</strong> <span class="text-light">(tagName = 'div', options = {})</span>
+            <a href="#content" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>content</strong>
+                    <span class="text-light">(element, content)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            <p>This method mirrors <code>document.createElement</code>, but adds the ability to include attributes and content for the initialized <code>Element</code></p>
-
+            <p>This method replaces the content of an element with new content.</p>
         </div>
     </div>
     
         <div class="">
             <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">})</span>
-<span class="nx">createElement</span><span class="p">({</span><span class="na">class</span><span class="p">:</span> <span class="dl">'</span><span class="s1">container</span><span class="dl">'</span><span class="p">})</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">content</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
         <div class="">
-            <h2>Params</h2>
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+<h3><code>content</code></h3>
+<p>A <code>Element</code>, <code>NodeList</code>, <code>HTMLCollection</code>, <code>Array</code>, <code>Promise</code>, <code>String</code> of text or html, <code>Object</code> passed to dolla's <a href="/#createElement"><code>createElement</code></a>.</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>undefined</code></p>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-content">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-content">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">content</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">el</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="createElement">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#createElement" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>createElement</strong>
+                    <span class="text-light">(tagName="div", attributes={})</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>This method mirrors <code>document.createElement</code>, but adds the ability to include attributes and content for the initialized <code>Element</code></p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">=</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">,</span> <span class="nx">attributes</span><span class="o">=</span><span class="p">{})</span>
+<span class="nx">createElement</span><span class="p">(</span><span class="nx">attributes</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
             <h3><code>tagName</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
 <p>A <code>String</code> declaring what type of HTML tag to create</p>
-<h3><code>options</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<h3><code>attributes</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
 <p>An <code>Object</code> whose keys are used to set attributes on the created element. All HTMLElement attributes are accepted including an additional option to define <code>content</code></p>
 <ul>
-<li><code>content</code>: The value of the key <code>content</code> is passed into dolla's append method. Reference the <code>append()</code> documentation for more details about possible content values.</li>
+<li><code>content</code>: The value of the key <code>content</code> is passed into dolla's <a href="#append">append</a> method. Reference the <code>append()</code> documentation for more details about possible content values.</li>
 <li><code>tag</code>: A <code>String</code> declaring the type of HTML tag, used as an alternative to the first parameter</li>
 </ul>
-
         </div>
         <div class="">
             <h2>Return Value</h2>
             <p><code>Element</code></p>
-
         </div>
         <div class="">
-            <h2>Usage</h2>
+            <h2>Example</h2>
             <div class="highlight"><pre class=" javascript"><code><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">table</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">class</span><span class="p">:</span> <span class="dl">'</span><span class="s1">uniformTable</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">cellpadding</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -507,7 +608,6 @@
     <span class="p">}]</span>
 <span class="p">})</span>
 </code></pre></div>
-
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-createElement">
@@ -520,19 +620,19 @@
             </div>
             <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">,</span> <span class="nx">HTML_ATTRIBUTES</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./constants</span><span class="dl">'</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">,</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{})</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">=</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">,</span> <span class="nx">attributes</span><span class="o">=</span><span class="p">{})</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">tagName</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">options</span> <span class="o">=</span> <span class="nx">tagName</span><span class="p">;</span>
-    <span class="nx">tagName</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">tag</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">attributes</span> <span class="o">=</span> <span class="nx">tagName</span><span class="p">;</span>
+    <span class="nx">tagName</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">tag</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="kd">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="p">);</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">options</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">attributes</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">HTML_ATTRIBUTES</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">attribute</span> <span class="o">=&gt;</span> <span class="nx">key</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">attribute</span><span class="p">))).</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">key</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2">children</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">options</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+    <span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">el</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
@@ -582,12 +682,19 @@
 <div class="section space-v-3x" id="css">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>css</strong> <span class="text-light">(el, rule)</span>
+            <a href="#css" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>css</strong>
+                    <span class="text-light">(element, rule)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
             <p>Syntax sugar for <code>getComputedStyle</code></p>
-
         </div>
     </div>
     
@@ -595,27 +702,23 @@
             <h2>Syntax</h2>
             <div class="highlight"><pre class=" javascript"><code><span class="nx">css</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">rule</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
         <div class="">
-            <h2>Params</h2>
+            <h2>Arguments</h2>
             <h4><code>element</code></h4>
 <p>An <code>Element</code></p>
 <h4><code>selector</code></h4>
 <p>A <code>String</code> of a valid CSS rule</p>
-
         </div>
         <div class="">
             <h2>Return Value</h2>
             <p><code>String</code> representation of rule value</p>
-
         </div>
         <div class="">
-            <h2>Usage</h2>
+            <h2>Example</h2>
             <div class="highlight"><pre class=" javascript"><code><span class="nx">css</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="dl">'</span><span class="s1">width</span><span class="dl">'</span><span class="p">)</span>
-<span class="o">&gt;&gt;</span> <span class="dl">"</span><span class="s2">800px</span><span class="dl">"</span>
+<span class="c1">// =&gt; "800px"</span>
 </code></pre></div>
-
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-css">
@@ -635,39 +738,42 @@
 <div class="section space-v-3x" id="filter">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>filter</strong> <span class="text-light">(nodes, predicate)</span>
+            <a href="#filter" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>filter</strong>
+                    <span class="text-light">(nodes, predicate)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
             <p>This method filters a <code>NodeList</code> with a predicate.</p>
-
         </div>
     </div>
     
         <div class="">
             <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span><span class="p">.</span><span class="nx">selected</span><span class="p">)</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">filter</span><span class="p">(</span><span class="nx">nodes</span><span class="p">,</span> <span class="nx">predicate</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
         <div class="">
-            <h2>Params</h2>
+            <h2>Arguments</h2>
             <h3><code>nodes</code></h3>
 <p>An <code>Array</code> or <code>NodeList</code></p>
 <h3><code>predicate</code></h3>
 <p>A <code>function</code> where parameter is each item or node of nodes. The function should return truthy to include.</p>
-
         </div>
         <div class="">
             <h2>Return Value</h2>
             <p><code>Array</code></p>
-
         </div>
         <div class="">
-            <h2>Usage</h2>
+            <h2>Example</h2>
             <div class="highlight"><pre class=" javascript"><code><span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span><span class="p">.</span><span class="nx">selected</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-filter">
@@ -691,31 +797,35 @@
 <div class="section space-v-3x" id="getBoundingClientRect">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>getBoundingClientRect</strong> <span class="text-light">(...els)</span>
+            <a href="#getBoundingClientRect" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>getBoundingClientRect</strong>
+                    <span class="text-light">(...elements)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
             <p>This method gets the bounding client rectangle of a group of elements. Similar to <code>Element.getBoundingClientRect()</code>, but for n elements.</p>
-
         </div>
     </div>
     
         <div class="">
             <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="nx">getBoundingClientRect</span><span class="p">(</span><span class="nx">el1</span><span class="p">,</span> <span class="nx">el2</span><span class="p">,</span> <span class="nx">el3</span><span class="p">)</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">getBoundingClientRect</span><span class="p">(...</span><span class="nx">elements</span><span class="p">)</span>
 </code></pre></div>
-
         </div>
         <div class="">
-            <h2>Params</h2>
+            <h2>Arguments</h2>
             <h3><code>elements</code></h3>
 <p>An <code>Array</code> of <code>Elements</code></p>
-
         </div>
         <div class="">
             <h2>Return Value</h2>
             <p><code>DOMRect</code></p>
-
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-getBoundingClientRect">
@@ -726,18 +836,18 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">getBoundingClientRect</span><span class="p">(...</span><span class="nx">els</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">els</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">els</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">els</span> <span class="o">=</span> <span class="nx">els</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">getBoundingClientRect</span><span class="p">(...</span><span class="nx">elements</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">elements</span> <span class="o">=</span> <span class="nx">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="p">}</span>
-    <span class="kd">let</span> <span class="nx">rect</span> <span class="o">=</span> <span class="nx">els</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">getBoundingClientRect</span><span class="p">()</span>
+    <span class="kd">let</span> <span class="nx">rect</span> <span class="o">=</span> <span class="nx">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">getBoundingClientRect</span><span class="p">()</span>
     <span class="nx">rect</span> <span class="o">=</span> <span class="p">{</span>
         <span class="na">left</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span>
         <span class="na">top</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">top</span><span class="p">,</span>
         <span class="na">right</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span>
         <span class="na">bottom</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">bottom</span>
     <span class="p">}</span>
-    <span class="nx">els</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">elements</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="kd">const</span> <span class="nx">thisRect</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">()</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">thisRect</span><span class="p">.</span><span class="nx">left</span> <span class="o">&lt;</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">thisRect</span><span class="p">.</span><span class="nx">left</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">thisRect</span><span class="p">.</span><span class="nx">top</span> <span class="o">&lt;</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">top</span><span class="p">)</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">thisRect</span><span class="p">.</span><span class="nx">top</span>
@@ -753,14 +863,36 @@
 <div class="section space-v-3x" id="innerHeight">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>innerHeight</strong> <span class="text-light">(el)</span>
+            <a href="#innerHeight" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>innerHeight</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns an element's height including <code>padding</code>, which is excluded from <code>el.offsetHeigh</code>.</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">innerHeight</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Integer</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-innerHeight">
         SHOW SOURCE
@@ -772,7 +904,7 @@
             </div>
             <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">innerHeight</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">style</span> <span class="o">=</span> <span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetWidth</span> <span class="o">-</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingTop</span><span class="p">)</span> <span class="o">-</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingBottom</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">-</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingTop</span><span class="p">)</span> <span class="o">-</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">style</span><span class="p">.</span><span class="nx">paddingBottom</span><span class="p">);</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -780,14 +912,36 @@
 <div class="section space-v-3x" id="innerWidth">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>innerWidth</strong> <span class="text-light">(el)</span>
+            <a href="#innerWidth" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>innerWidth</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns an element's width including <code>padding</code>, which is excluded from <code>el.offsetWidth</code>.</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">innerWidth</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Integer</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-innerWidth">
         SHOW SOURCE
@@ -807,14 +961,49 @@
 <div class="section space-v-3x" id="insertAfter">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>insertAfter</strong> <span class="text-light">(anchor, el)</span>
+            <a href="#insertAfter" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>insertAfter</strong>
+                    <span class="text-light">(anchor, element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method appends an element after an anchor</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">insertAfter</span><span class="p">(</span><span class="nx">anchor</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>anchor</code></h3>
+<p>An <code>Element</code></p>
+<h3><code>element</code></h3>
+<p>An <code>Element</code>, <code>NodeList</code>, <code>HTMLCollection</code>, <code>Array</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Integer</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">insertAfter</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#anchor</span><span class="dl">'</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">))</span>
+<span class="nx">insertAfter</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#anchor</span><span class="dl">'</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#container</span><span class="dl">'</span><span class="p">).</span><span class="nx">children</span><span class="p">)</span>
+<span class="nx">insertAfter</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#anchor</span><span class="dl">'</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#container</span><span class="dl">'</span><span class="p">).</span><span class="nx">childNodes</span><span class="p">)</span>
+<span class="nx">insertAfter</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#anchor</span><span class="dl">'</span><span class="p">),</span> <span class="p">[</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">label</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">])</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-insertAfter">
         SHOW SOURCE
@@ -849,14 +1038,49 @@
 <div class="section space-v-3x" id="insertBefore">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>insertBefore</strong> <span class="text-light">(anchor, el)</span>
+            <a href="#insertBefore" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>insertBefore</strong>
+                    <span class="text-light">(anchor, element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method appends an element after an anchor</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">anchor</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>anchor</code></h3>
+<p>An <code>Element</code></p>
+<h3><code>element</code></h3>
+<p>An <code>Element</code>, <code>NodeList</code>, <code>HTMLCollection</code>, <code>Array</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Integer</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">insertBefore</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#anchor</span><span class="dl">'</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">))</span>
+<span class="nx">insertBefore</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#anchor</span><span class="dl">'</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#container</span><span class="dl">'</span><span class="p">).</span><span class="nx">children</span><span class="p">)</span>
+<span class="nx">insertBefore</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#anchor</span><span class="dl">'</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#container</span><span class="dl">'</span><span class="p">).</span><span class="nx">childNodes</span><span class="p">)</span>
+<span class="nx">insertBefore</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#anchor</span><span class="dl">'</span><span class="p">),</span> <span class="p">[</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">label</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">])</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-insertBefore">
         SHOW SOURCE
@@ -891,14 +1115,36 @@
 <div class="section space-v-3x" id="isEmpty">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>isEmpty</strong> <span class="text-light">(element)</span>
+            <a href="#isEmpty" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>isEmpty</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns if an element is empty</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Boolean</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-isEmpty">
         SHOW SOURCE
@@ -917,14 +1163,36 @@
 <div class="section space-v-3x" id="isFocus">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>isFocus</strong> <span class="text-light">(element)</span>
+            <a href="#isFocus" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>isFocus</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns if an element is focused</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">isFocus</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Boolean</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-isFocus">
         SHOW SOURCE
@@ -943,14 +1211,36 @@
 <div class="section space-v-3x" id="isVisible">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>isVisible</strong> <span class="text-light">(el)</span>
+            <a href="#isVisible" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>isVisible</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns if an element is attached to the DOM</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">isVisible</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Boolean</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-isVisible">
         SHOW SOURCE
@@ -969,14 +1259,59 @@
 <div class="section space-v-3x" id="listenerElement">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>listenerElement</strong> <span class="text-light">(...args)</span>
+            <a href="#listenerElement" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>listenerElement</strong>
+                    <span class="text-light">([tagName], [attributes], listenerType, listenerCallback)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns a HTMLElement with an event listener</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">listenerElement</span><span class="p">([</span><span class="nx">tagName</span><span class="p">],</span> <span class="p">[</span><span class="nx">attributes</span><span class="p">],</span> <span class="nx">listenerType</span><span class="p">,</span> <span class="nx">listenerCallback</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>tagName</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<p>A <code>String</code> for html element</p>
+<h3><code>attributes</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<p>An <code>Object</code> of attributes for dolla's <a href="#createElement"><code>createElement</code></a></p>
+<h3><code>listenerType</code></h3>
+<p>A <code>String</code> representing the event type to listen to</p>
+<h3><code>listenerCallback</code></h3>
+<p>A function that receives an <code>Event</code> as a parameter</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">listenerElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">class</span><span class="p">:</span> <span class="dl">'</span><span class="s1">btn</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Confirm</span><span class="dl">'</span>
+<span class="p">},</span> <span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">listenerElement</span><span class="p">({</span>
+    <span class="na">class</span><span class="p">:</span> <span class="dl">'</span><span class="s1">btn</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Confirm</span><span class="dl">'</span>
+<span class="p">},</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-listenerElement">
         SHOW SOURCE
@@ -1009,14 +1344,49 @@
 <div class="section space-v-3x" id="map">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>map</strong> <span class="text-light">(elements, method)</span>
+            <a href="#map" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>map</strong>
+                    <span class="text-light">(elements, iteratee)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns if an element is attached to the DOM</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">map</span><span class="p">(</span><span class="nx">elements</span><span class="p">,</span> <span class="nx">iteratee</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>elements</code></h3>
+<p>An <code>Array</code>, <code>HTMLCollection</code>, <code>NodeList</code></p>
+<h3><code>iteratee</code></h3>
+<p>A <code>Function</code> that receives each item in elements as an argument, the return of which is set as the index of the return array</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Array</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">map</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">children</span><span class="p">,</span> <span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">)</span>
+<span class="nx">map</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">,</span> <span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">)</span>
+<span class="nx">map</span><span class="p">([</span>
+    <span class="nx">el1</span><span class="p">,</span>
+    <span class="nx">el2</span><span class="p">,</span>
+    <span class="nx">el3</span>
+<span class="p">],</span> <span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">)</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-map">
         SHOW SOURCE
@@ -1026,12 +1396,75 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">map</span> <span class="p">(</span><span class="nx">elements</span><span class="p">,</span> <span class="nx">method</span><span class="p">){</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">map</span> <span class="p">(</span><span class="nx">elements</span><span class="p">,</span> <span class="nx">iteratee</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
     <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">elements</span><span class="p">).</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">method</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">i</span><span class="p">))</span>
+      <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">iteratee</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">i</span><span class="p">))</span>
     <span class="p">})</span>
     <span class="k">return</span> <span class="nx">results</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="nextElementSiblings">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#nextElementSiblings" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>nextElementSiblings</strong>
+                    <span class="text-light">(element, filter)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>This method returns an element's following siblings.</p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">nextElementSibling</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+<h3><code>filter</code></h3>
+<p>A method that receives the next sibling as a paramter, and returns true or false</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Array</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">nextElementSiblings</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">sibling</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">sibling</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">checkbox</span><span class="dl">"</span>
+<span class="p">})</span>
+</code></pre></div>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-nextElementSiblings">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-nextElementSiblings">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">nextElementSiblings</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">siblings</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">while</span><span class="p">(</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">nextElementSibling</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">filter</span> <span class="o">||</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">siblings</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">siblings</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -1039,14 +1472,36 @@
 <div class="section space-v-3x" id="offset">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>offset</strong> <span class="text-light">(el)</span>
+            <a href="#offset" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>offset</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns an elements position <code>{top, left}</code> in relation to it's <code>offsetParent</code></p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">offset</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Object {top, left}</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-offset">
         SHOW SOURCE
@@ -1078,14 +1533,38 @@
 <div class="section space-v-3x" id="offsetTo">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>offsetTo</strong> <span class="text-light">(el, target)</span>
+            <a href="#offsetTo" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>offsetTo</strong>
+                    <span class="text-light">(element, target)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns an elements position <code>{top, left}</code> in relation to a target element</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">offsetTo</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+<h3><code>target</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Object {top, left, right, bottom}</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-offsetTo">
         SHOW SOURCE
@@ -1113,14 +1592,36 @@
 <div class="section space-v-3x" id="offsetToViewport">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>offsetToViewport</strong> <span class="text-light">(el)</span>
+            <a href="#offsetToViewport" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>offsetToViewport</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns an elements position <code>{top, left}</code> in relation to the viewport</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">offsetToViewport</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Object {top, left}</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-offsetToViewport">
         SHOW SOURCE
@@ -1143,14 +1644,36 @@
 <div class="section space-v-3x" id="outerHeight">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>outerHeight</strong> <span class="text-light">(el)</span>
+            <a href="#outerHeight" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>outerHeight</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns the height of an element including <code>margin</code></p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">outerHeight</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Integer</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-outerHeight">
         SHOW SOURCE
@@ -1170,14 +1693,36 @@
 <div class="section space-v-3x" id="outerWidth">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>outerWidth</strong> <span class="text-light">(el)</span>
+            <a href="#outerWidth" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>outerWidth</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns the width of an element including <code>margin</code></p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">outerWidth</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Integer</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-outerWidth">
         SHOW SOURCE
@@ -1197,14 +1742,68 @@
 <div class="section space-v-3x" id="prepend">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>prepend</strong> <span class="text-light">(el, item, escape, context)</span>
+            <a href="#prepend" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>prepend</strong>
+                    <span class="text-light">(element, content)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method is a same as <a href="#append"><code>append</code></a>, but inserts content at the start of an elements children.</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">prepend</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span>
+<span class="nx">prepend</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">escape</span><span class="p">)</span>
+<span class="nx">prepend</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span>
+<span class="nx">prepend</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span>
+<span class="nx">prepend</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">escape</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code> to add the event listener to</p>
+<h3><code>content</code></h3>
+<p>A <code>Element</code>, <code>NodeList</code>, <code>HTMLCollection</code>, <code>Array</code>, <code>Promise</code>, <code>String</code> of text or html, <code>Object</code> passed to dolla's <code>createElement</code>.</p>
+<h3><code>escape</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<p>A <code>Boolean</code> directing method to escape or not escape content that is a string</p>
+<h3><code>context</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<p>The value to be passed as the <code>this</code> parameter if content is a method</p>
+<h3><code>method</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<p>A <code>String</code> stating which method of <code>Element</code> instance to use to add content. Default is <code>&quot;append&quot;</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>undefined</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">prepend</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">el2</span><span class="p">)</span>
+<span class="nx">prepend</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">[</span><span class="nx">el2</span><span class="p">,</span> <span class="nx">el3</span><span class="p">,</span> <span class="nx">el4</span><span class="p">])</span>
+<span class="nx">prepend</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">el2</span><span class="p">.</span><span class="nx">children</span><span class="p">)</span>
+<span class="nx">prepend</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">el2</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)</span>
+<span class="nx">prepend</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">records</span><span class="p">.</span><span class="nx">load</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">records</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">resolve</span><span class="p">(</span><span class="nx">records</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">record</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">template</span><span class="p">(</span><span class="nx">record</span><span class="p">)</span>
+        <span class="p">}))</span>
+    <span class="p">})</span>
+<span class="p">}))</span>
+<span class="nx">prepend</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">class</span><span class="p">:</span> <span class="dl">'</span><span class="s1">label</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">content</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello World</span><span class="dl">"</span>
+<span class="p">})</span>
+<span class="nx">prepend</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;span&gt;Hello World&lt;/span&gt;</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-prepend">
         SHOW SOURCE
@@ -1222,17 +1821,102 @@
         </div>
     </div>
 </div>
-<div class="section space-v-3x" id="remove">
+<div class="section space-v-3x" id="previousElementSiblings">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>remove</strong> <span class="text-light">(el)</span>
+            <a href="#previousElementSiblings" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>previousElementSiblings</strong>
+                    <span class="text-light">(element, filter)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns an element's previous siblings.</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">previousElementSiblings</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+<h3><code>filter</code></h3>
+<p>A method that receives the previous sibling as a paramter, and returns true or false</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Array</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">previousElementSiblings</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">sibling</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">sibling</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">checkbox</span><span class="dl">"</span>
+<span class="p">})</span>
+</code></pre></div>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-previousElementSiblings">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-previousElementSiblings">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">previousElementSiblings</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">siblings</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">while</span><span class="p">(</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">previousElementSibling</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">filter</span> <span class="o">||</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">siblings</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">siblings</span><span class="p">.</span><span class="nx">reverse</span><span class="p">()</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="remove">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#remove" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>remove</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>This method removes an element from the document/fragment to which it is attached</p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">remove</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Element</code></p>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-remove">
         SHOW SOURCE
@@ -1242,7 +1926,7 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">remove</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">remove</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="k">instanceof</span> <span class="nx">NodeList</span> <span class="o">||</span> <span class="nx">el</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="o">||</span> <span class="nx">el</span> <span class="k">instanceof</span> <span class="nx">HTMLCollection</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">el</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span>
         <span class="nx">el</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">remove</span><span class="p">);</span>
@@ -1257,14 +1941,47 @@
 <div class="section space-v-3x" id="replaceContents">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>replaceContents</strong> <span class="text-light">(el, ...nodes)</span>
+            <a href="#replaceContents" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>replaceContents</strong>
+                    <span class="text-light">(element, ...nodes)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method replaces an element's content with new content</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">remove</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="p">...</span><span class="nx">nodes</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+<h3><code>nodes</code></h3>
+<p>A <code>Element</code>, <code>NodeList</code>, <code>HTMLCollection</code>, <code>Array</code>, <code>Promise</code>, <code>String</code> of text or html, <code>Object</code> passed to dolla's <code>createElement</code>. Checkout <code>append</code> for more details about what content can be used</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>undefined</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">replaceContents</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">anotherElement</span><span class="p">.</span><span class="nx">children</span><span class="p">)</span>
+<span class="nx">replaceContents</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">tag</span><span class="p">:</span> <span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">class</span><span class="p">:</span> <span class="dl">'</span><span class="s1">btn</span><span class="dl">'</span>
+<span class="p">})</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-replaceContents">
         SHOW SOURCE
@@ -1275,10 +1992,11 @@
                 SOURCE CODE
             </div>
             <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">remove</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./remove</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="kd">function</span> <span class="nx">replaceContents</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">...</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">replaceContents</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">...</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">remove</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">);</span>
-    <span class="nx">el</span><span class="p">.</span><span class="nx">append</span><span class="p">(...</span><span class="nx">nodes</span><span class="p">);</span>
+    <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">nodes</span><span class="p">);</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -1286,14 +2004,52 @@
 <div class="section space-v-3x" id="serializeForm">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>serializeForm</strong> <span class="text-light">(form)</span>
+            <a href="#serializeForm" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>serializeForm</strong>
+                    <span class="text-light">(form)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns object of a form element's key and value pairs</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">serializeForm</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>form</code></h3>
+<p>An <code>FormElement</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Object</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" html"><code><span class="nt">&lt;form&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"user[name]"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"user[email_address]"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"team[is_active]"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre class=" javascript"><code><span class="nx">serializeForm</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span>
+<span class="c1">// =&gt; {</span>
+<span class="c1">//  [user]name: 'Rod Kimble',</span>
+<span class="c1">//  [user]emailAddress: 'rod.kimble@hot-rod-productions.com',</span>
+<span class="c1">//  [team][is_active]: true</span>
+<span class="c1">//}</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-serializeForm">
         SHOW SOURCE
@@ -1316,14 +2072,56 @@
 <div class="section space-v-3x" id="serializeFormToJSON">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>serializeFormToJSON</strong> <span class="text-light">(form)</span>
+            <a href="#serializeFormToJSON" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>serializeFormToJSON</strong>
+                    <span class="text-light">(form)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method returns JSON of a form element's key and value pairs. This function unlike <code>serializeForm</code> allows the keys to nest keys (see usage)</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">serializeFormToJSON</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>form</code></h3>
+<p>An <code>FormElement</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>JSON</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" html"><code><span class="nt">&lt;form&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"user[name]"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"user[email_address]"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"team[is_active]"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre class=" javascript"><code><span class="nx">serializeForm</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span>
+<span class="c1">// =&gt; {</span>
+<span class="c1">//  user: {</span>
+<span class="c1">//      name: 'Rod Kimble',</span>
+<span class="c1">//      emailAddress: 'rod.kimble@hot-rod-productions.com'</span>
+<span class="c1">//  },</span>
+<span class="c1">//  team: {</span>
+<span class="c1">//      is_active: true</span>
+<span class="c1">//  }</span>
+<span class="c1">//}</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-serializeFormToJSON">
         SHOW SOURCE
@@ -1353,14 +2151,42 @@
 <div class="section space-v-3x" id="toElements">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>toElements</strong> <span class="text-light">(content)</span>
+            <a href="#toElements" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>toElements</strong>
+                    <span class="text-light">(content)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method converts a string of HTML to <code>Elements</code></p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">toElements</span><span class="p">(</span><span class="nx">content</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>content</code></h3>
+<p>A <code>String</code> of HTML or a <code>Function</code> that retuns a string of HTML</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>NodeList</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">toElements</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;div class='container'&gt;&lt;label&gt;Label&lt;/label&gt;&lt;input type='checkbox'&gt;&lt;/div&gt;</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">toElements</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">&lt;div class='container'&gt;&lt;label&gt;Label&lt;/label&gt;&lt;input type='checkbox'&gt;&lt;/div&gt;</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-toElements">
         SHOW SOURCE
@@ -1387,14 +2213,44 @@
 <div class="section space-v-3x" id="trigger">
     <div class="">
         <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <strong>trigger</strong> <span class="text-light">(el, eventName)</span>
+            <a href="#trigger" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>trigger</strong>
+                    <span class="text-light">(element, eventName)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
         </h1>
     
         <div class="text-light text-lg">
-            
+            <p>This method calls an element's <code>dispatchEvent</code> with a custom event.</p>
         </div>
     </div>
     
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">trigger</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code></p>
+<h3><code>eventName</code></h3>
+<p>A <code>String</code> representing the event type</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>false</code> if event is cancelable, and at least one of the event handlers which received event called <code>Event.preventDefault()</code>. Otherwise <code>true</code>.</p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">el</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">attachedToDOM</span><span class="dl">'</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">green</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">trigger</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="dl">'</span><span class="s1">attachedToDOM</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div>
+        </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-trigger">
         SHOW SOURCE

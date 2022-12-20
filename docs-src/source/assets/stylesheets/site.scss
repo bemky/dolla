@@ -123,6 +123,9 @@ h2 {
             padding: 0.5em;
         }
     }
+    & + .highlight {
+      margin-top: 1em;
+    }
 }
 code{
     border-radius: 0.25em;
@@ -137,5 +140,13 @@ pre {
         background: none;
         padding: initial;
     }
+}
+
+.group:hover .group-hover\:inline {
+    display: inline;
+}
+
+.hover\:text-current:hover {
+    color: currentColor;
 }
 
