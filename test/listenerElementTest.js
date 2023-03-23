@@ -1,5 +1,5 @@
-import listenerElement from '../lib/listenerElement';
-import trigger from '../lib/trigger';
+import {listenerElement} from 'dolla';
+import {trigger} from 'dolla';
 import * as assert from 'assert';
 
 describe('listenerElement', function () {

@@ -1,4 +1,4 @@
-import createElement from '../lib/createElement';
+import {createElement} from 'dolla';
 import * as assert from 'assert';
 
 describe('createElement', function () {

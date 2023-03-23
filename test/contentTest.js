@@ -1,5 +1,5 @@
-import createElement from '../lib/createElement.js';
-import content from '../lib/content.js';
+import {createElement} from 'dolla';
+import {content} from 'dolla';
 import * as assert from 'assert';
 
 describe('content', function () {

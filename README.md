@@ -35,6 +35,8 @@ Checkout details about each method on [dollajs.com](http://dollajs.com)
 ### Build
     npm run build
 ### Test
+    npm link # to make global reference
+    npm link dolla # to link global reference
     npm run test
 ### Release
     npm publish

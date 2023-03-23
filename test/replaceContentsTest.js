@@ -1,5 +1,5 @@
-import createElement from '../lib/createElement';
-import replaceContents from '../lib/replaceContents';
+import {createElement} from 'dolla';
+import {replaceContents} from 'dolla';
 import * as assert from 'assert';
 
 describe('replaceContents', function () {

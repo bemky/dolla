@@ -1,5 +1,5 @@
-import createElement from '../lib/createElement';
-import previousElementSiblings from '../lib/previousElementSiblings';
+import {createElement} from 'dolla';
+import {previousElementSiblings} from 'dolla';
 import * as assert from 'assert';
 
 describe('previousElementSiblings', function () {

@@ -1,5 +1,5 @@
-import createElement from '../lib/createElement';
-import trigger from '../lib/trigger';
+import {createElement} from 'dolla';
+import {trigger} from 'dolla';
 import * as assert from 'assert';
 
 describe('trigger', function () {

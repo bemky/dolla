@@ -1,6 +1,6 @@
-import createElement from '../lib/createElement';
-import trigger from '../lib/trigger';
-import addEventListenerFor from '../lib/addEventListenerFor';
+import {createElement} from 'dolla';
+import {trigger} from 'dolla';
+import {addEventListenerFor} from 'dolla';
 import * as assert from 'assert';
 
 describe('addEventListenerFor', function () {

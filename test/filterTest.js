@@ -1,5 +1,5 @@
-import createElement from '../lib/createElement';
-import filter from '../lib/filter';
+import {createElement} from 'dolla';
+import {filter} from 'dolla';
 import * as assert from 'assert';
 
 describe('filter', function () {

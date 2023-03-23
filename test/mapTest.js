@@ -1,5 +1,5 @@
-import createElement from '../lib/createElement';
-import map from '../lib/map';
+import {createElement} from 'dolla';
+import {map} from 'dolla';
 import * as assert from 'assert';
 
 describe('map', function () {

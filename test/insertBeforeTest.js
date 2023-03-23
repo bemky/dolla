@@ -1,6 +1,6 @@
-import createElement from '../lib/createElement.js';
-import append from '../lib/append.js';
-import insertBefore from '../lib/insertBefore.js';
+import {createElement} from 'dolla';
+import {append} from 'dolla';
+import {insertBefore} from 'dolla';
 import * as assert from 'assert';
 
 describe('insertBefore', function () {

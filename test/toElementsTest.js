@@ -1,4 +1,4 @@
-import toElements from '../lib/toElements';
+import {toElements} from 'dolla';
 import * as assert from 'assert';
 
 describe('toElements', function () {

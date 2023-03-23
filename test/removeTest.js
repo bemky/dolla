@@ -1,6 +1,6 @@
-import createElement from '../lib/createElement';
-import remove from '../lib/remove';
-import map from '../lib/map';
+import {createElement} from 'dolla';
+import {remove} from 'dolla';
+import {map} from 'dolla';
 import * as assert from 'assert';
 
 describe('remove', function () {

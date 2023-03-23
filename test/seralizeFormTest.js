@@ -1,5 +1,5 @@
-import createElement from '../lib/createElement';
-import serializeForm from '../lib/serializeForm';
+import {createElement} from 'dolla';
+import {serializeForm} from 'dolla';
 import * as assert from 'assert';
 
 describe('serializeForm', function () {
