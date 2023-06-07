@@ -105,6 +105,62 @@ describe('append', function () {
     assert.equal(el.outerHTML, `<div id="a"><div id="b"></div><div id="c"></div></div>`)
   })
   
+  it('proxy', async function () {
+    const el = createElement('div', {id: 'a'})
+    const proxy = new Proxy({
+      content: '<div id="b"></div>'
+    }, {
+      get: (target, prop) => target[prop]
+    })
+    await append(el, proxy.content)
+    
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
+  })
+  
+  it('proxy with promise', async function () {
+    // Taken from malomalo/viking
+    const isProxy = Symbol("isProxy")
+    function wrappingFunction () { }
+    function neverEndingProxy(target) {
+        return new Proxy(wrappingFunction, {
+            get: (fn, prop, receiver) => {
+                if (prop === isProxy) { return target; }
+
+                if ( prop === 'then' || prop === 'catch') {
+                    return target[prop].bind(target);
+                } else {
+                    return neverEndingProxy(target.then(t => {
+                        let value = t[prop]
+                        if (typeof value === 'function') {
+                            let proxyPromise = value[isProxy];
+                            if (proxyPromise) {
+                                return proxyPromise.then ( (r) => {
+                                    return typeof r === 'function' ? r.bind(t) : r
+                                });
+                            } else {
+                                return value.bind(t);
+                            }
+                        } else {
+                            return value;
+                        }
+                    }));
+                }
+            },
+            apply: (fn, thisArg, args) => {
+                return neverEndingProxy(target.then((t) => t(...args)));
+            }
+        });
+    }
+    
+    const el = createElement('div', {id: 'a'})
+    const proxy = neverEndingProxy(new Promise(r => r({
+      content: '<div id="b"></div>'
+    })))
+    await append(el, proxy.content)
+    
+    assert.equal(el.outerHTML, `<div id="a"><div id="b"></div></div>`)
+  })
+  
   it('promise with text', async function () {
     const el = createElement('div', {id: 'a'})
     const promise = new Promise((success) => {
