@@ -38,6 +38,18 @@ describe('createElement', function () {
     })
     assert.equal(el2.outerHTML, `<input type="checkbox">`);
     assert.equal(el2.checked, false)
+    
+    const el3 = createElement('textarea', {
+      readonly: true,
+    })
+    assert.equal(el3.outerHTML, `<textarea readonly=""></textarea>`);
+    assert.equal(el3.readOnly, true)
+
+    const el4 = createElement('textarea', {
+      readonly: false,
+    })
+    assert.equal(el4.outerHTML, `<textarea></textarea>`);
+    assert.equal(el4.readOnly, false)
   });
   
   describe('children', function () {
