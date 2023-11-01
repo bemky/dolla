@@ -50,6 +50,18 @@ describe('createElement', function () {
         })
         assert.equal(el4.outerHTML, `<textarea></textarea>`);
         assert.equal(el4.readOnly, false)
+        
+        const el5 = setAttributes(document.createElement('input'), {
+            indeterminate: true,
+            type: 'checkbox'
+        })
+        assert.equal(el5.indeterminate, true)
+
+        const el6 = setAttributes(document.createElement('input'), {
+            indeterminate: false,
+            type: 'checkbox'
+        })
+        assert.equal(el6.indeterminate, false)
     });
   
     describe('children', function () {
