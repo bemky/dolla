@@ -1,4 +1,4 @@
-import {createElement} from 'dolla';
+import {createElement, trigger} from 'dolla';
 import * as assert from 'assert';
 
 describe('createElement', function () {
@@ -51,6 +51,16 @@ describe('createElement', function () {
     assert.equal(el4.outerHTML, `<textarea></textarea>`);
     assert.equal(el4.readOnly, false)
   });
+  
+  it('input with event', function () {
+      let done = false
+      const el = createElement('input', {
+        type: 'text',
+        onfocus: e => done = true
+      })
+      trigger(el, 'focus')
+      assert.equal(done, true)
+  })
   
   describe('children', function () {
     it('text', function () {
