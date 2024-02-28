@@ -1,7 +1,7 @@
 import {setAttributes, createElement} from 'dolla';
 import * as assert from 'assert';
 
-describe('createElement', function () {
+describe('setAttributes', function () {
     it('class', function () {
         assert.equal(setAttributes(document.createElement("div"), {class: 'test'}).outerHTML, `<div class="test"></div>`)
     });
