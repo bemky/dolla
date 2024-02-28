@@ -1,4 +1,4 @@
-import {setAttributes, createElement} from 'dolla';
+import {setAttributes, createElement, stateAttribute} from 'dolla';
 import * as assert from 'assert';
 
 describe('setAttributes', function () {
@@ -161,6 +161,28 @@ describe('setAttributes', function () {
                 children: 'Span'
             })]
         }).outerHTML, `<div><span>Span</span></div>`);
+    })
+    
+    it('promise', async function () {
+        let r;
+        const button = document.createElement('button')
+        setAttributes(button, {
+            disabled: new Promise(resolve => r = resolve)
+        })
+        assert.equal(button.disabled, false)
+        await r(true)
+        assert.equal(button.disabled, true)
+    })
+    
+    it('StateBus', async function () {
+        const isOpen = stateAttribute(false)
+        const button = document.createElement('button')
+        setAttributes(button, {
+            disabled: isOpen
+        })
+        assert.equal(button.disabled, false)
+        isOpen.set(true)
+        assert.equal(button.disabled, true)
     })
 })
   
