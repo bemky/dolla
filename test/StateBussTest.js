@@ -37,4 +37,12 @@ describe('StateBus', function () {
         const isOpen = new StateBus(11)
         assert.ok(isOpen > 10)
     });
+    
+    it('transform', function() {
+        const isOpen = new StateBus(true)
+        const isOpenClass = isOpen.transform(v => !!v ? '-show' : '-hide')
+        assert.equal(isOpenClass, '-show')
+        isOpen.set(false)
+        assert.equal(isOpenClass, '-hide')
+    })
 })
