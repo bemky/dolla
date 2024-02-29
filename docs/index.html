@@ -30,7 +30,7 @@
     <!-- Use the title from a page's frontmatter if it has one -->
     <title>Dolla</title>
     <link href="/assets/site-49c37ab7d9d12e306192d809ae3d60d3a101e87d5a781d64168fc64f04052cae.css" rel="stylesheet" />
-    <script src="/assets/site-e0ed5c388b66a739a31e984bad1894c576ed271d9d24d18978ce7e8c99ca6dad.js"></script>
+    <script src="/assets/site-9aca8f0ccf8bbb5ec487916deb55b4984e6dfb1b2739adea544388b20d6df06a.js"></script>
 </head>
 <body>
     <div class="side-nav">
@@ -60,6 +60,9 @@
                 </a>
                 <a href="#css">
                     css
+                </a>
+                <a href="#defineElement">
+                    defineElement
                 </a>
                 <a href="#filter">
                     filter
@@ -103,6 +106,9 @@
                 <a href="#offsetTo">
                     offsetTo
                 </a>
+                <a href="#offsetToBody">
+                    offsetToBody
+                </a>
                 <a href="#offsetToViewport">
                     offsetToViewport
                 </a>
@@ -129,6 +135,15 @@
                 </a>
                 <a href="#serializeFormToJSON">
                     serializeFormToJSON
+                </a>
+                <a href="#setAttributes">
+                    setAttributes
+                </a>
+                <a href="#stateAttribute">
+                    stateAttribute
+                </a>
+                <a href="#StateBus">
+                    StateBus
                 </a>
                 <a href="#toElements">
                     toElements
@@ -380,9 +395,9 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">createElement</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./createElement</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">insertBefore</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./insertBefore</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">remove</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./remove</span><span class="dl">'</span><span class="p">;</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">createElement</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./createElement.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">insertBefore</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./insertBefore.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">remove</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./remove.js</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">escape</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">method</span><span class="p">)</span> <span class="nx">method</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">append</span><span class="dl">'</span>
@@ -397,7 +412,9 @@
             <span class="nx">escape</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
         <span class="p">}</span>
       
-        <span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="k">instanceof</span> <span class="nb">Promise</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">content</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// do nothing</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="k">instanceof</span> <span class="nb">Promise</span> <span class="o">||</span> <span class="nx">content</span><span class="p">.</span><span class="nx">then</span><span class="p">)</span> <span class="p">{</span>
             <span class="kd">const</span> <span class="nx">holder</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">span</span><span class="dl">'</span><span class="p">);</span>
             <span class="nx">el</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">holder</span><span class="p">);</span>
             <span class="kd">const</span> <span class="nx">timestamp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getMilliseconds</span><span class="p">()</span>
@@ -408,8 +425,6 @@
             <span class="p">});</span>
         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="k">instanceof</span> <span class="nx">Element</span> <span class="o">||</span> <span class="nx">content</span> <span class="k">instanceof</span> <span class="nx">Node</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">el</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">content</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">content</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">content</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// do nothing</span>
         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">content</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">function</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">content</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">context</span><span class="p">)(</span><span class="nx">el</span><span class="p">),</span> <span class="nx">escape</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">content</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">object</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
@@ -542,7 +557,7 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append</span><span class="dl">'</span><span class="p">;</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append.js</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">content</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">el</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
@@ -618,63 +633,17 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">,</span> <span class="nx">HTML_ATTRIBUTES</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./constants</span><span class="dl">'</span><span class="p">;</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">setAttributes</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./setAttributes.js</span><span class="dl">'</span><span class="p">;</span>
+
 <span class="kd">function</span> <span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">=</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">,</span> <span class="nx">attributes</span><span class="o">=</span><span class="p">{})</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">tagName</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">attributes</span> <span class="o">=</span> <span class="nx">tagName</span><span class="p">;</span>
-    <span class="nx">tagName</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">tag</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="kd">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="p">);</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">attributes</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">HTML_ATTRIBUTES</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">attribute</span> <span class="o">=&gt;</span> <span class="nx">key</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">attribute</span><span class="p">))).</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">key</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2">children</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">tagName</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">attributes</span> <span class="o">=</span> <span class="nx">tagName</span><span class="p">;</span>
+        <span class="nx">tagName</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">tag</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">el</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">switch</span> <span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">case</span> <span class="dl">'</span><span class="s1">tag</span><span class="dl">'</span><span class="p">:</span>
-        <span class="k">return</span><span class="p">;</span>
-
-      <span class="k">case</span> <span class="dl">'</span><span class="s1">value</span><span class="dl">'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
-
-      <span class="k">case</span> <span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">el</span><span class="p">.</span><span class="nx">dataset</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">object</span><span class="dl">"</span> <span class="p">?</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span> <span class="p">:</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
-          <span class="p">});</span>
-        <span class="p">}</span>
-
-        <span class="k">break</span><span class="p">;</span>
-
-      <span class="k">case</span> <span class="dl">'</span><span class="s1">style</span><span class="dl">'</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
-          <span class="p">});</span>
-        <span class="p">}</span>
-
-        <span class="k">break</span><span class="p">;</span>
-
-      <span class="k">case</span> <span class="dl">'</span><span class="s1">content</span><span class="dl">'</span><span class="p">:</span>
-      <span class="k">case</span> <span class="dl">'</span><span class="s1">children</span><span class="dl">'</span><span class="p">:</span>
-        <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">el</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-  <span class="p">});</span>
-  <span class="k">return</span> <span class="nx">el</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="p">);</span>
+    <span class="nx">setAttributes</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">attributes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">el</span><span class="p">;</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -730,7 +699,119 @@
                 SOURCE CODE
             </div>
             <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">css</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">rule</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">el</span><span class="p">)[</span><span class="nx">rule</span><span class="p">];</span>
+    <span class="k">return</span> <span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">el</span><span class="p">).</span><span class="nx">getPropertyValue</span><span class="p">(</span><span class="nx">rule</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="defineElement">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#defineElement" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>defineElement</strong>
+                    <span class="text-light">(tagName="div", attributes={})</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>This method mirrors <code>document.createElement</code>, but adds the ability to include attributes and content for the initialized <code>Element</code></p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">createElement</span><span class="p">(</span><span class="nx">tagName</span><span class="o">=</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">,</span> <span class="nx">attributes</span><span class="o">=</span><span class="p">{})</span>
+<span class="nx">createElement</span><span class="p">(</span><span class="nx">attributes</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>tagName</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<p>A <code>String</code> declaring what type of HTML tag to create</p>
+<h3><code>constructor</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<p>An <code>Function</code></p>
+<ul>
+<li><code>content</code>: The value of the key <code>content</code> is passed into dolla's <a href="#append">append</a> method. Reference the <code>append()</code> documentation for more details about possible content values.</li>
+<li><code>tag</code>: A <code>String</code> declaring the type of HTML tag, used as an alternative to the first parameter</li>
+</ul>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Class</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">defineElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">custom-table</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">data</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="na">cellName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">custom-table-cell</span><span class="dl">'</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="na">connectedCallback</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">cell</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="kd">constructor</span><span class="p">.</span><span class="nx">cellName</span><span class="p">)</span>
+            <span class="nx">cell</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">cell</span><span class="p">)</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-defineElement">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-defineElement">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">defineElement</span><span class="p">(</span><span class="nx">tagName</span><span class="p">,</span> <span class="nx">_constructor</span><span class="p">,</span> <span class="nx">staticAttributes</span><span class="p">,</span> <span class="nx">instanceAttributes</span><span class="p">,</span> <span class="nx">extendedClass</span><span class="o">=</span><span class="nx">HTMLElement</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">className</span> <span class="o">=</span> <span class="nx">tagName</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">(?:</span><span class="sr">^|</span><span class="se">\-)[</span><span class="sr">a-z</span><span class="se">]</span><span class="sr">/i</span><span class="p">,</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span>
+    <span class="nx">tagName</span> <span class="o">=</span> <span class="nx">tagName</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[</span><span class="sr">A-Z</span><span class="se">]</span><span class="sr">/</span><span class="p">,</span> <span class="nx">x</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">-</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^</span><span class="se">\-</span><span class="sr">/</span><span class="p">,</span> <span class="dl">""</span><span class="p">)</span>
+    
+    <span class="kd">const</span> <span class="nx">originalConstructor</span> <span class="o">=</span> <span class="nx">_constructor</span><span class="p">.</span><span class="nx">bind</span><span class="p">({})</span>
+    
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">staticAttributes</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">attribute</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">_constructor</span><span class="p">[</span><span class="nx">attribute</span><span class="p">]</span> <span class="o">=</span> <span class="nx">staticAttributes</span><span class="p">[</span><span class="nx">attribute</span><span class="p">]</span>
+    <span class="p">})</span>
+    
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">instanceAttributes</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">attribute</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">_constructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">attribute</span><span class="p">]</span> <span class="o">=</span> <span class="nx">instanceAttributes</span><span class="p">[</span><span class="nx">attribute</span><span class="p">]</span>
+    <span class="p">})</span>
+    
+    <span class="nx">_constructor</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">Reflect</span><span class="p">.</span><span class="nx">construct</span><span class="p">(</span><span class="nx">extendedClass</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">,</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="kd">constructor</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">^^^^^^^^^^^^</span><span class="dl">'</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">render</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">originalConstructor</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">result</span><span class="p">)(</span><span class="nx">arguments</span><span class="p">)</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">------------</span><span class="dl">"</span><span class="p">,</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="nx">_constructor</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">extendedClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">constructor</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">value</span><span class="p">:</span> <span class="nx">_constructor</span><span class="p">,</span>
+            <span class="na">writable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="na">configurable</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+    
+    
+    
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">_constructor</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">value</span><span class="p">:</span> <span class="nx">className</span><span class="p">});</span>
+    
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">_constructor</span><span class="p">,</span> <span class="nx">extendedClass</span><span class="p">);</span>
+    
+    <span class="nb">window</span><span class="p">.</span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">tagName</span><span class="p">,</span> <span class="nx">_constructor</span><span class="p">);</span>
+    
+    <span class="nx">_constructor</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">$$$$$$$$$$</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="nx">_constructor</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -1321,7 +1402,7 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">createElement</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./createElement</span><span class="dl">'</span><span class="p">;</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">createElement</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./createElement.js</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">listenerElement</span> <span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">callback</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
@@ -1460,7 +1541,7 @@
             <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">nextElementSiblings</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">siblings</span> <span class="o">=</span> <span class="p">[];</span>
   <span class="k">while</span><span class="p">(</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">nextElementSibling</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">filter</span> <span class="o">||</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">filter</span> <span class="o">||</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">el</span><span class="p">))</span> <span class="p">{</span>
       <span class="nx">siblings</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -1484,7 +1565,7 @@
         </h1>
     
         <div class="text-light text-lg">
-            <p>This method returns an elements position <code>{top, left}</code> in relation to it's <code>offsetParent</code></p>
+            <p>This method returns an element's <code>DOMRect</code> in relation to it's <code>offsetParent</code></p>
         </div>
     </div>
     
@@ -1496,11 +1577,11 @@
         <div class="">
             <h2>Arguments</h2>
             <h3><code>element</code></h3>
-<p>An <code>Element</code></p>
+<p>An <code>Element</code> or <code>HTMLCollection</code></p>
         </div>
         <div class="">
             <h2>Return Value</h2>
-            <p><code>Object {top, left}</code></p>
+            <p><code>DOMRect</code></p>
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-offset">
@@ -1511,20 +1592,15 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">offset</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">offsetTo</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./offsetTo.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">offset</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetParent</span>
     <span class="kd">const</span> <span class="nx">rect</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">parentRect</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
-        <span class="k">return</span> <span class="p">{</span> 
-          <span class="na">top</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">-</span> <span class="nx">parentRect</span><span class="p">.</span><span class="nx">top</span><span class="p">,</span>
-          <span class="na">left</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">-</span> <span class="nx">parentRect</span><span class="p">.</span><span class="nx">left</span>
-        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">offsetTo</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">el</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">{</span> 
-          <span class="na">top</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">top</span><span class="p">,</span>
-          <span class="na">left</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">left</span>
-        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
         </div>
@@ -1557,13 +1633,13 @@
         <div class="">
             <h2>Arguments</h2>
             <h3><code>element</code></h3>
-<p>An <code>Element</code></p>
+<p>An <code>Element</code> or <code>HTMLCollection</code></p>
 <h3><code>target</code></h3>
 <p>An <code>Element</code></p>
         </div>
         <div class="">
             <h2>Return Value</h2>
-            <p><code>Object {top, left, right, bottom}</code></p>
+            <p><code>DOMRect</code></p>
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-offsetTo">
@@ -1574,17 +1650,67 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">getBoundingClientRect</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./getBoundingClientRect</span><span class="dl">'</span><span class="p">;</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">offsetToBody</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./offsetToBody.js</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">offsetTo</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">elRect</span> <span class="o">=</span> <span class="nx">getBoundingClientRect</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
-    <span class="kd">const</span> <span class="nx">targetRect</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">elRect</span> <span class="o">=</span> <span class="nx">offsetToBody</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">targetRect</span> <span class="o">=</span> <span class="nx">offsetToBody</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
     
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="na">top</span><span class="p">:</span> <span class="nx">elRect</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">targetRect</span><span class="p">.</span><span class="nx">top</span><span class="p">,</span>
-        <span class="na">left</span><span class="p">:</span> <span class="nx">elRect</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">targetRect</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span>
-        <span class="na">right</span><span class="p">:</span> <span class="nx">elRect</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="nx">targetRect</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span>
-        <span class="na">bottom</span><span class="p">:</span> <span class="nx">elRect</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="nx">targetRect</span><span class="p">.</span><span class="nx">top</span>
-    <span class="p">};</span>
+    <span class="nx">elRect</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">elRect</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">targetRect</span><span class="p">.</span><span class="nx">x</span>
+    <span class="nx">elRect</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">elRect</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">targetRect</span><span class="p">.</span><span class="nx">y</span>
+    
+    <span class="k">return</span> <span class="nx">elRect</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="offsetToBody">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#offsetToBody" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>offsetToBody</strong>
+                    <span class="text-light">(element)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>This method returns an element's bounding <code>DOMRect</code> in relation to the rootNode (typically <code>document.body</code>)</p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">offsetToBody</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code> or <code>HTMLCollection</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>DOMRect</code></p>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-offsetToBody">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-offsetToBody">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">getBoundingClientRect</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./getBoundingClientRect.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">offsetToBody</span> <span class="p">(...</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">rect</span> <span class="o">=</span> <span class="nx">getBoundingClientRect</span><span class="p">(...</span><span class="nx">el</span><span class="p">)</span>
+    <span class="nx">rect</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollX</span>
+    <span class="nx">rect</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollY</span>
+    <span class="k">return</span> <span class="nx">rect</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -1616,11 +1742,11 @@
         <div class="">
             <h2>Arguments</h2>
             <h3><code>element</code></h3>
-<p>An <code>Element</code></p>
+<p>An <code>Element</code> or <code>HTMLCollection</code></p>
         </div>
         <div class="">
             <h2>Return Value</h2>
-            <p><code>Object {top, left}</code></p>
+            <p><code>DOMRect</code></p>
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-offsetToViewport">
@@ -1631,12 +1757,9 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">offsetToViewport</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">rect</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
-    <span class="k">return</span> <span class="p">{</span> 
-      <span class="na">top</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">top</span><span class="p">,</span>
-      <span class="na">left</span><span class="p">:</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">left</span>
-    <span class="p">}</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">getBoundingClientRect</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./getBoundingClientRect.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">offsetToViewport</span> <span class="p">(...</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">getBoundingClientRect</span><span class="p">(...</span><span class="nx">el</span><span class="p">);</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -1813,7 +1936,7 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append</span><span class="dl">'</span><span class="p">;</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append.js</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">prepend</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">escape</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">append</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">escape</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="dl">'</span><span class="s1">prepend</span><span class="dl">'</span><span class="p">)</span>
@@ -1991,8 +2114,8 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">remove</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./remove</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append</span><span class="dl">'</span><span class="p">;</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">remove</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./remove.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">append</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./append.js</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">replaceContents</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">...</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">remove</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">);</span>
@@ -2131,8 +2254,8 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">serializeForm</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./serializeForm</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">bury</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./bury</span><span class="dl">'</span><span class="p">;</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">serializeForm</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./serializeForm.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">bury</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./bury.js</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">serializeFormToJSON</span> <span class="p">(</span><span class="nx">form</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="nx">serializeForm</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
@@ -2144,6 +2267,270 @@
     <span class="p">}</span>
   <span class="p">})</span>
   <span class="k">return</span> <span class="nx">formData</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="setAttributes">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#setAttributes" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>setAttributes</strong>
+                    <span class="text-light">(el, attributes={})</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>Assigns attributes and content for an <code>Element</code></p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">assignAttributes</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">attributes</span><span class="o">=</span><span class="p">{})</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>el</code></h3>
+<p>An <code>Element</code> to assign attributes too</p>
+<h3><code>attributes</code> <span class="uniformLabel -gray-50 -outline text-normal text-xs text-uppercase align-middle">optional</span></h3>
+<p>An <code>Object</code> whose keys are used to set attributes on the created element. All HTMLElement attributes are accepted including an additional option to define <code>content</code></p>
+<ul>
+<li><code>content</code>: The value of the key <code>content</code> is passed into dolla's <a href="#append">append</a> method. Reference the <code>append()</code> documentation for more details about possible content values.</li>
+<li><code>tag</code>: A <code>String</code> declaring the type of HTML tag, used as an alternative to the first parameter</li>
+</ul>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Element</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">assignAttributes</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">class</span><span class="p">:</span> <span class="dl">'</span><span class="s1">uniformTable</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">cellpadding</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">style</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">verticalAlign</span><span class="p">:</span> <span class="dl">'</span><span class="s1">center</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="na">content</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">tag</span><span class="p">:</span> <span class="dl">'</span><span class="s1">tr</span><span class="dl">'</span>
+        <span class="na">content</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="na">tag</span><span class="p">:</span> <span class="dl">'</span><span class="s1">td</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Hello World</span><span class="dl">'</span>
+        <span class="p">}]</span>
+    <span class="p">}]</span>
+<span class="p">})</span>
+</code></pre></div>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-setAttributes">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-setAttributes">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">,</span> <span class="nx">HTML_ATTRIBUTES</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./constants.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">StateBus</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./StateBus.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">content</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./content.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">setAttributes</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">attributes</span><span class="o">=</span><span class="p">{})</span> <span class="p">{</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">attributes</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">attributes</span><span class="p">[</span><span class="nx">key</span><span class="p">]));</span>
+    <span class="k">return</span> <span class="nx">el</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="k">instanceof</span> <span class="nb">Promise</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">value</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">))</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="k">instanceof</span> <span class="nx">StateBus</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">value</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">))</span>
+        <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">el</span><span class="p">.</span><span class="nx">dataset</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">object</span><span class="dl">"</span> <span class="p">?</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span> <span class="p">:</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+            <span class="p">});</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">style</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+            <span class="p">});</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">content</span><span class="dl">"</span> <span class="o">||</span> <span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">children</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">content</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^on</span><span class="se">[</span><span class="sr">a-z</span><span class="se">]</span><span class="sr">/</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">el</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">==</span> <span class="nx">key</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()))</span> <span class="p">{</span>
+            <span class="nx">key</span> <span class="o">=</span> <span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">==</span> <span class="nx">key</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span>
+            <span class="nx">el</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">HTML_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">key</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">a</span><span class="p">))))</span> <span class="p">{</span>
+            <span class="nx">el</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="stateAttribute">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#stateAttribute" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>stateAttribute</strong>
+                    <span class="text-light">(value)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>Initializes StateBus with value</p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">stateAttribute</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>value</code></h3>
+<p>Initial value of attribute</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>StateBus</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">isOpen</span> <span class="o">=</span> <span class="nx">stateAttribute</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="nx">isOpen</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-stateAttribute">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-stateAttribute">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">StateBus</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./StateBus.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">stateAttribute</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">StateBus</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="StateBus">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#StateBus" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>StateBus</strong>
+                    <span class="text-light">(value)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>StateBus is a simple javascript class that hold a value and calls listener callbacks when it changes</p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">new</span> <span class="nx">StateBus</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Constructor</h2>
+            <h3><code>value</code></h3>
+<p>Initial value of attribute</p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>StateBus</code></p>
+        </div>
+        <div class="">
+            <h2>Example</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">isOpen</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StateBus</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="nx">isOpen</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Instance Methods</h2>
+            <h3><code>get()</code></h3>
+<p>Returns value</p>
+<h3><code>set(v)</code></h3>
+<p>Sets state</p>
+<h3><code>addListener(callback)</code></h3>
+<p>Add listener</p>
+<h3><code>removeListener(callback)</code></h3>
+<p>Remove Listener</p>
+<h3><code>valueOf()</code></h3>
+<p>Returns value</p>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-StateBus">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-StateBus">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">class</span> <span class="nx">StateBus</span> <span class="p">{</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="nx">listens</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">v</span>
+    <span class="p">}</span>
+    <span class="nx">valueOf</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span>
+    <span class="p">}</span>
+    <span class="kd">get</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span>
+    <span class="p">}</span>
+    <span class="kd">set</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">valueWas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">valueWas</span> <span class="o">!=</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">v</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">listens</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">callback</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">callback</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">valueWas</span><span class="p">)</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">this</span>
+    <span class="p">}</span>
+    <span class="nx">addListener</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listens</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">removeListener</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">listens</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">listens</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!==</span> <span class="nx">callback</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">transform</span><span class="p">(</span><span class="nx">transformation</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">spawn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StateBus</span><span class="p">(</span><span class="nx">transformation</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">spawn</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">transformation</span><span class="p">(</span><span class="nx">v</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="nx">spawn</span>
+    <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -2240,6 +2627,8 @@
 <p>An <code>Element</code></p>
 <h3><code>eventName</code></h3>
 <p>A <code>String</code> representing the event type</p>
+<h3><code>options</code></h3>
+<p>Object passed to <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent">CustomEvent</a> constructor. Defaults <code>target</code>, <code>bubbles</code>, <code>cancelable</code></p>
         </div>
         <div class="">
             <h2>Return Value</h2>
@@ -2260,10 +2649,12 @@
             <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
                 SOURCE CODE
             </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">trigger</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createEvent</span><span class="p">(</span><span class="dl">'</span><span class="s1">HTMLEvents</span><span class="dl">'</span><span class="p">);</span>
-    <span class="nx">event</span><span class="p">.</span><span class="nx">initEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">trigger</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">options</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({</span>
+        <span class="na">bubbles</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">cancelable</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">},</span> <span class="nx">options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">dispatchEvent</span><span class="p">(</span><span class="k">new</span> <span class="nx">CustomEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">options</span><span class="p">));</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
