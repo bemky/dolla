@@ -2481,12 +2481,14 @@
 <p>Returns value</p>
 <h3><code>set(v)</code></h3>
 <p>Sets state</p>
-<h3><code>addListener(callback)</code></h3>
+<h3><code>addListener(callback:function)</code></h3>
 <p>Add listener</p>
-<h3><code>removeListener(callback)</code></h3>
+<h3><code>removeListener(callback:function)</code></h3>
 <p>Remove Listener</p>
 <h3><code>valueOf()</code></h3>
 <p>Returns value</p>
+<h3><code>transform(transformation:function)</code></h3>
+<p>Returns a new StateBus that follows changes to this StateBus, with the transformation applied to value everytime it changes</p>
         </div>
 
     <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-StateBus">
