@@ -127,18 +127,18 @@ helpers do
         method_details[sections[i - 1]] = sections[i + 1]
       end
       
-      method_match = source.match(/export\sdefault\sfunction\s#{method_name}\s?\((.*)\)/)
+      method_match = source.match(/export\sdefault\s(function)\s#{method_name}\s?\((.*)\)/)
       method_details[:method] = method_name
       method_details[:source] = source.strip.sub('export default ', '')
       method_details[:params] = method_details['Syntax'].try(:match, /\((.*)\)/).try(:[], 1)
       method_details[:params] ||= method_match.try(:[], 1)
       method_details[:params] = method_details[:params].try(:split, /\,\s?/)
-      
-      unless method_match.nil?
+      if method_match.present? || source.match(/export\sdefault\sclass/) 
         @source.push(method_details)
       end
     end
-    @source.sort_by{|x| x[:method]}
+    
+    @source.sort_by{|x| x[:method].downcase}
   end
   
 end
