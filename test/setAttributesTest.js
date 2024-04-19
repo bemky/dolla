@@ -23,6 +23,18 @@ describe('setAttributes', function () {
         })
         assert.equal(el.style.display, 'none');
     });
+    
+    it('style with key that is stateAttribute', function () {
+        const display = stateAttribute('none')
+        const el = setAttributes(document.createElement("div"), {
+            style: {
+                display: display
+            }
+        })
+        assert.equal(el.style.display, 'none');
+        display.set('block')
+        assert.equal(el.style.display, 'block');
+    });
   
     it('boolean attribute', function () {
         const el = setAttributes(document.createElement('input'), {
