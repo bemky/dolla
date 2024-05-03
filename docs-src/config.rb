@@ -6,6 +6,7 @@ require 'github/markup'
 set :build_dir, '../docs'
 activate :condenser do |config|
   config.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
+  config.path << File.realpath('../lib')
 end
 # app.condenser.register_postprocessor('text/css', ::Condenser::CSSMediaCombinerProcessor)
 
