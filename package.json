@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.2.8",
   "description": "A light set of helpers for building and manipulating DOM",
-  "main": "lib/index.js",
+  "main": "lib/dolla.js",
   "scripts": {
     "test": "mocha -r jsdom-global/register"
   },
