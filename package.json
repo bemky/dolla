@@ -5,7 +5,7 @@
   "description": "A light set of helpers for building and manipulating DOM",
   "main": "lib/dolla.js",
   "scripts": {
-    "test": "mocha -r jsdom-global/register"
+    "test": "mocha -r jsdom-global/register --config ./.mocha.yml"
   },
   "repository": {
     "type": "git",

@@ -195,6 +195,16 @@ describe('setAttributes', function () {
         assert.equal(button.disabled, false)
         isOpen.set(true)
         assert.equal(button.disabled, true)
+        
+        const changingName = stateAttribute('foo')
+        setAttributes(button, {
+            content: changingName
+        })
+        changingName.set('bar')
+        assert.equal(button.innerHTML, 'bar')
+        
+        changingName.set(null)
+        assert.equal(button.innerHTML, '')
     })
 })
   
