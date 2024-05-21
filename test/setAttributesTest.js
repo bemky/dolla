@@ -24,6 +24,15 @@ describe('setAttributes', function () {
         assert.equal(el.style.display, 'none');
     });
     
+    it('style with null', function () {
+        const el = setAttributes(document.createElement("div"), {
+            style: {
+                display: null
+            }
+        })
+        assert.equal(el.style.display, '');
+    });
+    
     it('style with key that is stateAttribute', function () {
         const display = stateAttribute('none')
         const el = setAttributes(document.createElement("div"), {
