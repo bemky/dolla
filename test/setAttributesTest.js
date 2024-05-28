@@ -84,6 +84,13 @@ describe('setAttributes', function () {
         })
         assert.equal(el6.indeterminate, false)
     });
+    
+    it('svg attribute', function () {
+        const el = setAttributes(document.createElementNS("http://www.w3.org/2000/svg", "rect"), {
+            stroke: '#000',
+        })
+        assert.equal(el.getAttribute('stroke'), '#000')
+    });
   
     describe('children', function () {
         it('text', function () {
