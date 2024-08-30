@@ -5,6 +5,22 @@ import * as assert from 'assert';
 
 describe('addEventListenerFor', function () {
     
+    it('array listener types', function () {
+        const child = createElement('div', {
+            class: 'js-test'
+        })
+        const container = createElement('div', {
+            children: child
+        })
+        
+        let triggered = false;
+        addEventListenerFor(container, '.js-test', ['mouseover', 'click'], e => {
+            triggered = true;
+        })
+        trigger(child, 'click');
+        assert.ok(triggered);
+    });
+    
     describe('trigger child', function () {
         const child = createElement('div', {
             class: 'js-test'
