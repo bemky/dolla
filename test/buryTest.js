@@ -20,4 +20,16 @@ describe('bury', function () {
     assert.deepEqual({a: {b: 2}}, bury(test, 'a', 'b', 2))
   })
   
+  it('array', function () {
+    const test = {a: 1}
+    
+    assert.deepEqual({a: {b: ['c', 'd']}}, bury(test, 'a', 'b', ['c', 'd']))
+  });
+  
+  it('array index', function () {
+    const test = {a: {b: [1,2,3]}}
+    
+    assert.deepEqual({a: {b: [1,'foo',3]}}, bury(test, 'a', 'b', 1, 'foo'))
+  });
+  
 });
