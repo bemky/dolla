@@ -2,28 +2,28 @@ import {toElements} from 'dolla';
 import * as assert from 'assert';
 
 describe('toElements', function () {
-  it('html string', function () {
-    const els = toElements(`<div>Hello World</div>`);
+  it('html string', async function () {
+    const els = await toElements(`<div>Hello World</div>`);
     assert.equal(els.item(0).tagName, 'DIV')
-    assert.equal(els.item(0).innerHTML, 'Hello World')  
+    assert.equal(els.item(0).innerHTML, 'Hello World')
   });
   
-  it('html string special tag', function () {
-    const els = toElements(`<tr><td>Hello World</td></tr>`);
+  it('html string special tag', async function () {
+    const els = await toElements(`<tr><td>Hello World</td></tr>`);
     assert.equal(els.item(0).tagName, 'TR')
-    assert.equal(els.item(0).innerHTML, '<td>Hello World</td>')  
+    assert.equal(els.item(0).innerHTML, '<td>Hello World</td>')
   });
   
-  it('html string multiple tag', function () {
-    const els = toElements(`<div>Hello</div><div>World</div>`);
+  it('html string multiple tag', async function () {
+    const els = await toElements(`<div>Hello</div><div>World</div>`);
     assert.equal(els.item(0).tagName, 'DIV');
     assert.equal(els.item(1).tagName, 'DIV');
     assert.equal(els.item(0).innerHTML, 'Hello');
     assert.equal(els.item(1).innerHTML, 'World');
   });
   
-  it('html string deeply nested', function () {
-    const els = toElements(`
+  it('html string deeply nested', async function () {
+    const els = await toElements(`
         <table>
             <tr>
                 <td>Hello</td>
