@@ -14,36 +14,57 @@ describe('setAttributes', function () {
         })
         assert.equal(el.dataset.test, '11');
     });
+    
+    describe('style', function () {
+        it('string', function () {
+            const el = setAttributes(document.createElement("div"), {
+                style: {
+                    display: 'none'
+                }
+            })
+            assert.equal(el.style.display, 'none');
+        });
+    
+        it('null', function () {
+            const el = setAttributes(document.createElement("div"), {
+                style: {
+                    display: null
+                }
+            })
+            assert.equal(el.style.display, '');
+        });
+    
+        it('stateAttribute', function () {
+            const display = stateAttribute('none')
+            const el = setAttributes(document.createElement("div"), {
+                style: {
+                    display: display
+                }
+            })
+            assert.equal(el.style.display, 'none');
+            display.set('block')
+            assert.equal(el.style.display, 'block');
+        });
+        
+        it('Proimise', function (done) {
+            let setProperty;
+            const el = document.createElement("div")
+            const display = new Promise(resolve => {
+                setProperty = resolve
+            }).finally((...args) => {
+                assert.equal(el.style.display, 'block');
+            }).finally(done, done)
+            setAttributes(el, {
+                style: {
+                    display: display
+                }
+            })
+            assert.equal(el.style.display, '');
+            setProperty('block')
+        })
+    })
   
-    it('style', function () {
-        const el = setAttributes(document.createElement("div"), {
-            style: {
-                display: 'none'
-            }
-        })
-        assert.equal(el.style.display, 'none');
-    });
     
-    it('style with null', function () {
-        const el = setAttributes(document.createElement("div"), {
-            style: {
-                display: null
-            }
-        })
-        assert.equal(el.style.display, '');
-    });
-    
-    it('style with key that is stateAttribute', function () {
-        const display = stateAttribute('none')
-        const el = setAttributes(document.createElement("div"), {
-            style: {
-                display: display
-            }
-        })
-        assert.equal(el.style.display, 'none');
-        display.set('block')
-        assert.equal(el.style.display, 'block');
-    });
   
     it('boolean attribute', function () {
         const el = setAttributes(document.createElement('input'), {
