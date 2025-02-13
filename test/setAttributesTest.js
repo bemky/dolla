@@ -6,13 +6,45 @@ describe('setAttributes', function () {
         assert.equal(setAttributes(document.createElement("div"), {class: 'test'}).outerHTML, `<div class="test"></div>`)
     });
   
-    it('data', function () {
-        const el = setAttributes(document.createElement("div"), {
-            data: {
-                test: 11
-            }
-        })
-        assert.equal(el.dataset.test, '11');
+    describe('data', function () {
+        it('integer', function () {
+            const el = setAttributes(document.createElement("div"), {
+                data: {
+                    test: 11
+                }
+            })
+            assert.equal(el.dataset.test, '11');
+        });
+        it('dashed key', function () {
+            const el = setAttributes(document.createElement("div"), {
+                data: {
+                    'key-with-dashes': 11
+                }
+            })
+            assert.equal(el.dataset.keyWithDashes, '11');
+        });
+        it('camelized key', function () {
+            const el = setAttributes(document.createElement("div"), {
+                data: {
+                    keyWithDashes: 11
+                }
+            })
+            assert.equal(el.dataset.keyWithDashes, '11');
+            assert.equal(el.getAttribute('data-key-with-dashes'), '11')
+        });
+        
+        it('object', function () {
+            const el = setAttributes(document.createElement("div"), {
+                data: {
+                    test: {
+                        foo: {
+                            bar: '11'
+                        }
+                    }
+                }
+            })
+            assert.equal(el.dataset.test, JSON.stringify({foo: {bar: '11'}}));
+        });
     });
     
     describe('style', function () {
