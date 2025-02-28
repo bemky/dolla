@@ -2,9 +2,28 @@ import {setAttributes, createElement, stateAttribute} from 'dolla';
 import * as assert from 'assert';
 
 describe('setAttributes', function () {
-    it('class', function () {
-        assert.equal(setAttributes(document.createElement("div"), {class: 'test'}).outerHTML, `<div class="test"></div>`)
-    });
+    
+    describe('class', function () {
+        it('string', function () {
+            assert.equal(setAttributes(document.createElement("div"), {
+                class: 'test'
+            }).outerHTML, `<div class="test"></div>`)
+        });
+        
+        it('Set', function () {
+            const classes = new Set()
+            classes.add('foo').add('bar')
+            assert.equal(setAttributes(document.createElement("div"), {
+                class: classes
+            }).outerHTML, `<div class="foo bar"></div>`)
+        });
+        
+        it('Array', function () {
+            assert.equal(setAttributes(document.createElement("div"), {
+                class: ['foo', 'bar']
+            }).outerHTML, `<div class="foo bar"></div>`)
+        });
+    })
   
     describe('data', function () {
         it('integer', function () {
