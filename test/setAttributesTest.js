@@ -23,6 +23,18 @@ describe('setAttributes', function () {
                 class: ['foo', 'bar']
             }).outerHTML, `<div class="foo bar"></div>`)
         });
+        
+        it('null', function () {
+            assert.equal(setAttributes(document.createElement("div"), {
+                class: null
+            }).outerHTML, `<div></div>`)
+        });
+        
+        it('undefined', function () {
+            assert.equal(setAttributes(document.createElement("div"), {
+                class: undefined
+            }).outerHTML, `<div></div>`)
+        });
     })
   
     describe('data', function () {
