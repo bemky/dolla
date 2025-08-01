@@ -32,11 +32,11 @@ document.body.append(createElement('div', {
 Checkout details about each method on [dollajs.com](http://dollajs.com)
 
 ## Development
-### Build
-    npm run build
+### Serve Docs
+    npm run docs:server
+### Build Docs
+    npm run docs:build
 ### Test
-    npm link # to make global reference
-    npm link dolla # to link global reference
     npm run test
 ### Release
     npm publish

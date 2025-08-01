@@ -30,7 +30,7 @@
     <!-- Use the title from a page's frontmatter if it has one -->
     <title>Dolla</title>
     <link href="/assets/site-49c37ab7d9d12e306192d809ae3d60d3a101e87d5a781d64168fc64f04052cae.css" rel="stylesheet" />
-    <script src="/assets/site-cc179ff559330c5a15ab969abe41f048dc9c8658fa99aef4ae0e71fe60c58309.js"></script>
+    <script src="/assets/site-d5726bc249c0a7f141923691f211e3a64c177e336eee3ea2ac7fa5b0f858f145.js"></script>
 </head>
 <body>
     <div class="side-nav">
@@ -141,12 +141,6 @@
                 </a>
                 <a href="#sort">
                     sort
-                </a>
-                <a href="#stateAttribute">
-                    stateAttribute
-                </a>
-                <a href="#StateBus">
-                    StateBus
                 </a>
                 <a href="#StuckObserver">
                     StuckObserver
@@ -2210,7 +2204,7 @@
         </h1>
     
         <div class="text-light text-lg">
-            <p>Assigns attribute for an <code>Element</code></p>
+            <p>Assigns attribute for an <code>Element</code>.</p>
         </div>
     </div>
     
@@ -2246,65 +2240,96 @@
             </div>
             <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">camelize</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./support.js</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">,</span> <span class="nx">HTML_ATTRIBUTES</span><span class="p">,</span> <span class="nx">SVG_ATTRIBUTES</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./constants.js</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">StateBus</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./StateBus.js</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">content</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./content.js</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="k">instanceof</span> <span class="nb">Promise</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">value</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">))</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="k">instanceof</span> <span class="nx">StateBus</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">value</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">))</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">content</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">content</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-        <span class="p">}</span>
+        <span class="nx">value</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">setAttribute</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">))</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">class</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="o">!!</span><span class="nx">value</span><span class="p">[</span><span class="nb">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">])</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">c</span> <span class="k">of</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="nx">el</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">}</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="nx">el</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">class</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                <span class="nx">el</span><span class="p">.</span><span class="nx">dataset</span><span class="p">[</span><span class="nx">camelize</span><span class="p">(</span><span class="nx">key</span><span class="p">)]</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">object</span><span class="dl">"</span> <span class="p">?</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span> <span class="p">:</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
-            <span class="p">});</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">style</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                <span class="kd">let</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
-                <span class="kd">const</span> <span class="nx">updateProperty</span> <span class="o">=</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">removeProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
-                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                        <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
-                    <span class="p">}</span>
-                    <span class="k">return</span> <span class="nx">v</span>
-                <span class="p">}</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">StateBus</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">v</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">updateProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">))</span>
-                    <span class="nx">v</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">value</span>
-                <span class="p">}</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nb">Promise</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">return</span> <span class="nx">v</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">updateProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">))</span>
-                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                    <span class="k">return</span> <span class="nx">updateProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
-                <span class="p">}</span>
-            <span class="p">});</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">content</span><span class="dl">"</span> <span class="o">||</span> <span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">children</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">content</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^on</span><span class="se">[</span><span class="sr">a-z</span><span class="se">]</span><span class="sr">/</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nx">el</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">==</span> <span class="nx">key</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()))</span> <span class="p">{</span>
-            <span class="nx">key</span> <span class="o">=</span> <span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">==</span> <span class="nx">key</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span>
-            <span class="nx">el</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">HTML_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">key</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">a</span><span class="p">)))</span>
-                <span class="o">||</span> <span class="nx">SVG_ATTRIBUTES</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nx">el</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
-        <span class="p">}</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
     <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="kd">set</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">class</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setClass</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setData</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">style</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">content</span><span class="dl">"</span> <span class="o">||</span> <span class="nx">key</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">children</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">key</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^on</span><span class="se">[</span><span class="sr">a-z</span><span class="se">]</span><span class="sr">/</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setListener</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">==</span> <span class="nx">key</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()))</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setBoolean</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">HTML_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">key</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">a</span><span class="p">)))</span> <span class="o">||</span> <span class="nx">SVG_ATTRIBUTES</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setValue</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setContent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">content</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setClass</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="o">!!</span><span class="nx">value</span><span class="p">[</span><span class="nb">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">c</span> <span class="k">of</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setClass</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">class</span><span class="dl">'</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setClass</span><span class="p">.</span><span class="nx">forEach</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">token</span><span class="p">);</span>
+    <span class="nx">el</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setData</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setData</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setData</span><span class="p">.</span><span class="nx">forEach</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">el</span><span class="p">.</span><span class="nx">dataset</span><span class="p">[</span><span class="nx">camelize</span><span class="p">(</span><span class="nx">key</span><span class="p">)]</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">value</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">object</span><span class="dl">"</span> <span class="p">?</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">:</span> <span class="nx">value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setStyle</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">value</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">key</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">value</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nb">Promise</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">v</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">))</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">.</span><span class="nx">setProperty</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">removeProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setListener</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">el</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setBoolean</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">key</span> <span class="o">=</span> <span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">a</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">==</span> <span class="nx">key</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">())</span>
+    <span class="nx">el</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">setAttribute</span><span class="p">.</span><span class="nx">setAttribute</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">el</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
@@ -2377,7 +2402,6 @@
             </div>
             <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">BOOLEAN_ATTRIBUTES</span><span class="p">,</span> <span class="nx">HTML_ATTRIBUTES</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./constants.js</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">setAttribute</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./setAttribute.js</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">StateBus</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./StateBus.js</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">content</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./content.js</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">setAttributes</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">attributes</span><span class="o">=</span><span class="p">{})</span> <span class="p">{</span>
@@ -2460,174 +2484,6 @@
         <span class="p">}</span>
         
         <span class="k">if</span> <span class="p">(</span><span class="nx">complete</span><span class="p">)</span> <span class="k">break</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-        </div>
-    </div>
-</div>
-<div class="section space-v-3x" id="stateAttribute">
-    <div class="">
-        <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <a href="#stateAttribute" class="reset hover:text-current group">
-                <span class="hover:text-underline">
-                    <strong>stateAttribute</strong>
-                    <span class="text-light">(value)</span></span>
-                <span class="hide group-hover:inline text-gray-40 text-light">
-                    #
-                </span>
-            </a>
-            
-        </h1>
-    
-        <div class="text-light text-lg">
-            <p>Initializes StateBus with value</p>
-        </div>
-    </div>
-    
-        <div class="">
-            <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="nx">stateAttribute</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
-</code></pre></div>
-        </div>
-        <div class="">
-            <h2>Arguments</h2>
-            <h3><code>value</code></h3>
-<p>Initial value of attribute</p>
-        </div>
-        <div class="">
-            <h2>Return Value</h2>
-            <p><code>StateBus</code></p>
-        </div>
-        <div class="">
-            <h2>Example</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">isOpen</span> <span class="o">=</span> <span class="nx">stateAttribute</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="nx">isOpen</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-</code></pre></div>
-        </div>
-
-    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-stateAttribute">
-        SHOW SOURCE
-    </button>
-    <div class="source hide" id="source-for-stateAttribute">
-        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
-            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
-                SOURCE CODE
-            </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">StateBus</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./StateBus.js</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">stateAttribute</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nx">StateBus</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
-<span class="p">}</span></code></pre></div>
-        </div>
-    </div>
-</div>
-<div class="section space-v-3x" id="StateBus">
-    <div class="">
-        <h1 class="text-2x text-overflow-hidden text-nowrap">
-            <a href="#StateBus" class="reset hover:text-current group">
-                <span class="hover:text-underline">
-                    <strong>StateBus</strong>
-                    <span class="text-light">(value)</span></span>
-                <span class="hide group-hover:inline text-gray-40 text-light">
-                    #
-                </span>
-            </a>
-            
-        </h1>
-    
-        <div class="text-light text-lg">
-            <p>StateBus is a simple javascript class that hold a value and calls listener callbacks when it changes</p>
-        </div>
-    </div>
-    
-        <div class="">
-            <h2>Syntax</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="k">new</span> <span class="nx">StateBus</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
-</code></pre></div>
-        </div>
-        <div class="">
-            <h2>Constructor</h2>
-            <h3><code>value</code></h3>
-<p>Initial value of attribute</p>
-        </div>
-        <div class="">
-            <h2>Return Value</h2>
-            <p><code>StateBus</code></p>
-        </div>
-        <div class="">
-            <h2>Example</h2>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">isOpen</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StateBus</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="nx">isOpen</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">v</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-</code></pre></div>
-        </div>
-        <div class="">
-            <h2>Instance Methods</h2>
-            <h3><code>get()</code></h3>
-<p>Returns value</p>
-<h3><code>set(v)</code></h3>
-<p>Sets state</p>
-<h3><code>addListener(callback:function)</code></h3>
-<p>Add listener</p>
-<h3><code>removeListener(callback:function)</code></h3>
-<p>Remove Listener</p>
-<h3><code>valueOf()</code></h3>
-<p>Returns value</p>
-<h3><code>transform(transformation:function)</code></h3>
-<p>Returns a new StateBus that follows changes to this StateBus, with the transformation applied to value everytime it changes</p>
-        </div>
-
-    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-StateBus">
-        SHOW SOURCE
-    </button>
-    <div class="source hide" id="source-for-StateBus">
-        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
-            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
-                SOURCE CODE
-            </div>
-            <div class="highlight"><pre class=" javascript"><code><span class="kd">class</span> <span class="nx">StateBus</span> <span class="p">{</span>
-    <span class="err">#</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="nx">listens</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="kd">constructor</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">v</span>
-        
-        <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="dl">'</span><span class="s1">value</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-            <span class="na">get</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="kd">get</span><span class="p">(),</span>
-            <span class="na">set</span><span class="p">:</span> <span class="nx">v</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
-        <span class="p">})</span>
-    <span class="p">}</span>
-    <span class="nx">valueOf</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span>
-    <span class="p">}</span>
-    <span class="kd">get</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span>
-    <span class="p">}</span>
-    <span class="kd">set</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">metadata</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">valueWas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">valueWas</span> <span class="o">!=</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">v</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">valueWas</span><span class="p">,</span> <span class="nx">metadata</span><span class="p">)</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="k">this</span>
-    <span class="p">}</span>
-    <span class="nx">dispatch</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">valueWas</span><span class="p">,</span> <span class="nx">metadata</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="nx">v</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">listens</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">callback</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">callback</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">valueWas</span><span class="p">,</span> <span class="nx">metadata</span><span class="p">)</span>
-        <span class="p">})</span>
-    <span class="p">}</span>
-    <span class="nx">addListener</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">listens</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nx">removeListener</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">listens</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">listens</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!==</span> <span class="nx">callback</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nx">transform</span> <span class="p">(</span><span class="nx">transformation</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">spawn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StateBus</span><span class="p">(</span><span class="nx">transformation</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">value</span><span class="p">))</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">addListener</span><span class="p">((...</span><span class="nx">args</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">spawn</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">transformation</span><span class="p">(...</span><span class="nx">args</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="nx">spawn</span>
     <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
         </div>
