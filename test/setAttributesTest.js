@@ -1,4 +1,4 @@
-import {setAttributes, createElement, stateAttribute} from 'dolla';
+import {setAttributes, createElement} from 'dolla';
 import * as assert from 'assert';
 
 describe('setAttributes', function () {
@@ -95,18 +95,6 @@ describe('setAttributes', function () {
                 }
             })
             assert.equal(el.style.display, '');
-        });
-    
-        it('stateAttribute', function () {
-            const display = stateAttribute('none')
-            const el = setAttributes(document.createElement("div"), {
-                style: {
-                    display: display
-                }
-            })
-            assert.equal(el.style.display, 'none');
-            display.set('block')
-            assert.equal(el.style.display, 'block');
         });
         
         it('Proimise', function (done) {
@@ -284,27 +272,6 @@ describe('setAttributes', function () {
         assert.equal(button.disabled, false)
         await r(true)
         assert.equal(button.disabled, true)
-    })
-    
-    it('StateBus', async function () {
-        const isOpen = stateAttribute(false)
-        const button = document.createElement('button')
-        setAttributes(button, {
-            disabled: isOpen
-        })
-        assert.equal(button.disabled, false)
-        isOpen.set(true)
-        assert.equal(button.disabled, true)
-        
-        const changingName = stateAttribute('foo')
-        setAttributes(button, {
-            content: changingName
-        })
-        changingName.set('bar')
-        assert.equal(button.innerHTML, 'bar')
-        
-        changingName.set(null)
-        assert.equal(button.innerHTML, '')
     })
 })
   

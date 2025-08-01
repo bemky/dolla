@@ -1,7 +1,7 @@
 {
   "name": "dolla",
   "type": "module",
-  "version": "1.3.3",
+  "version": "1.4",
   "description": "A light set of helpers for building and manipulating DOM",
   "main": "lib/dolla.js",
   "scripts": {
