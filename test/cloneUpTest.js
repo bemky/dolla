@@ -102,4 +102,27 @@ describe('cloneUp', function () {
         assert.equal(clone.tagName, 'DIV');
         assert.notEqual(clone, el);
     });
+
+    it('uses dolla cloneNode for custom elements', function () {
+        class CustomElement extends HTMLElement {
+            cloneNode(deep = false) {
+                const clone = super.cloneNode(deep);
+                clone.dataset.customCloned = 'true';
+                return clone;
+            }
+        }
+        window.customElements.define('custom-test-element', CustomElement);
+
+        const parent = createElement('div', {class: 'parent'});
+        const customEl = new CustomElement();
+        customEl.id = 'custom';
+        const child = createElement('div', {class: 'child'});
+        parent.appendChild(new CustomElement());
+        parent.appendChild(child);
+
+        const clone = cloneUp(child, '.parent');
+        
+        assert.equal(clone.className, 'child');
+        assert.equal(clone.previousElementSibling.dataset.customCloned, 'true');
+    });
 });
