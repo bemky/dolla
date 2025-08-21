@@ -52,6 +52,12 @@
                 <a href="#bury">
                     bury
                 </a>
+                <a href="#cloneNode">
+                    cloneNode
+                </a>
+                <a href="#cloneUp">
+                    cloneUp
+                </a>
                 <a href="#content">
                     content
                 </a>
@@ -521,6 +527,155 @@
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">object</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="cloneNode">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#cloneNode" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>cloneNode</strong>
+                    <span class="text-light">(el, true)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>Mimics the functionality of Node.prototype.cloneNode, but calls each element's cloneNode, which allows developer to extend cloneNode for Custom Elements</p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">cloneNode</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>node</code></h3>
+<p>A <code>Node</code></p>
+<h3><code>deep</code></h3>
+<p>A <code>Boolean</code></p>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Node</code></p>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-cloneNode">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-cloneNode">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="nx">content</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./content.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">cloneNode</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">deep</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">deep</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">content</span><span class="p">(</span><span class="nx">clone</span><span class="p">,</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">cloneNode</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="kc">true</span><span class="p">)))</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">clone</span>
+<span class="p">}</span></code></pre></div>
+        </div>
+    </div>
+</div>
+<div class="section space-v-3x" id="cloneUp">
+    <div class="">
+        <h1 class="text-2x text-overflow-hidden text-nowrap">
+            <a href="#cloneUp" class="reset hover:text-current group">
+                <span class="hover:text-underline">
+                    <strong>cloneUp</strong>
+                    <span class="text-light">(element, selector)</span></span>
+                <span class="hide group-hover:inline text-gray-40 text-light">
+                    #
+                </span>
+            </a>
+            
+        </h1>
+    
+        <div class="text-light text-lg">
+            <p>Clones an element and its ancestor chain up to and including the first ancestor that matches the given selector. Optionally includes siblings of each cloned ancestor.</p>
+        </div>
+    </div>
+    
+        <div class="">
+            <h2>Syntax</h2>
+            <div class="highlight"><pre class=" javascript"><code><span class="nx">cloneUp</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">selector</span><span class="p">)</span>
+<span class="nx">cloneUp</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+</code></pre></div>
+        </div>
+        <div class="">
+            <h2>Arguments</h2>
+            <h3><code>element</code></h3>
+<p>An <code>Element</code> to start cloning from</p>
+<h3><code>selector</code></h3>
+<p>A <code>String</code> CSS selector that determines where to stop cloning ancestors</p>
+<h3><code>options</code></h3>
+<p>An <code>Object</code> with optional configuration:</p>
+<ul>
+<li><code>siblings.exclude</code>: A CSS selector string to exclude matching sibling elements from being cloned</li>
+</ul>
+        </div>
+        <div class="">
+            <h2>Return Value</h2>
+            <p><code>Element</code> - The cloned element with its ancestor chain</p>
+        </div>
+
+    <button class="js-toggle-source reset text-sm text-bold text-gray-30 hover:text-blue" rel="#source-for-cloneUp">
+        SHOW SOURCE
+    </button>
+    <div class="source hide" id="source-for-cloneUp">
+        <div class="border border-blue bg-blue rounded-xl overflow-hidden">
+            <div class="text-white text-sm text-bold pad-h pad-v-1/4x">
+                SOURCE CODE
+            </div>
+            <div class="highlight"><pre class=" javascript"><code><span class="kd">function</span> <span class="nx">cloneUp</span> <span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">options</span><span class="o">=</span><span class="p">{})</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">matches</span><span class="p">(</span><span class="nx">selector</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">clone</span>
+    <span class="p">}</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">el</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">clone</span>
+    <span class="p">}</span>
+    
+    <span class="kd">const</span> <span class="nx">parentClone</span> <span class="o">=</span> <span class="nx">cloneUp</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">,</span> <span class="nx">selector</span><span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">shouldExclude</span> <span class="o">=</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="o">=&gt;</span> 
+        <span class="nx">options</span><span class="p">.</span><span class="nx">siblings</span><span class="p">?.</span><span class="nx">exclude</span> <span class="o">&amp;&amp;</span> 
+        <span class="nx">node</span> <span class="k">instanceof</span> <span class="nx">Element</span> <span class="o">&amp;&amp;</span> 
+        <span class="nx">node</span><span class="p">.</span><span class="nx">matches</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">siblings</span><span class="p">.</span><span class="nx">exclude</span><span class="p">)</span>
+    
+    <span class="c1">// Clone previous siblings</span>
+    <span class="kd">let</span> <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">previousSibling</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">cursor</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">shouldExclude</span><span class="p">(</span><span class="nx">cursor</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">parentClone</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">cursor</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span>
+        <span class="p">}</span>
+        <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">cursor</span><span class="p">.</span><span class="nx">previousSibling</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Add current element clone</span>
+    <span class="nx">parentClone</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">clone</span><span class="p">)</span>
+    
+    <span class="c1">// Clone next siblings</span>
+    <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">nextSibling</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">cursor</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">shouldExclude</span><span class="p">(</span><span class="nx">cursor</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">parentClone</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">cursor</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">))</span>
+        <span class="p">}</span>
+        <span class="nx">cursor</span> <span class="o">=</span> <span class="nx">cursor</span><span class="p">.</span><span class="nx">nextSibling</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="nx">clone</span>
 <span class="p">}</span></code></pre></div>
         </div>
     </div>
