@@ -16,6 +16,7 @@ body {
     
     --augments-color: hsl(30, 30%, 60%);
     --ancestors-color: hsl(30, 30%, 60%);
+    --signature-color: hsl(275, 70%, 50%);
     
     -body-border: hsl(204, 90%, 95%);
     
@@ -36,7 +37,7 @@ footer {
  
 code {
     background: hsla(275, 39%, 55%, 0.15);
-    color: hsl(275, 39%, 55%);
+    color: hsl(275, 70%, 55%);
     font-size: 0.9em;
     line-height: 1.3;
 }
@@ -45,7 +46,8 @@ pre code {
 }
 
 h5 {
-    font-weight: bold;
+    font-weight: 500;
+    margin-top: 2em;
 }
 
 .nav-home-link {
