@@ -1,0 +1,37 @@
+{
+    "sourceType": "module",
+    "source": {
+        "include": ["./lib/", "./docs-src/tutorials/"],
+        "exclude": ["./node_modules/"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "opts": {
+        "destination": "./docs/",
+        "template": "./node_modules/jsdoc-stock",
+        "tutorials": "./docs-src/tutorials",
+        "readme": "./docs-src/index.md"
+    },
+    "plugins": [
+        "@alphanull/jsdoc-plugin-esnext",
+        "@bemky/jsdoc-export-function-name-fix",
+        "plugins/markdown",
+        "prettier-plugin-jsdoc"
+    ],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "logo": "logo.svg",
+        "footer": "&copy; Ben Ehmke",
+        "nav": {
+            "titles": ["classes"],
+            "sections": ["globals", "classes"],
+            "icons": false
+        },
+        "default": {
+            "staticFiles": {
+                "include": ["docs-src/"]
+            }
+        }
+    }
+}
