@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>setAttribute.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -36,53 +36,116 @@
 
     <main>
         
+        <h1 class="page-title">setAttribute.js</h1>
+        
 
         
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { camelize } from './support.js';
+import { BOOLEAN_ATTRIBUTES, HTML_ATTRIBUTES, SVG_ATTRIBUTES } from './constants.js';
+import content from './content.js';
 
+/**
+ * Assigns attribute for an `Element`.
+ * 
+ * @param {Element} el - An Element to assign attributes to
+ * @param {string} key - Used to set attribute on the element. All HTMLElement attributes are accepted including additional options:
+ * - `content`: The value of the key `content` is passed into dolla's append method. Reference the `append()` documentation for more details about possible content values.
+ * - `tag`: A String declaring the type of HTML tag, used as an alternative to the first parameter
+ * @param {*} value - The value to set for the attribute
+ * 
+ * @example
+ * setAttribute(el, 'class', new Promise(r => r('text-bold')))
+ */
 
+export default function setAttribute(el, key, value) {
+    if (value instanceof Promise) {
+        value.then(v => setAttribute.set(el, key, v))
+    } else {
+        setAttribute.set(el, key, value)
+    }
+}
 
+setAttribute.set = function (el, key, value) {
+    if (key == "value") {
+        setAttribute.setValue(el, key, value)
+    } else if (key == "class") {
+        setAttribute.setClass(el, key, value)
+    } else if (key == "data" &amp;&amp; typeof value == 'object') {
+        Object.keys(value).forEach(key => {
+            setAttribute.setData(el, key, value[key])
+        })
+    } else if (key == "style" &amp;&amp; typeof value == 'object') {
+        Object.keys(value).forEach(key => {
+            setAttribute.setStyle(el, key, value[key])
+        })
+    } else if (key == "content" || key == "children") {
+        setAttribute.setContent(el, key, value)
+    } else if (key.match(/^on[a-z]/)) {
+        setAttribute.setListener(el, key, value)
+    } else if (BOOLEAN_ATTRIBUTES.find(a => a.toUpperCase() == key.toUpperCase())) {
+        setAttribute.setBoolean(el, key, value)
+    } else if (HTML_ATTRIBUTES.find(a => key.match(new RegExp(a))) || SVG_ATTRIBUTES.includes(key)) {
+        setAttribute.setAttribute(el, key, value)
+    }
+}
 
+setAttribute.setValue = function (el, key, value) {
+    el.value = value
+}
 
+setAttribute.setContent = function (el, key, value) {
+    content(el, value)
+}
 
+setAttribute.setClass = function (el, key, value) {
+    if (value != null &amp;&amp; typeof value != "string" &amp;&amp; !!value[Symbol.iterator]) {
+        for (const c of value) {
+            setAttribute.addClass(el, c)
+        }
+    } else if (value != null) {
+        el.setAttribute('class', value)
+    }
+}
 
+setAttribute.addClass = function (el, token) {
+    el.classList.add(token)
+}
 
+setAttribute.setData = function (el, key, value) {
+    el.dataset[camelize(key)] = typeof value == "object" ? JSON.stringify(value) : value;
+}
 
-    
+setAttribute.setStyle = function (el, key, value) {
+    if (value instanceof Promise) {
+        value.then(v => setAttribute.setStyle(el, key, v))
+        setAttribute.setStyle(el, key, value.value)
+    } else if (value === null) {
+        el.style.removeProperty(key)
+    } else {
+        el.style.setProperty(key, value)
+    }
+}
 
+setAttribute.setListener = function (el, key, value) {
+    el[key] = value;
+}
 
-    <section class="readme">
-        <article><div style="display: flex; justify-content: end">
-    <a href="https://github.com/bemky/dolla" class="reset inline-flex align-center gap-1/2x text-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-        Dolla on GitHub
-    </a>
-</div>
-<div style="display: flex; justify-content: center; padding: 10%;">
-    <img src="/logo.svg" width="300">
-</div>
-<p style="font-weight: 300; font-size: 1.2rem">
-    Dolla is a library of javascipt methods that augment existing DOM methods. Dolla is platform-agnotstic, with each method being fully tree-shakeable by any bundler. No dependencies, just helpful methods you can include as you need them. 
-</p>
-<h1>Installation</h1>
-<pre class="prettyprint source"><code>npm install dolla
-</code></pre>
-<h1>Usage</h1>
-<p>Import only the methods you use.</p>
-<pre class="prettyprint source"><code>import {createElement} from 'dolla';
+setAttribute.setBoolean = function (el, key, value) {
+    key = BOOLEAN_ATTRIBUTES.find(a => a.toUpperCase() == key.toUpperCase())
+    el[key] = value !== false;
+}
 
-document.body.append(createElement('div', {
-    class: 'text-bold',
-    style: 'text-decoration: underline',
-    content: ['Hello World']
-}))
-</code></pre></article>
+setAttribute.setAttribute = function (el, key, value) {
+    el.setAttribute(key, value)
+}</code></pre>
+        </article>
     </section>
-
-
 
 
 

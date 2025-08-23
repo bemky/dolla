@@ -1,0 +1,239 @@
+body {
+    --primary-hue: 228;
+    --code-hue: 202;
+    --blockquote-hue: 202;
+    
+    
+    --nav-bg: hsl(204, 100%, 98%);
+    --nav-heading-color: hsl(228, 73%, 36%);
+    --nav-link-color: hsl(74, 50%,40%);
+    
+    --function-hue: 124;
+    --class-hue: 183;
+    --member-hue: 240;
+    
+    --prettyprint-bg: hsl(202, 100%, 95%);
+    
+    --augments-color: hsl(30, 30%, 60%);
+    --ancestors-color: hsl(30, 30%, 60%);
+    
+    -body-border: hsl(204, 90%, 95%);
+    
+    -page-title
+    
+    --footer-color: var(--color-20);
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+   
+main {
+    padding: 3em;
+}
+
+footer {
+    padding: 2em 3em;
+    text-align: right;
+}
+ 
+code {
+    background: hsla(275, 39%, 55%, 0.15);
+    color: hsl(275, 39%, 55%);
+    font-size: 0.9em;
+    line-height: 1.3;
+}
+pre code {
+    line-height: inherit;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+.nav-home-link {
+    text-align:center;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+}
+.nav-home-link a {
+    display: block;
+}
+.nav-home-link img {
+    display: block;
+    width: 120px;
+    max-width: 100%;
+}
+
+.nav-item a {
+    padding: 0.5em;
+    padding-left: 1em;
+    border-left: 0.5em solid transparent;
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+    color: var(--body-color);
+    font-weight: 300;
+}
+
+.nav-item a:hover {
+    border-left-color: hsl(202, 92%, 46%);
+}
+.nav-item a.active {
+    border-left-color: hsl(275, 39%, 55%);
+    background: hsla(275, 39%, 55%, 0.15);
+}
+
+.nav-item-name {
+    display: block;
+    width: 100%;
+}
+
+.nav-type {
+    padding-inline: 1.5em;
+}
+
+.section-method {
+    margin-bottom: 4em;
+    padding-bottom: 4em;
+}
+
+h3 {
+    font-weight: bold;
+    color: black;
+}
+
+.prettyprint {
+    box-shadow: none;
+    border: none;
+}
+
+nav {
+    padding: 0;
+}
+
+main {
+    border: none;
+}
+
+
+      
+.name,
+.signature {
+    font-family: inherit;
+    font-weight: 800;
+}
+.name .signature {
+    font-weight: 300;
+}
+
+.page-title {
+    font-weight: 800;
+    line-height: 1;
+}
+.container {
+    grid-template-columns: minmax(min-content, 280px) 1fr;
+}
+
+.class-description {
+    font-size: 1em;
+}
+
+.class-description p:first-of-type {
+    font-size: 1.2em;
+}
+
+.class-description td, .class-description th {
+    margin: 0px;
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5em;
+    display: table-cell;
+}
+
+.class-description table {
+    border-spacing: 0;
+    border: 1px solid var(--table-border);
+    border-radius: 3px;
+    width: 100%;
+    font-size: 0.9em;
+}
+
+.class-description td {
+    border-top: 1px solid #eee
+}
+
+.class-description thead tr {
+    background-color: var(--table-header-bg);
+    font-weight: bold;
+}
+
+.class-description td.description > p:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.class-description td.description > p:last-child{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+.params thead tr, .props thead tr, .class-description thead tr {
+    background-color: var(--table-header-bg);
+}
+
+article table {
+    border-spacing: 0;
+    border: 1px solid var(--table-border);
+    border-radius: 3px;
+    width: 100%;
+    font-size: 0.9em;
+}
+
+article table td, article table th{
+    margin: 0px;
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5em;
+    display: table-cell;
+}
+
+article table td {
+    border-top: 1px solid var(--table-border)
+}
+
+article table thead tr {
+    background-color: var(--table-header-bg);
+    font-weight: bold;
+}
+
+article table article table thead tr {
+    background-color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+article table td.description > p:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+article table td.description > p:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.str {
+    color: hsl(30, 100%, 33%);
+}
+.pln {
+    color: hsl(228, 59%, 31%);
+}
+.pun {
+    color: hsl(228, 3%, 58%);
+}
+.pln {
+    color: hsl(228, 59%, 31%);
+}
+.com {
+    color: hsl(228, 10%, 60%);
+}

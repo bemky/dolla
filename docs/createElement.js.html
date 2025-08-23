@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>createElement.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -36,53 +36,69 @@
 
     <main>
         
+        <h1 class="page-title">createElement.js</h1>
+        
 
         
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import setAttributes from './setAttributes.js';
 
+/**
+ * This method mirrors `document.createElement`, but adds the ability to include attributes and content for the initialized `Element`
+ * 
+ * @param {string} [tagName="div"] - A String declaring what type of HTML tag to create
+ * @param {Object} [attributes={}] - An Object whose keys are used to set attributes on the created element. All HTMLElement attributes are accepted including an additional option to define `content`
+ * - `content`: The value of the key `content` is passed into dolla's append method. Reference the `append()` documentation for more details about possible content values.
+ * - `tag`: A String declaring the type of HTML tag, used as an alternative to the first parameter
+ * @param {string} [namespace] - A String declaring the namespaceURI
+ * @returns {Element} Element
+ * 
+ * @example
+ * createElement('table', {
+ *     class: 'uniformTable',
+ *     cellpadding: 0,
+ *     style: {
+ *         verticalAlign: 'center'
+ *     },
+ *     content: [{
+ *         tag: 'tr'
+ *         content: [{
+ *             tag: 'td',
+ *             content: 'Hello World'
+ *         }]
+ *     }]
+ * })
+ */
 
-
-
-
-
-
-
-
+export default function createElement(tagName='div', attributes={}, namespace) {
+    if (typeof tagName == 'object') {
+        if (typeof attributes == 'string') {
+            namespace = attributes
+        }
+        attributes = tagName;
+        tagName = attributes.tag || 'div';
+    }
     
+    let el;
+    if (tagName == "svg") {
+        attributes.xmlns = attributes.xmlns || "http://www.w3.org/2000/svg"
+    }
+    if (attributes.xmlns || namespace) {
+        el = document.createElementNS(attributes.xmlns || namespace, tagName);
+    } else {
+        el = document.createElement(tagName);
+    }
 
-
-    <section class="readme">
-        <article><div style="display: flex; justify-content: end">
-    <a href="https://github.com/bemky/dolla" class="reset inline-flex align-center gap-1/2x text-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-        Dolla on GitHub
-    </a>
-</div>
-<div style="display: flex; justify-content: center; padding: 10%;">
-    <img src="/logo.svg" width="300">
-</div>
-<p style="font-weight: 300; font-size: 1.2rem">
-    Dolla is a library of javascipt methods that augment existing DOM methods. Dolla is platform-agnotstic, with each method being fully tree-shakeable by any bundler. No dependencies, just helpful methods you can include as you need them. 
-</p>
-<h1>Installation</h1>
-<pre class="prettyprint source"><code>npm install dolla
-</code></pre>
-<h1>Usage</h1>
-<p>Import only the methods you use.</p>
-<pre class="prettyprint source"><code>import {createElement} from 'dolla';
-
-document.body.append(createElement('div', {
-    class: 'text-bold',
-    style: 'text-decoration: underline',
-    content: ['Hello World']
-}))
-</code></pre></article>
+    setAttributes(el, attributes)
+    return el;
+}</code></pre>
+        </article>
     </section>
-
-
 
 
 
