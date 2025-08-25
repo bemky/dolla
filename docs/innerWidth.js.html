@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>innerWidth.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jsdoc-default.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    
+        
+            <link type="text/css" rel="stylesheet" href="/styles/jsdoc.css">
+        
+    
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <div class="nav-link nav-home-link"><a href="index.html"><img src="logo.svg" width="100%"/></a></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#addEventListenerFor">addEventListenerFor</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#ancestors">ancestors</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#append">append</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#bury">bury</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#cloneNode">cloneNode</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#cloneUp">cloneUp</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#content">content</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#createElement">createElement</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#css">css</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#filter">filter</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#getBoundingClientRect">getBoundingClientRect</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#innerHeight">innerHeight</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#innerWidth">innerWidth</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#insertAfter">insertAfter</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#insertBefore">insertBefore</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#isEmpty">isEmpty</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#isFocus">isFocus</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#isVisible">isVisible</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#listenerElement">listenerElement</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#map">map</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#nextElementSiblings">nextElementSiblings</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#offset">offset</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#offsetTo">offsetTo</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#offsetToBody">offsetToBody</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#offsetToViewport">offsetToViewport</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#outerHeight">outerHeight</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#outerWidth">outerWidth</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#prepend">prepend</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#previousElementSiblings">previousElementSiblings</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#remove">remove</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#replaceContents">replaceContents</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#serializeForm">serializeForm</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#serializeFormToJSON">serializeFormToJSON</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#setAttribute">setAttribute</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#setAttributes">setAttributes</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#toElements">toElements</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#trigger">trigger</a></span></div><div class='nav-type'>
+<div class="nav-heading">Classes</div>
+<div class="nav-heading"><span class="nav-item-name"><a href="StuckObserver.html">StuckObserver</a></span></div>
+
+</div>
+    </nav>
+
+    <main>
+        
+        <h1 class="page-title">innerWidth.js</h1>
+        
+
+        
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums overflow-container"><code>/**
+ * This method returns an element's width including `padding`, which is excluded from `el.offsetWidth`.
+ * 
+ * @param {Element} element - An Element
+ * @returns {number} Integer
+ */
+export default function innerWidth (el) {
+    var style = getComputedStyle(el);
+    return el.offsetWidth - parseInt(style.paddingLeft) - parseInt(style.paddingRight);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+    </main>
+    <footer>
+        
+            &copy; Ben Ehmke
+        
+    </footer>
+</div>
+
+<div class="sm-nav">
+    <a href="index.html"><img src="logo.svg" height="24px"/></a>
+    
+    <label for="sm-nav-trigger" class="sm-nav-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </label>
+    
+    <input type="checkbox" id="sm-nav-trigger" class="sm-nav-trigger" />
+    <label for="sm-nav-trigger" class="sm-nav-overlay">
+        <span class="sm-nav-body">
+            <div class="nav-link nav-home-link"><a href="index.html"><img src="logo.svg" width="100%"/></a></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#addEventListenerFor">addEventListenerFor</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#ancestors">ancestors</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#append">append</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#bury">bury</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#cloneNode">cloneNode</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#cloneUp">cloneUp</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#content">content</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#createElement">createElement</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#css">css</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#filter">filter</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#getBoundingClientRect">getBoundingClientRect</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#innerHeight">innerHeight</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#innerWidth">innerWidth</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#insertAfter">insertAfter</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#insertBefore">insertBefore</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#isEmpty">isEmpty</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#isFocus">isFocus</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#isVisible">isVisible</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#listenerElement">listenerElement</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#map">map</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#nextElementSiblings">nextElementSiblings</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#offset">offset</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#offsetTo">offsetTo</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#offsetToBody">offsetToBody</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#offsetToViewport">offsetToViewport</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#outerHeight">outerHeight</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#outerWidth">outerWidth</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#prepend">prepend</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#previousElementSiblings">previousElementSiblings</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#remove">remove</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#replaceContents">replaceContents</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#serializeForm">serializeForm</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#serializeFormToJSON">serializeFormToJSON</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#setAttribute">setAttribute</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#setAttributes">setAttributes</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#toElements">toElements</a></span></div><div class="nav-item"><span class="nav-item-name"><a href="global.html#trigger">trigger</a></span></div><div class='nav-type'>
+<div class="nav-heading">Classes</div>
+<div class="nav-heading"><span class="nav-item-name"><a href="StuckObserver.html">StuckObserver</a></span></div>
+
+</div>
+        </span>
+    </label>
+</div>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+
+<script src="/javascripts/jsdoc.js"></script>
+
+
+</body>
+</html>
