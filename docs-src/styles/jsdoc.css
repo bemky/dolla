@@ -45,6 +45,10 @@ pre code {
     line-height: inherit;
 }
 
+h3 {
+    font-size: 1.6em;
+}
+
 h5 {
     font-weight: 500;
     margin-top: 2em;
@@ -74,6 +78,7 @@ h5 {
     width: 100%;
     color: var(--body-color);
     font-weight: 300;
+    font-size: 1.2em;
 }
 
 .nav-item a:hover {
@@ -94,8 +99,12 @@ h5 {
 }
 
 .section-method {
-    margin-bottom: 4em;
-    padding-bottom: 4em;
+    padding-block: 6em;
+    margin-block: 0;
+}
+
+.section-method > *:first-child {
+    margin-top: 0;
 }
 
 h3 {
