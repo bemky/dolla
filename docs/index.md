@@ -4,7 +4,7 @@
         Dolla on GitHub
     </a>
 </div>
-
+ 
 <div style="display: flex; justify-content: center; padding: 10%;">
     <img src="/logo.svg" width="300">
 </div>
