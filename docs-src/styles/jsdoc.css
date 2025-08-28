@@ -23,7 +23,6 @@ body {
     -page-title
     
     --footer-color: var(--color-20);
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
    
 main {
@@ -142,10 +141,6 @@ main {
 }
 .container {
     grid-template-columns: minmax(min-content, 280px) 1fr;
-}
-
-.class-description {
-    font-size: 1em;
 }
 
 .class-description p:first-of-type {
