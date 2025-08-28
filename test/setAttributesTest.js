@@ -24,6 +24,12 @@ describe('setAttributes', function () {
             }).outerHTML, `<div class="foo bar"></div>`)
         });
         
+        it('Array with space separated classes', function () {
+            assert.equal(setAttributes(document.createElement("div"), {
+                class: ['foo', 'bar charlie']
+            }).outerHTML, `<div class="foo bar charlie"></div>`)
+        });
+        
         it('null', function () {
             assert.equal(setAttributes(document.createElement("div"), {
                 class: null
