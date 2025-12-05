@@ -41,17 +41,33 @@ describe('cloneUp', function () {
         const sibling1 = createElement('span', {id: 'sibling1'});
         const target = createElement('p', {id: 'target'});
         const sibling2 = createElement('div', {id: 'sibling2'});
-        
+
         parent.appendChild(sibling1);
         parent.appendChild(target);
         parent.appendChild(sibling2);
-        
+
         const clone = cloneUp(target, '.parent');
-        
+
         assert.equal(clone.parentElement.childNodes.length, 3);
         assert.equal(clone.parentElement.childNodes[0].id, 'sibling1');
         assert.equal(clone.parentElement.childNodes[1].id, 'target');
         assert.equal(clone.parentElement.childNodes[2].id, 'sibling2');
+    });
+
+    it('excludes all siblings when siblings option is false', function () {
+        const parent = createElement('div', {class: 'parent'});
+        const sibling1 = createElement('span', {id: 'sibling1'});
+        const target = createElement('p', {id: 'target'});
+        const sibling2 = createElement('div', {id: 'sibling2'});
+
+        parent.appendChild(sibling1);
+        parent.appendChild(target);
+        parent.appendChild(sibling2);
+
+        const clone = cloneUp(target, '.parent', {siblings: false});
+
+        assert.equal(clone.parentElement.childNodes.length, 1);
+        assert.equal(clone.parentElement.childNodes[0].id, 'target');
     });
 
     it('excludes siblings matching exclude selector', function () {
