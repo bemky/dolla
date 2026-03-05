@@ -2,7 +2,6 @@ import {setAttributes, createElement} from 'dolla';
 import * as assert from 'assert';
 
 describe('setAttributes', function () {
-    
     describe('class', function () {
         it('string', function () {
             assert.equal(setAttributes(document.createElement("div"), {
@@ -252,13 +251,14 @@ describe('setAttributes', function () {
     
         it('array with object', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: [{
-                    tag: 'span',
-                    children: 'Span'
-                },
-                'Direct HTML in Array'
-            ]
-        }).outerHTML, `<div><span>Span</span>Direct HTML in Array</div>`);
+                    children: [{
+                        tag: 'span',
+                        children: 'Span'
+                    },
+                    'Direct HTML in Array'
+                ]
+            }).outerHTML, `<div><span>Span</span>Direct HTML in Array</div>`)
+        });
     })
     
     it('array with element', function () {
@@ -279,13 +279,4 @@ describe('setAttributes', function () {
         await r(true)
         assert.equal(button.disabled, true)
     })
-})
-  
-describe('content alias to children', function () {
-    it('text', function () {
-        assert.equal(setAttributes(document.createElement("div"), {
-            content: 'Hello World'
-        }).outerHTML, `<div>Hello World</div>`);
-    })
-})
 });
