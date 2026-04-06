@@ -1,16 +1,16 @@
 {
     "sourceType": "module",
     "source": {
-        "include": ["./lib/", "./docs-src/tutorials/"],
+        "include": ["./lib/", "./docs/tutorials/"],
         "exclude": ["./node_modules/"],
         "includePattern": ".+\\.js(doc|x)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
     "opts": {
-        "destination": "./docs/",
+        "destination": "./_docs/",
         "template": "./node_modules/jsdoc-stock",
-        "tutorials": "./docs-src/tutorials",
-        "readme": "./docs-src/index.md"
+        "tutorials": "./docs/tutorials",
+        "readme": "./docs/index.md"
     },
     "plugins": [
         "@alphanull/jsdoc-plugin-esnext",
@@ -30,7 +30,7 @@
         },
         "default": {
             "staticFiles": {
-                "include": ["docs-src/"]
+                "include": ["docs/"]
             }
         }
     }

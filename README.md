@@ -1,6 +1,6 @@
 <p align="center">
     <a href="http://dollajs.com/" style="display:block; max-width:300px;">
-        <img src="https://raw.githubusercontent.com/bemky/dolla/master/docs-src/source/assets/images/logo.svg" width="300" alt="Dolla">
+        <img src="https://raw.githubusercontent.com/bemky/dolla/master/docs/logo.svg" width="300" alt="Dolla">
     </a>
     <p align="center">
         Dolla is a library of javascipt methods that augment existing DOM methods. Dolla is platform-agnotstic, with each method being fully tree-shakeable by any bundler. No dependencies, just helpful methods you can include as you need them.<br>

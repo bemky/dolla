@@ -11,7 +11,7 @@
   "scripts": {
     "test": "mocha -r jsdom-global/register --config ./.mocha.yml",
     "docs:build": "jsdoc -c jsdoc.json",
-    "docs:server": "concurrently \"http-server docs -p 8080 -o\" \"nodemon --watch lib --watch docs-src --ext js,css,md --exec 'npm run docs:build'\""
+    "docs:server": "concurrently \"http-server _docs -p 8080 -o\" \"nodemon --watch lib --watch docs --ext js,css,md --exec 'npm run docs:build'\""
   },
   "repository": {
     "type": "git",
