@@ -10,7 +10,7 @@ describe('addEventListenerFor', function () {
             class: 'js-test'
         })
         const container = createElement('div', {
-            children: child
+            content: child
         })
         
         let triggered = false;
@@ -26,7 +26,7 @@ describe('addEventListenerFor', function () {
             class: 'js-test'
         })
         const container = createElement('div', {
-            children: child
+            content: child
         })
         
         it('match', function () {
@@ -55,11 +55,11 @@ describe('addEventListenerFor', function () {
             class: 'js-test'
         })
         const container = createElement('div', {
-            children: {
+            content: {
                 class: 'descendant1',
-                children: {
+                content: {
                     class: 'descendant2',
-                    children: descendant
+                    content: descendant
                 }
             }
         })
@@ -91,11 +91,11 @@ describe('addEventListenerFor', function () {
         })
         const container = createElement('div', {
             class: 'container',
-            children: {
+            content: {
                 class: 'descendant1',
-                children: {
+                content: {
                     class: 'descendant2',
-                    children: descendant
+                    content: descendant
                 }
             }
         })

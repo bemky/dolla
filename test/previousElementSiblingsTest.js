@@ -6,7 +6,7 @@ describe('previousElementSiblings', function () {
   it('first', function () {
     const el = createElement({id: 'a'})
     const container = createElement({
-      children: [
+      content: [
         el, {
           id: 'b'
         }, {
@@ -23,7 +23,7 @@ describe('previousElementSiblings', function () {
   it('middle', function () {
     const el = createElement({id: 'a'})
     const container = createElement({
-      children: [
+      content: [
         {
           id: 'b'
         }, {
@@ -41,7 +41,7 @@ describe('previousElementSiblings', function () {
   it('last', function () {
     const el = createElement({id: 'a'})
     const container = createElement({
-      children: [
+      content: [
         {
           id: 'b'
         } , {

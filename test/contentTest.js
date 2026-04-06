@@ -34,9 +34,9 @@ describe('content', function () {
         const container = createElement('div', {id: 'a', content: 'This should be deleted'})
         const el = createElement({
             id: 'b',
-            children: [{
+            content: [{
                 id: 'c',
-                children: 'Hello World'
+                content: 'Hello World'
             }]
         })
         content(container, el.childNodes)
@@ -48,9 +48,9 @@ describe('content', function () {
         const container = createElement('div', {id: 'a', content: 'This should be deleted'})
         const el = createElement({
             id: 'b',
-            children: [{
+            content: [{
                 id: 'c',
-                children: 'Hello World'
+                content: 'Hello World'
             }]
         })
         content(container, el.children)

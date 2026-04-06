@@ -172,88 +172,88 @@ describe('setAttributes', function () {
     describe('children', function () {
         it('text', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: 'Hello World'
+                content: 'Hello World'
             }).outerHTML, `<div>Hello World</div>`);
         })
     
         it('element', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: createElement('span', {
-                    children: 'Hello World'
+                content: createElement('span', {
+                    content: 'Hello World'
                 })
             }).outerHTML, `<div><span>Hello World</span></div>`);
         })
     
         it('null', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: createElement('span', {
-                    children: null
+                content: createElement('span', {
+                    content: null
                 })
             }).outerHTML, `<div><span></span></div>`);
         })
     
         it('undefined', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: createElement('span', {
-                    children: undefined
+                content: createElement('span', {
+                    content: undefined
                 })
             }).outerHTML, `<div><span></span></div>`);
         })
     
         it('object', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: {
+                content: {
                     tag: 'span',
-                    children: 'Hello World'
+                    content: 'Hello World'
                 }
             }).outerHTML, `<div><span>Hello World</span></div>`);
         })
     
         it('NodeList', function () {
             const el = setAttributes(document.createElement("div"), {
-                children: [{
-                    children: 'Hello World'
+                content: [{
+                    content: 'Hello World'
                 }]
             })
             assert.equal(setAttributes(document.createElement("div"), {
-                children: el.childNodes
+                content: el.childNodes
             }).outerHTML, `<div><div>Hello World</div></div>`);
         })
     
         it('HTMLCollection', function () {
             const el = setAttributes(document.createElement("div"), {
-                children: [{
-                    children: 'Hello World'
+                content: [{
+                    content: 'Hello World'
                 }]
             })
             assert.equal(setAttributes(document.createElement("div"), {
-                children: el.children
+                content: el.children
             }).outerHTML, `<div><div>Hello World</div></div>`);
         })
     
         it('array with text', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: ['Direct HTML', 'Hello World']
+                content: ['Direct HTML', 'Hello World']
             }).outerHTML, `<div>Direct HTMLHello World</div>`);
         })
     
         it('array with null', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: ['Direct HTML', null]
+                content: ['Direct HTML', null]
             }).outerHTML, `<div>Direct HTML</div>`);
         })
     
         it('array with undefined', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                children: ['Direct HTML', undefined]
+                content: ['Direct HTML', undefined]
             }).outerHTML, `<div>Direct HTML</div>`);
         })
     
         it('array with object', function () {
             assert.equal(setAttributes(document.createElement("div"), {
-                    children: [{
+                    content: [{
                         tag: 'span',
-                        children: 'Span'
+                        content: 'Span'
                     },
                     'Direct HTML in Array'
                 ]
@@ -263,8 +263,8 @@ describe('setAttributes', function () {
     
     it('array with element', function () {
         assert.equal(setAttributes(document.createElement("div"), {
-            children: [createElement('span', {
-                children: 'Span'
+            content: [createElement('span', {
+                content: 'Span'
             })]
         }).outerHTML, `<div><span>Span</span></div>`);
     })

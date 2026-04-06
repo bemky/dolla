@@ -5,7 +5,7 @@ import * as assert from 'assert';
 describe('map', function () {
   it('attribute', function () {
     const el = createElement('div', {
-      children: [
+      content: [
         { id: 'n1' },
         { id: 'n2' },
         { id: 'n3' }

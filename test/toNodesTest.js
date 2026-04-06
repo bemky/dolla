@@ -37,7 +37,7 @@ describe('toNodes', function () {
   it('NodeList', function () {
     const el = createElement({
       id: 'a',
-      children: [{id: 'b', children: 'Hello World'}]
+      content: [{id: 'b', content: 'Hello World'}]
     })
     const result = toNodes(el.childNodes)
     assert.equal(result.length, 1)
@@ -47,7 +47,7 @@ describe('toNodes', function () {
   it('HTMLCollection', function () {
     const el = createElement({
       id: 'a',
-      children: [{id: 'b', children: 'Hello World'}]
+      content: [{id: 'b', content: 'Hello World'}]
     })
     const result = toNodes(el.children)
     assert.equal(result.length, 1)
@@ -55,7 +55,7 @@ describe('toNodes', function () {
   })
 
   it('object of attributes', function () {
-    const result = toNodes({children: 'Hello'})
+    const result = toNodes({content: 'Hello'})
     assert.equal(result.length, 1)
     assert.equal(result[0].outerHTML, `<div>Hello</div>`)
   })

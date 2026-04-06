@@ -7,7 +7,7 @@ describe('remove', function () {
     it('single element', function () {
         const child = createElement('div', {id: 'n2'})
         const el = createElement('div', {
-            children: [
+            content: [
                 { id: 'n1' },
                 child,
                 { id: 'n3' }
@@ -22,7 +22,7 @@ describe('remove', function () {
   
     it('NodeList', function () {
         const el = createElement('div', {
-            children: [
+            content: [
                 { id: 'n1' },
                 { id: 'n2' },
                 { id: 'n3' }
@@ -37,7 +37,7 @@ describe('remove', function () {
   
     it('HTMLCollection', function () {
         const el = createElement('div', {
-            children: [
+            content: [
                 { id: 'n1' },
                 { id: 'n2' },
                 { id: 'n3' }

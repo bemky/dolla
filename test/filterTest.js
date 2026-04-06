@@ -5,7 +5,7 @@ import * as assert from 'assert';
 describe('filter', function () {
   it('predicate', function () {
     const el = createElement('div', {
-      children: [
+      content: [
         {
           id: 'n1'
         }, {

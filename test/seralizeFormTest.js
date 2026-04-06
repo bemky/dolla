@@ -5,7 +5,7 @@ import * as assert from 'assert';
 describe('serializeForm', function () {
   it('single input', function () {
     const form = createElement('form', {
-      children: [{
+      content: [{
         tag: 'input',
         type: 'text',
         name: 'first_name',

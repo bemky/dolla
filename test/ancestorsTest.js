@@ -6,7 +6,7 @@ describe('ancestors', function () {
   
   it('one level', function () {
     const child = createElement('div', {id: 'a'})
-    const parent = createElement('div', {id: 'aa', children: [child]})
+    const parent = createElement('div', {id: 'aa', content: [child]})
     
     assert.deepEqual(['aa'], ancestors(child).map(x => x.id))
   });
@@ -19,18 +19,18 @@ describe('ancestors', function () {
   
   it('multiple level', function () {
     const child = createElement('div', {id: 'a'})
-    const parent = createElement('div', {id: 'aa', children: [child]})
-    const grandparent = createElement('div', {id: 'aaa', children: [parent]})
-    const greatGrandparent = createElement('div', {id: 'aaaa', children: [grandparent]})
+    const parent = createElement('div', {id: 'aa', content: [child]})
+    const grandparent = createElement('div', {id: 'aaa', content: [parent]})
+    const greatGrandparent = createElement('div', {id: 'aaaa', content: [grandparent]})
     
     assert.deepEqual(['aa', 'aaa', 'aaaa'], ancestors(child).map(x => x.id))
   });
   
   it('multiple level with selector', function () {
     const child = createElement('div', {id: 'a'})
-    const parent = createElement('div', {id: 'aa', children: [child]})
-    const grandparent = createElement('div', {id: 'aaa', children: [parent], class: 'target'})
-    const greatGrandparent = createElement('div', {id: 'aaaa', children: [grandparent]})
+    const parent = createElement('div', {id: 'aa', content: [child]})
+    const grandparent = createElement('div', {id: 'aaa', content: [parent], class: 'target'})
+    const greatGrandparent = createElement('div', {id: 'aaaa', content: [grandparent]})
     
     assert.deepEqual(['aa', 'aaa'], ancestors(child, '.target').map(x => x.id))
   });
