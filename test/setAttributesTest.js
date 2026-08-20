@@ -29,6 +29,12 @@ describe('setAttributes', function () {
             }).outerHTML, `<div class="foo bar charlie"></div>`)
         });
         
+        it('Array with empty string', function () {
+            assert.equal(setAttributes(document.createElement("div"), {
+                class: ['foo', '']
+            }).outerHTML, `<div class="foo"></div>`)
+        });
+
         it('null', function () {
             assert.equal(setAttributes(document.createElement("div"), {
                 class: null
